@@ -19,6 +19,7 @@ const Create = (props: any) => {
     });
     console.log(data);
     console.log(games);
+    console.log(props);
 
     const handleSubmit = (e: any) => {
         e.preventDefault();
@@ -35,22 +36,24 @@ const Create = (props: any) => {
             }
         >
             <form onSubmit={handleSubmit}>
-                <div>
+                <div className="p-5">
                     <div>
                         <label>Title</label>
                         <input
                             type="text"
                             onChange={(e) => setData("title", e.target.value)}
                         />
+                        <label>{props.errors.title}</label>
                     </div>
                     <div>
                         <label>Detail</label>
                         <textarea
                             onChange={(e) => setData("detail", e.target.value)}
                         ></textarea>
+                        <label>{props.errors.detail}</label>
                     </div>
-                    <div>
-                        <label>Match-Up</label>
+                    <div className="p-3">
+                        <label className="pr-3">Match-Up</label>
                         <select
                             onChange={(e) => setData("game_id", e.target.value)}
                         >
@@ -70,6 +73,9 @@ const Create = (props: any) => {
                                 }
                             )}
                         </select>
+                        {props.errors.game_id && (
+                            <span>The match-up field is required.</span>
+                        )}
                     </div>
                     <div>
                         <button>Send</button>

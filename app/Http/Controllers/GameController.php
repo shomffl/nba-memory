@@ -38,6 +38,13 @@ class GameController extends Controller
      */
     public function store(Request $request)
     {
+        $request->validate([
+            "game_id" => "required",
+            "title" => "required",
+            "detail" => "required"
+        ]);
+
+
         dd($request->all());
     }
 
