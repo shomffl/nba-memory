@@ -3,7 +3,7 @@
 use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
-
+use App\Http\Controllers\GameController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -25,9 +25,7 @@ use Inertia\Inertia;
 // });
 Route::group(["middleware" => ["auth"]], function() {
 
-    Route::get("/", function (){
-        return Inertia::render("Game/Index");
-    });
+    Route::resource('games', GameController::class);
 
 });
 

@@ -19,7 +19,7 @@ const Index = (props: any) => {
             }
         >
             <Head title="Memory"></Head>
-            <div className="p-10">
+            <div className="p-10 ">
                 <FullCalendar
                     plugins={[dayGridPlugin, interactionPlugin]}
                     initialView="dayGridMonth"
@@ -33,7 +33,15 @@ const Index = (props: any) => {
                     headerToolbar={{
                         start: "dayGridMonth,dayGridWeek,dayGridDay",
                         center: "title",
-                        end: "today prev,next",
+                        end: "myCustomButton today prev,next",
+                    }}
+                    customButtons={{
+                        myCustomButton: {
+                            text: "create",
+                            click: function () {
+                                Inertia.get(route("games.create"));
+                            },
+                        },
                     }}
                 />
             </div>
