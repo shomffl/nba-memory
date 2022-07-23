@@ -25,9 +25,7 @@ class GameController extends Controller
      */
     public function create()
     {
-        $games = Game::with("homeTeam","awayTeam","series")->get();
 
-        return Inertia::render("Game/Create" ,["games" => $games]);
     }
 
     /**
@@ -36,16 +34,9 @@ class GameController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(Request $request, Post $post)
     {
-        $request->validate([
-            "game_id" => "required",
-            "title" => "required",
-            "detail" => "required"
-        ]);
 
-
-        dd($request->all());
     }
 
     /**

@@ -27,7 +27,9 @@ class PostController extends Controller
      */
     public function create()
     {
-        //
+        $games = Game::with("homeTeam","awayTeam","series")->get();
+
+        return Inertia::render("Post/Create" ,["games" => $games]);
     }
 
     /**
@@ -38,11 +40,11 @@ class PostController extends Controller
      */
     public function store(Request $request, Post $post)
     {
-        //$request->validate([
-        //     "game_id" => "required",
-        //     "title" => "required",
-        //     "detail" => "required"
-        // ]);
+        $request->validate([
+            "game_id" => "required",
+            "title" => "required",
+            "detail" => "required"
+        ]);
 
         $post->fill($request->all());
         $post->user_id = auth()->id();

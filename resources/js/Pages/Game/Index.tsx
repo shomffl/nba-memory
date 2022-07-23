@@ -39,7 +39,7 @@ const Index = (props: any) => {
                         myCustomButton: {
                             text: "create",
                             click: function () {
-                                Inertia.get(route("games.create"));
+                                Inertia.get(route("posts.create"));
                             },
                         },
                     }}

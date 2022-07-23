@@ -4,6 +4,8 @@ use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
 use App\Http\Controllers\GameController;
+use App\Http\Controllers\PostController;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -26,6 +28,7 @@ use App\Http\Controllers\GameController;
 Route::group(["middleware" => ["auth"]], function() {
 
     Route::resource('games', GameController::class);
+    Route::resource('posts', PostController::class);
 
 });
 

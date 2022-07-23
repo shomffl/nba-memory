@@ -23,7 +23,7 @@ const Create = (props: any) => {
 
     const handleSubmit = (e: any) => {
         e.preventDefault();
-        Inertia.post(route("games.store"), data);
+        Inertia.post(route("posts.store"), data);
     };
 
     return (
