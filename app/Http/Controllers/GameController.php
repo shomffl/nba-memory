@@ -1,10 +1,10 @@
 <?php
 
 namespace App\Http\Controllers;
-
-use App\Models\Game;
 use Illuminate\Http\Request;
 use Inertia\Inertia;
+use App\Models\Game;
+use App\Models\Team;
 
 class GameController extends Controller
 {
@@ -25,6 +25,8 @@ class GameController extends Controller
      */
     public function create()
     {
+        $games = Game::with("homeTeam","awayTeam","series")->get();
+        dd($games);
         return Inertia::render("Game/Create");
     }
 
