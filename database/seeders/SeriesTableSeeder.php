@@ -17,23 +17,28 @@ class SeriesTableSeeder extends Seeder
     {
         DB::table('series')->insert([
             "id" => 1,
-            "status" => "Regular Season"
+            "code" => "RS",
+            "name" => "Regular Season"
         ]);
         DB::table('series')->insert([
             "id" => 2,
-            "status" => "PlayOff"
+            "code" => "PO",
+            "name" => "PlayOff"
         ]);
         DB::table('series')->insert([
             "id" => 3,
-            "status" => "Summer League"
+            "code" => "SR",
+            "name" => "Summer League"
         ]);
         DB::table('series')->insert([
             "id" => 4,
-            "status" => "Preseason"
+            "code" => "PR",
+            "name" => "Preseason"
         ]);
         DB::table('series')->insert([
-            "id" => 1,
-            "status" => "All Star"
+            "id" => 5,
+            "code" => "AS",
+            "name" => "All Star"
         ]);
     }
 }

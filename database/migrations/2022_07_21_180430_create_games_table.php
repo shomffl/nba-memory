@@ -19,6 +19,7 @@ return new class extends Migration
             $table->foreignId("away_team_id")->constrained("teams");
             $table->dateTime("started_at");
             $table->dateTime("ended_at");
+            $table->foreignId("series_id")->constrained("series");
             $table->timestamps();
         });
     }
