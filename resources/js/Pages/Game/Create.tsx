@@ -2,12 +2,13 @@ import React from "react";
 import Authenticated from "../../Layouts/Authenticated";
 import { Inertia } from "@inertiajs/inertia";
 import { useForm, usePage } from "@inertiajs/inertia-react";
+import { Axios } from "axios";
 
-interface Post {
+type Post = {
     game_id: string;
     title: string;
     detail: string;
-}
+};
 
 const Create = (props: any) => {
     const { games }: any = usePage().props;
@@ -18,6 +19,12 @@ const Create = (props: any) => {
     });
     console.log(data);
     console.log(games);
+
+    const handleSubmit = (e: any) => {
+        e.preventDefault();
+        Inertia.post(route("games.store"), data);
+    };
+
     return (
         <Authenticated
             auth={props.auth}
@@ -27,43 +34,48 @@ const Create = (props: any) => {
                 </h2>
             }
         >
-            <div>
+            <form onSubmit={handleSubmit}>
                 <div>
-                    <label>Title</label>
-                    <input
-                        type="text"
-                        onChange={(e) => setData("title", e.target.value)}
-                    />
+                    <div>
+                        <label>Title</label>
+                        <input
+                            type="text"
+                            onChange={(e) => setData("title", e.target.value)}
+                        />
+                    </div>
+                    <div>
+                        <label>Detail</label>
+                        <textarea
+                            onChange={(e) => setData("detail", e.target.value)}
+                        ></textarea>
+                    </div>
+                    <div>
+                        <label>Match-Up</label>
+                        <select
+                            onChange={(e) => setData("game_id", e.target.value)}
+                        >
+                            <option>Unselected</option>
+                            {games.map(
+                                (data: {
+                                    id: number;
+                                    home_team: { name: string };
+                                    away_team: { name: string };
+                                }) => {
+                                    return (
+                                        <option key={data.id} value={data.id}>
+                                            {data.home_team.name}&nbsp; vs&nbsp;
+                                            {data.away_team.name}
+                                        </option>
+                                    );
+                                }
+                            )}
+                        </select>
+                    </div>
+                    <div>
+                        <button>Send</button>
+                    </div>
                 </div>
-                <div>
-                    <label>Detail</label>
-                    <textarea
-                        onChange={(e) => setData("detail", e.target.value)}
-                    ></textarea>
-                </div>
-                <div>
-                    <label>Match-Up</label>
-                    <select
-                        onChange={(e) => setData("game_id", e.target.value)}
-                    >
-                        <option>Unselected</option>
-                        {games.map(
-                            (data: {
-                                id: number;
-                                home_team: { name: string };
-                                away_team: { name: string };
-                            }) => {
-                                return (
-                                    <option key={data.id} value={data.id}>
-                                        {data.home_team.name}&nbsp; vs&nbsp;
-                                        {data.away_team.name}
-                                    </option>
-                                );
-                            }
-                        )}
-                    </select>
-                </div>
-            </div>
+            </form>
         </Authenticated>
     );
 };
