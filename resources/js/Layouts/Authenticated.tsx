@@ -37,8 +37,8 @@ export default function Authenticated({ auth, header, children }: Props) {
                             </div>
                             <div className="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
                                 <NavLink
-                                    href={route("games.create")}
-                                    active={route().current("games.create")}
+                                    href={route("posts.create")}
+                                    active={route().current("posts.create")}
                                 >
                                     Create
                                 </NavLink>

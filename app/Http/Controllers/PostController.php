@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Post;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Redirect;
 use Inertia\Inertia;
 use App\Models\Game;
 use App\Models\Team;
@@ -48,11 +49,9 @@ class PostController extends Controller
 
         $post->fill($request->all());
         $post->user_id = auth()->id();
+        $post->save();
 
-
-
-
-        dd($post);
+        return Redirect::route('games.index');
     }
 
     /**
