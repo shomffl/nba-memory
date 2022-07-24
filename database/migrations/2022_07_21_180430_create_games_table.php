@@ -17,8 +17,7 @@ return new class extends Migration
             $table->id();
             $table->foreignId("home_team_id")->constrained("teams");
             $table->foreignId("away_team_id")->constrained("teams");
-            $table->dateTime("started_at");
-            $table->dateTime("ended_at");
+            $table->date("matched_at");
             $table->foreignId("series_id")->constrained("series");
             $table->timestamps();
         });
