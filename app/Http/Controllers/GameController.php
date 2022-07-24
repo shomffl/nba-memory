@@ -5,6 +5,8 @@ use Illuminate\Http\Request;
 use Inertia\Inertia;
 use App\Models\Game;
 use App\Models\Team;
+use App\Models\Post;
+use App\Service\GameService;
 
 class GameController extends Controller
 {
@@ -15,7 +17,10 @@ class GameController extends Controller
      */
     public function index()
     {
-        return Inertia::render("Game/Index");
+        $games = Game::with("homeTeam","awayTeam","series")->get();
+        $posts = Post::with("game.homeTeam","game.awayTeam")->where("user_id", auth()->id())->get();
+        $schedules = new GameService;
+        return Inertia::render("Game/Index",["schedules" => $schedules->getSchedules($games, $posts)]);
     }
 
     /**
