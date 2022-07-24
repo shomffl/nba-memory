@@ -9,6 +9,7 @@ import interactionPlugin from "@fullcalendar/interaction";
 import allLocales from "@fullcalendar/core/locales-all";
 
 const Index = (props: any) => {
+    const { schedules } = props;
     return (
         <Authenticated
             auth={props.auth}
@@ -43,6 +44,7 @@ const Index = (props: any) => {
                             },
                         },
                     }}
+                    events={schedules}
                 />
             </div>
         </Authenticated>
