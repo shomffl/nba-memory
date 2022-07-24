@@ -18,15 +18,13 @@ class GamesTableSeeder extends Seeder
         DB::table('games')->insert([
             "home_team_id" => 1,
             "away_team_id" => 2,
-            "started_at" => date("Y-m-d H:i:s"),
-            "ended_at" => date("Y-m-d H:i:s"),
+            "matched_at" => "2022-07-23",
             "series_id" => 1,
         ]);
         DB::table('games')->insert([
             "home_team_id" => 4,
             "away_team_id" => 5,
-            "started_at" => date("Y-m-d H:i:s"),
-            "ended_at" => date("Y-m-d H:i:s"),
+            "matched_at" => date("Y-m-d"),
             "series_id" => 1,
         ]);
     }

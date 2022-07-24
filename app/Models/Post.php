@@ -14,4 +14,9 @@ class Post extends Model
         "title",
         "detail"
     ];
+
+    public function game()
+    {
+        return $this->belongsTo(Game::class);
+    }
 }
