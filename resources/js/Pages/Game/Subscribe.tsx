@@ -104,10 +104,10 @@ const Subscribe = (props: any) => {
                             <div>
                                 <input
                                     type="number"
-                                    value={data.home_team_point}
+                                    value={data.away_team_point}
                                     onChange={(e: any) =>
                                         setData(
-                                            "home_team_point",
+                                            "away_team_point",
                                             e.target.value
                                         )
                                     }
