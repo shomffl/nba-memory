@@ -11,7 +11,7 @@ const Subscribe = (props: any) => {
 
     const { data, setData } = useForm({
         home_team_id: "1",
-        away_team_id: "1",
+        away_team_id: "30",
         matched_at: today,
         series_id: "1",
         home_team_point: 100,
