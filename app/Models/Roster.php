@@ -5,7 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class GameDescription extends Model
+class Roster extends Model
 {
     use HasFactory;
 }

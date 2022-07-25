@@ -17,23 +17,17 @@ use App\Http\Controllers\PostController;
 |
 */
 
-// Route::get('/', function () {
-//     return Inertia::render('Welcome', [
-//         'canLogin' => Route::has('login'),
-//         'canRegister' => Route::has('register'),
-//         'laravelVersion' => Application::VERSION,
-//         'phpVersion' => PHP_VERSION,
-//     ]);
-// });
 Route::group(["middleware" => ["auth"]], function() {
-
-    Route::resource('games', GameController::class);
+    Route::get("games",[GameController::class, "index"])->name("games.index");
     Route::resource('posts', PostController::class);
 
 });
 
+Route::group(["middleware" => ["auth", "can:admin"]], function(){
+    Route::get("/games/create", [GameController::class, "create"]);
+});
+
 Route::get('/dashboard', function () {
     return Inertia::render('Dashboard');
-})->middleware(['auth', 'verified'])->name('dashboard');
-
+})->name('dashboard');
 require __DIR__.'/auth.php';
