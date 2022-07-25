@@ -6,7 +6,10 @@ use Inertia\Inertia;
 use App\Models\Game;
 use App\Models\Team;
 use App\Models\Post;
+use App\Models\Series;
+use App\Models\Roster;
 use App\Service\GameService;
+use Illuminate\Support\Facades\Redirect;
 
 class GameController extends Controller
 {
@@ -28,9 +31,10 @@ class GameController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create(Series $series)
     {
-        return Inertia::render("Game/Subscribe");
+        $teams = Team::with("rosters")->get();
+        return Inertia::render("Game/Subscribe", ["teams" => $teams, "series" => $series->get()]);
     }
 
     /**
@@ -39,9 +43,24 @@ class GameController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request, Post $post)
+    public function store(Request $request, Game $game)
     {
+        $request->validate([
+            "matched_at" => "required",
+            "home_team_point" => "required",
+            "away_team_point" => "required"
+        ]);
 
+        $input = $request->all();
+        $home_team = Team::with("rosters")->find($input["home_team_id"])->rosters->last();
+        $away_team = Team::with("rosters")->find($input["away_team_id"])->rosters->last();
+
+        $game->fill($input);
+        $game->home_roster_id = $home_team->id;
+        $game->away_roster_id = $away_team->id;
+        $game->save();
+
+        return Redirect::route("games.index");
     }
 
     /**

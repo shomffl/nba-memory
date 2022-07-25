@@ -24,7 +24,8 @@ Route::group(["middleware" => ["auth"]], function() {
 });
 
 Route::group(["middleware" => ["auth", "can:admin"]], function(){
-    Route::get("/games/create", [GameController::class, "create"]);
+    Route::get("/games/create", [GameController::class, "create"])->name("games.create");
+    Route::post("/games/store", [GameController::class, "store"])->name("games.store");
 });
 
 Route::get('/dashboard', function () {
