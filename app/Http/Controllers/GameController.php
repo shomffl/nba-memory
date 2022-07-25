@@ -6,6 +6,8 @@ use Inertia\Inertia;
 use App\Models\Game;
 use App\Models\Team;
 use App\Models\Post;
+use App\Models\Series;
+use App\Models\Roster;
 use App\Service\GameService;
 
 class GameController extends Controller
@@ -28,9 +30,10 @@ class GameController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create(Series $series)
     {
-        return Inertia::render("Game/Subscribe");
+        $teams = Team::with("rosters")->get();
+        return Inertia::render("Game/Subscribe", ["teams" => $teams, "series" => $series->get()]);
     }
 
     /**
