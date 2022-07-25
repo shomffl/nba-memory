@@ -20,7 +20,7 @@ class UsersTableSeeder extends Seeder
             "name" => "Sho Watanabe",
             "email" => "sho@gmail.com",
             "password" => Hash::make("showatanabe"),
-            "role" => 1,
+            "role" => 0,
             "created_at" => date("Y-m-d H:i:s"),
             "updated_at" => date("Y-m-d H:i:s"),
         ]);
