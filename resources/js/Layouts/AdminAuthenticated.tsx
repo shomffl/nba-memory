@@ -28,10 +28,23 @@ export default function Authenticated({ auth, header, children }: Props) {
 
                             <div className="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
                                 <NavLink
-                                    href={route("admin.dashboard")}
-                                    active={route().current("admin.dashboard")}
+                                    href={route("admin.games.index")}
+                                    active={route().current(
+                                        "admin.games.index"
+                                    )}
                                 >
-                                    Dashboard
+                                    Schedule
+                                </NavLink>
+                            </div>
+
+                            <div className="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
+                                <NavLink
+                                    href={route("admin.games.create")}
+                                    active={route().current(
+                                        "admin.games.create"
+                                    )}
+                                >
+                                    Subscribe
                                 </NavLink>
                             </div>
                         </div>
