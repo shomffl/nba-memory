@@ -24,9 +24,12 @@ Route::group(["middleware" => ["auth"]], function() {
     Route::resource('posts', PostController::class);
 
 });
-
 require __DIR__.'/auth.php';
 
+
+Route::get('dashboard', function () {
+    return Inertia::render('Dashboard');
+})->name('dashboard');
 
 
 Route::group(["middleware" => ["auth:admin", 'verified']], function(){
