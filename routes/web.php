@@ -31,4 +31,14 @@ Route::group(["middleware" => ["auth", "can:admin"]], function(){
 Route::get('/dashboard', function () {
     return Inertia::render('Dashboard');
 })->name('dashboard');
+
 require __DIR__.'/auth.php';
+
+Route::prefix('admin')->name('admin.')->group(function(){
+    Route::get('/dashboard', function () {
+        return Inertia::render('Admin/Dashboard');
+    })->middleware(['auth:admin', 'verified'])->name('dashboard');
+
+    require __DIR__.'/admin.php';
+});
+
