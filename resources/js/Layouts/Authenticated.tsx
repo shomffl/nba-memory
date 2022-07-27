@@ -42,16 +42,6 @@ export default function Authenticated({ auth, header, children }: Props) {
                                     Create
                                 </NavLink>
                             </div>
-                            {auth.user.role === 0 ? (
-                                <div className="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
-                                    <NavLink
-                                        href={route("games.create")}
-                                        active={route().current("games.create")}
-                                    >
-                                        Subscribe
-                                    </NavLink>
-                                </div>
-                            ) : null}
                         </div>
 
                         <div className="hidden sm:flex sm:items-center sm:ml-6">
