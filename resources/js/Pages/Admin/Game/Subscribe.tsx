@@ -1,4 +1,4 @@
-import Authenticated from "@/Layouts/Authenticated";
+import Authenticated from "@/Layouts/AdminAuthenticated";
 import React from "react";
 import { Inertia } from "@inertiajs/inertia";
 import { useForm } from "@inertiajs/inertia-react";
@@ -20,7 +20,7 @@ const Subscribe = (props: any) => {
 
     const handleSubmit = (e: any) => {
         e.preventDefault();
-        Inertia.post(route("games.store"), data);
+        Inertia.post(route("admin.games.store"), data);
     };
 
     return (

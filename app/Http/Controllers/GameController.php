@@ -23,7 +23,14 @@ class GameController extends Controller
         $games = Game::with("homeTeam","awayTeam","series")->get();
         $posts = Post::with("game.homeTeam","game.awayTeam")->where("user_id", auth()->id())->get();
         $schedules = new GameService;
-        return Inertia::render("Game/Index",["schedules" => $schedules->getSchedules($games, $posts)]);
+        return Inertia::render("Game/Index",["schedules" => $schedules->getAllSchedules($games, $posts)]);
+    }
+
+    public function indexAdmin()
+    {
+        $games = Game::with("homeTeam","awayTeam","series")->get();
+        $schedules = new GameService;
+        return Inertia::render("Admin/Game/Index",["schedules" => $schedules->getGameSchedules($games)]);
     }
 
     /**
@@ -34,7 +41,7 @@ class GameController extends Controller
     public function create(Series $series)
     {
         $teams = Team::with("rosters")->get();
-        return Inertia::render("Game/Subscribe", ["teams" => $teams, "series" => $series->get()]);
+        return Inertia::render("Admin/Game/Subscribe", ["teams" => $teams, "series" => $series->get()]);
     }
 
     /**

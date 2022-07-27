@@ -17,28 +17,30 @@ use App\Http\Controllers\PostController;
 |
 */
 
+
+
 Route::group(["middleware" => ["auth"]], function() {
     Route::get("games",[GameController::class, "index"])->name("games.index");
     Route::resource('posts', PostController::class);
 
 });
+require __DIR__.'/auth.php';
 
-Route::group(["middleware" => ["auth", "can:admin"]], function(){
-    Route::get("/games/create", [GameController::class, "create"])->name("games.create");
-    Route::post("/games/store", [GameController::class, "store"])->name("games.store");
-});
 
-Route::get('/dashboard', function () {
+Route::get('dashboard', function () {
     return Inertia::render('Dashboard');
 })->name('dashboard');
 
-require __DIR__.'/auth.php';
 
-Route::prefix('admin')->name('admin.')->group(function(){
-    Route::get('/dashboard', function () {
+Route::group(["middleware" => ["auth:admin", 'verified']], function(){
+    Route::get("admin/games",[GameController::class, "indexAdmin"])->name("admin.games.index");
+    Route::get("admin/games/create", [GameController::class, "create"])->name("admin.games.create");
+    Route::post("admin/games/store", [GameController::class, "store"])->name("admin.games.store");
+
+    Route::get('admin/dashboard', function () {
         return Inertia::render('Admin/Dashboard');
-    })->middleware(['auth:admin', 'verified'])->name('dashboard');
-
-    require __DIR__.'/admin.php';
+    })->name('admin.dashboard');
 });
 
+
+require __DIR__.'/admin.php';

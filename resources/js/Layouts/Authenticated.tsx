@@ -21,7 +21,7 @@ export default function Authenticated({ auth, header, children }: Props) {
                     <div className="flex justify-between h-16">
                         <div className="flex">
                             <div className="shrink-0 flex items-center">
-                                <Link href="/">
+                                <Link href="/games">
                                     <ApplicationLogo className="block h-9 w-auto text-gray-500" />
                                 </Link>
                             </div>
@@ -42,16 +42,6 @@ export default function Authenticated({ auth, header, children }: Props) {
                                     Create
                                 </NavLink>
                             </div>
-                            {auth.user.role === 0 ? (
-                                <div className="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
-                                    <NavLink
-                                        href={route("games.create")}
-                                        active={route().current("games.create")}
-                                    >
-                                        Subscribe
-                                    </NavLink>
-                                </div>
-                            ) : null}
                         </div>
 
                         <div className="hidden sm:flex sm:items-center sm:ml-6">

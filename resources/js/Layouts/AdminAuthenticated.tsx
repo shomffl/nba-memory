@@ -21,46 +21,32 @@ export default function Authenticated({ auth, header, children }: Props) {
                     <div className="flex justify-between h-16">
                         <div className="flex">
                             <div className="shrink-0 flex items-center">
-                                <Link href="/">
+                                <Link href="/admin/games">
                                     <ApplicationLogo className="block h-9 w-auto text-gray-500" />
                                 </Link>
                             </div>
 
                             <div className="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
                                 <NavLink
-                                    href={route("games.index")}
-                                    active={route().current("games.index")}
+                                    href={route("admin.games.index")}
+                                    active={route().current(
+                                        "admin.games.index"
+                                    )}
                                 >
-                                    Memory
-                                </NavLink>
-                            </div>
-                            <div className="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
-                                <NavLink
-                                    href={route("posts.create")}
-                                    active={route().current("posts.create")}
-                                >
-                                    Create
-                                </NavLink>
-                            </div>
-                            <div className="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
-                                <NavLink
-                                    href={route("admin.dashboard")}
-                                    active={route().current("admin.dashboard")}
-                                >
-                                    Dashboard
+                                    Schedule
                                 </NavLink>
                             </div>
 
-                            {auth.user.role === 0 ? (
-                                <div className="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
-                                    <NavLink
-                                        href={route("games.create")}
-                                        active={route().current("games.create")}
-                                    >
-                                        Subscribe
-                                    </NavLink>
-                                </div>
-                            ) : null}
+                            <div className="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
+                                <NavLink
+                                    href={route("admin.games.create")}
+                                    active={route().current(
+                                        "admin.games.create"
+                                    )}
+                                >
+                                    Subscribe
+                                </NavLink>
+                            </div>
                         </div>
 
                         <div className="hidden sm:flex sm:items-center sm:ml-6">
