@@ -1,7 +1,7 @@
-import React from "react";
+import React, { useCallback } from "react";
 import { Inertia } from "@inertiajs/inertia";
 import Authenticated from "@/Layouts/Authenticated";
-import { Head } from "@inertiajs/inertia-react";
+import { Head, useForm } from "@inertiajs/inertia-react";
 import "@fullcalendar/react/dist/vdom";
 import FullCalendar, { EventContentArg, formatDate } from "@fullcalendar/react";
 import dayGridPlugin from "@fullcalendar/daygrid";
@@ -10,6 +10,16 @@ import allLocales from "@fullcalendar/core/locales-all";
 
 const Index = (props: any) => {
     const { schedules } = props;
+    const { data, setData } = useForm({
+        matched_at: "",
+    });
+
+    const handleDateClick = useCallback((arg: any) => {
+        setData({
+            matched_at: arg.dateStr,
+        });
+    }, []);
+
     return (
         <Authenticated
             auth={props.auth}
@@ -44,7 +54,9 @@ const Index = (props: any) => {
                             },
                         },
                     }}
+                    selectable={true}
                     events={schedules}
+                    dateClick={handleDateClick}
                 />
             </div>
         </Authenticated>
