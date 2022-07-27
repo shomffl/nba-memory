@@ -33,6 +33,7 @@ Route::get('dashboard', function () {
 
 
 Route::group(["middleware" => ["auth:admin", 'verified']], function(){
+    Route::get("admin/games",[GameController::class, "indexAdmin"])->name("admin.games.index");
     Route::get("admin/games/create", [GameController::class, "create"])->name("admin.games.create");
     Route::post("admin/games/store", [GameController::class, "store"])->name("admin.games.store");
 
