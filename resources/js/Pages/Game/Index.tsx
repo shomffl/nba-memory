@@ -51,6 +51,10 @@ const Index = (props: any) => {
                             text: "create",
                             click: function () {
                                 Inertia.get(route("posts.create"));
+                                localStorage.setItem(
+                                    "matched_at",
+                                    data.matched_at
+                                );
                             },
                         },
                     }}

@@ -29,7 +29,6 @@ class PostController extends Controller
     public function create()
     {
         $games = Game::with("homeTeam","awayTeam","series")->get();
-
         return Inertia::render("Post/Create" ,["games" => $games]);
     }
 

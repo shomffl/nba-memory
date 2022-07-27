@@ -1,8 +1,9 @@
-import React from "react";
+import React, { useEffect } from "react";
 import Authenticated from "../../Layouts/Authenticated";
 import { Inertia } from "@inertiajs/inertia";
 import { useForm, usePage } from "@inertiajs/inertia-react";
 import { Axios } from "axios";
+import GameSelect from "./Components/GameSelect";
 
 type Post = {
     game_id: string;
@@ -18,8 +19,8 @@ const Create = (props: any) => {
         detail: "",
     });
     console.log(data);
-    console.log(games);
     console.log(props);
+    console.log(localStorage.getItem("matched_at"));
 
     const handleSubmit = (e: any) => {
         e.preventDefault();
@@ -54,25 +55,7 @@ const Create = (props: any) => {
                     </div>
                     <div className="p-3">
                         <label className="pr-3">Match-Up</label>
-                        <select
-                            onChange={(e) => setData("game_id", e.target.value)}
-                        >
-                            <option>Unselected</option>
-                            {games.map(
-                                (data: {
-                                    id: number;
-                                    home_team: { name: string };
-                                    away_team: { name: string };
-                                }) => {
-                                    return (
-                                        <option key={data.id} value={data.id}>
-                                            {data.home_team.name}&nbsp; vs&nbsp;
-                                            {data.away_team.name}
-                                        </option>
-                                    );
-                                }
-                            )}
-                        </select>
+                        <GameSelect games={games} setData={setData} />
                         {props.errors.game_id && (
                             <span>The match-up field is required.</span>
                         )}
