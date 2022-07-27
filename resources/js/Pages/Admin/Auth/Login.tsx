@@ -52,13 +52,23 @@ export default function Login({ status, canResetPassword }: Props) {
 
             <ValidationErrors errors={errors} />
 
-            <div className="text-right">
-                <Link
-                    href={route("admin.register")}
-                    className="underline mb-2 text-sm text-gray-600 hover:text-gray-900"
-                >
-                    新規登録はこちら
-                </Link>
+            <div className="flex justify-between pb-5">
+                <div className="text-left">
+                    <Link
+                        href={route("login")}
+                        className="underline mb-2 text-sm text-gray-600 hover:text-gray-900"
+                    >
+                        通常ログインはこちら
+                    </Link>
+                </div>
+                <div className="text-right">
+                    <Link
+                        href={route("admin.register")}
+                        className="underline mb-2 text-sm text-gray-600 hover:text-gray-900"
+                    >
+                        新規登録はこちら
+                    </Link>
+                </div>
             </div>
 
             <form onSubmit={submit}>
