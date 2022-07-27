@@ -21,7 +21,7 @@ export default function Authenticated({ auth, header, children }: Props) {
                     <div className="flex justify-between h-16">
                         <div className="flex">
                             <div className="shrink-0 flex items-center">
-                                <Link href="/">
+                                <Link href="/admin/games">
                                     <ApplicationLogo className="block h-9 w-auto text-gray-500" />
                                 </Link>
                             </div>
