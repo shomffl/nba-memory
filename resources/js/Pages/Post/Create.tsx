@@ -34,6 +34,17 @@ const Create = (props: any) => {
         >
             <form onSubmit={handleSubmit}>
                 <div className="p-5">
+                    <div className="p-3">
+                        <label className="pr-3">Match-Up</label>
+                        <GameSelect
+                            games={games}
+                            gamesDate={gamesDate}
+                            setData={setData}
+                        />
+                        {props.errors.game_id && (
+                            <span>The match-up field is required.</span>
+                        )}
+                    </div>
                     <div>
                         <label>Title</label>
                         <input
@@ -49,17 +60,7 @@ const Create = (props: any) => {
                         ></textarea>
                         <label>{props.errors.detail}</label>
                     </div>
-                    <div className="p-3">
-                        <label className="pr-3">Match-Up</label>
-                        <GameSelect
-                            games={games}
-                            gamesDate={gamesDate}
-                            setData={setData}
-                        />
-                        {props.errors.game_id && (
-                            <span>The match-up field is required.</span>
-                        )}
-                    </div>
+
                     <div>
                         <button>Send</button>
                     </div>
