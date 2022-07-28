@@ -12,21 +12,17 @@ type Post = {
 };
 
 const Create = (props: any) => {
-    const { games }: any = usePage().props;
+    const { games, gamesDate }: any = props;
     const { data, setData } = useForm<Post>({
         game_id: "",
         title: "",
         detail: "",
     });
-    console.log(data);
-    console.log(props);
-    console.log(localStorage.getItem("matched_at"));
 
     const handleSubmit = (e: any) => {
         e.preventDefault();
         Inertia.post(route("posts.store"), data);
     };
-
     return (
         <Authenticated
             auth={props.auth}
@@ -55,7 +51,11 @@ const Create = (props: any) => {
                     </div>
                     <div className="p-3">
                         <label className="pr-3">Match-Up</label>
-                        <GameSelect games={games} setData={setData} />
+                        <GameSelect
+                            games={games}
+                            gamesDate={gamesDate}
+                            setData={setData}
+                        />
                         {props.errors.game_id && (
                             <span>The match-up field is required.</span>
                         )}

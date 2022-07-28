@@ -1,9 +1,9 @@
-import React, { useCallback } from "react";
+import React, { useState, useCallback } from "react";
 import { Inertia } from "@inertiajs/inertia";
 import Authenticated from "@/Layouts/Authenticated";
 import { Head, useForm } from "@inertiajs/inertia-react";
 import "@fullcalendar/react/dist/vdom";
-import FullCalendar, { EventContentArg, formatDate } from "@fullcalendar/react";
+import FullCalendar, { EventClickArg } from "@fullcalendar/react";
 import dayGridPlugin from "@fullcalendar/daygrid";
 import interactionPlugin from "@fullcalendar/interaction";
 import allLocales from "@fullcalendar/core/locales-all";
@@ -18,6 +18,10 @@ const Index = (props: any) => {
         setData({
             matched_at: arg.dateStr,
         });
+    }, []);
+
+    const handleEventClick = useCallback((clickInfo: EventClickArg) => {
+        console.log(clickInfo.event.title);
     }, []);
 
     return (
@@ -42,7 +46,7 @@ const Index = (props: any) => {
                         day: "2-digit",
                     }}
                     headerToolbar={{
-                        start: "dayGridMonth,dayGridWeek,dayGridDay",
+                        start: "dayGridMonth",
                         center: "title",
                         end: "myCustomButton today prev,next",
                     }}
@@ -60,6 +64,7 @@ const Index = (props: any) => {
                     }}
                     selectable={true}
                     events={schedules}
+                    eventClick={handleEventClick}
                     dateClick={handleDateClick}
                 />
             </div>

@@ -29,7 +29,8 @@ class PostController extends Controller
     public function create()
     {
         $games = Game::with("homeTeam","awayTeam","series")->get();
-        return Inertia::render("Post/Create" ,["games" => $games]);
+        $games_date = Game::groupBy("matched_at")->get("matched_at");
+        return Inertia::render("Post/Create" ,["games" => $games, "gamesDate" => $games_date]);
     }
 
     /**

@@ -1,7 +1,10 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 
 const GameSelect = (props: any) => {
-    const { games, setData } = props;
+    const { games, gamesDate, setData } = props;
+    const [changeDate, setChangeDate] = useState<any>(
+        localStorage.getItem("matched_at")
+    );
     let gameList: any[] = [];
 
     for (let i = 0; i < games.length; i++) {
@@ -14,15 +17,31 @@ const GameSelect = (props: any) => {
             );
         }
     }
+
     return (
-        <select
-            onChange={(e: React.ChangeEvent<HTMLSelectElement>) =>
-                setData("game_id", e.target.value)
-            }
-        >
-            <option>Unselected</option>
-            {gameList}
-        </select>
+        <>
+            <select
+                value={changeDate}
+                onChange={(e) => {
+                    localStorage.setItem("matched_at", e.target.value);
+                    setChangeDate(e.target.value);
+                }}
+            >
+                {gamesDate.map((gamesDate: { matched_at: string }) => (
+                    <option key={gamesDate.matched_at}>
+                        {gamesDate.matched_at}
+                    </option>
+                ))}
+            </select>
+            <select
+                onChange={(e: React.ChangeEvent<HTMLSelectElement>) =>
+                    setData("game_id", e.target.value)
+                }
+            >
+                <option>Unselected</option>
+                {gameList}
+            </select>
+        </>
     );
 };
 
