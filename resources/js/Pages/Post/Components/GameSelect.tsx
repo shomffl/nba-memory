@@ -1,6 +1,35 @@
+import {
+    setDataByMethod,
+    setDataByObject,
+    setDataByKeyValuePair,
+} from "@inertiajs/inertia-react";
 import React, { useState, useEffect } from "react";
+import { Post } from "../Create";
 
-const GameSelect = (props: any) => {
+type Game = {
+    id: number;
+    matched_at: string;
+    home_team: {
+        name: string;
+    };
+    away_team: {
+        name: string;
+    };
+};
+
+type GamesDate = {
+    matched_at: string;
+};
+
+type Props = {
+    games: Game[];
+    gamesDate: GamesDate[];
+    setData: setDataByObject<Post> &
+        setDataByMethod<Post> &
+        setDataByKeyValuePair<Post>;
+};
+
+const GameSelect = (props: Props) => {
     const { games, gamesDate, setData } = props;
     const [changeDate, setChangeDate] = useState<any>(
         localStorage.getItem("matched_at")

@@ -5,7 +5,7 @@ import { useForm, usePage } from "@inertiajs/inertia-react";
 import { Axios } from "axios";
 import GameSelect from "./Components/GameSelect";
 
-type Post = {
+export type Post = {
     game_id: string;
     title: string;
     detail: string;
