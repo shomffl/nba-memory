@@ -45,6 +45,25 @@ const Create = (props: any) => {
                             <span>The match-up field is required.</span>
                         )}
                     </div>
+
+                    <div>
+                        <label>Score</label>
+                        <div className="flex ">
+                            <div className="pr-4">
+                                <span>HOME : </span>
+                                {games[data.game_id] != null
+                                    ? games[data.game_id]?.home_team_point
+                                    : "????"}
+                            </div>
+                            <div>
+                                <span>AWAY : </span>
+                                {games[data.game_id] != null
+                                    ? games[data.game_id]?.away_team_point
+                                    : "????"}
+                            </div>
+                        </div>
+                    </div>
+
                     <div>
                         <label>Title</label>
                         <input
