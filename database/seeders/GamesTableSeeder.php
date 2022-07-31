@@ -22,7 +22,7 @@ class GamesTableSeeder extends Seeder
             "away_team_point" => 90,
             "home_roster_id" => 1,
             "away_roster_id" => 2,
-            "matched_at" => "2022-07-23",
+            "matched_at" => "2022-08-23",
             "series_id" => 1,
         ]);
         DB::table('games')->insert([
@@ -32,7 +32,7 @@ class GamesTableSeeder extends Seeder
             "away_team_point" => 90,
             "home_roster_id" => 1,
             "away_roster_id" => 2,
-            "matched_at" => "2022-07-23",
+            "matched_at" => "2022-08-23",
             "series_id" => 1,
         ]);
         DB::table('games')->insert([
@@ -42,7 +42,7 @@ class GamesTableSeeder extends Seeder
             "away_team_point" => 125,
             "home_roster_id" => 7,
             "away_roster_id" => 9,
-            "matched_at" => "2022-07-25",
+            "matched_at" => "2022-08-25",
             "series_id" => 1,
         ]);
         DB::table('games')->insert([
@@ -52,7 +52,7 @@ class GamesTableSeeder extends Seeder
             "away_team_point" => 90,
             "home_roster_id" => 19,
             "away_roster_id" => 15,
-            "matched_at" => "2022-07-28",
+            "matched_at" => "2022-08-28",
             "series_id" => 1,
         ]);
         DB::table('games')->insert([
@@ -62,7 +62,7 @@ class GamesTableSeeder extends Seeder
             "away_team_point" => 90,
             "home_roster_id" => 29,
             "away_roster_id" => 2,
-            "matched_at" => "2022-07-29",
+            "matched_at" => "2022-08-29",
             "series_id" => 1,
         ]);
         DB::table('games')->insert([
