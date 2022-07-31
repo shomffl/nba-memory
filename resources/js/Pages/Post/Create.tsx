@@ -2,7 +2,6 @@ import React, { useEffect } from "react";
 import Authenticated from "../../Layouts/Authenticated";
 import { Inertia } from "@inertiajs/inertia";
 import { useForm, usePage } from "@inertiajs/inertia-react";
-import { Axios } from "axios";
 import GameSelect from "./Components/GameSelect";
 
 export type Post = {

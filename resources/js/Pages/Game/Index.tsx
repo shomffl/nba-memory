@@ -1,4 +1,4 @@
-import React, { useState, useCallback } from "react";
+import React, { useState, useEffect, useCallback } from "react";
 import { Inertia } from "@inertiajs/inertia";
 import Authenticated from "@/Layouts/Authenticated";
 import { Head, useForm } from "@inertiajs/inertia-react";
@@ -23,6 +23,21 @@ const Index = (props: any) => {
     const handleEventClick = useCallback((clickInfo: EventClickArg) => {
         console.log(clickInfo.event.title);
     }, []);
+
+    const clickCreateButton = () => {
+        Inertia.get(route("posts.create"));
+        if (data.matched_at == "") {
+            localStorage.setItem("matched_at", schedules[0].date);
+        } else {
+            for (let i = 0; i < schedules.length; i++) {
+                if (data.matched_at == schedules[i].date) {
+                    localStorage.setItem("matched_at", data.matched_at);
+                } else {
+                    localStorage.setItem("matched_at", schedules[0].date);
+                }
+            }
+        }
+    };
 
     return (
         <Authenticated
@@ -53,13 +68,7 @@ const Index = (props: any) => {
                     customButtons={{
                         myCustomButton: {
                             text: "create",
-                            click: function () {
-                                Inertia.get(route("posts.create"));
-                                localStorage.setItem(
-                                    "matched_at",
-                                    data.matched_at
-                                );
-                            },
+                            click: clickCreateButton,
                         },
                     }}
                     dayMaxEventRows={true}
