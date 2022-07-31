@@ -62,7 +62,7 @@ const Index = (props: any) => {
                             },
                         },
                     }}
-                    selectable={true}
+                    dayMaxEventRows={true}
                     events={schedules}
                     eventClick={handleEventClick}
                     dateClick={handleDateClick}
