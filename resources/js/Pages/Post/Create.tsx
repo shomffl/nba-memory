@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import Authenticated from "../../Layouts/Authenticated";
 import { Inertia } from "@inertiajs/inertia";
 import { useForm, usePage } from "@inertiajs/inertia-react";
@@ -12,7 +12,7 @@ export type Post = {
 
 const Create = (props: any) => {
     const { games, gamesDate }: any = props;
-    const { data, setData } = useForm<Post>({
+    const { data, setData, post } = useForm<Post>({
         game_id: "",
         title: "",
         detail: "",
@@ -20,7 +20,7 @@ const Create = (props: any) => {
 
     const handleSubmit = (e: any) => {
         e.preventDefault();
-        Inertia.post(route("posts.store"), data);
+        post(route("posts.store"));
     };
     return (
         <Authenticated
@@ -62,7 +62,6 @@ const Create = (props: any) => {
                             </div>
                         </div>
                     </div>
-
                     <div>
                         <label>Title</label>
                         <input
