@@ -46,14 +46,7 @@ const Index = (props: any) => {
 
     console.log(localStorage.getItem("matched_at"));
     return (
-        <Authenticated
-            auth={props.auth}
-            header={
-                <h2 className="font-semibold text-xl text-gray-800 leading-tight">
-                    Memory
-                </h2>
-            }
-        >
+        <Authenticated auth={props.auth} header={null}>
             <Head title="Memory"></Head>
             <div className="p-10 ">
                 <FullCalendar

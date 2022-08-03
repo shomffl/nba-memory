@@ -26,14 +26,7 @@ const Create = (props: any) => {
     console.log(localStorage.getItem("matched_at"));
 
     return (
-        <Authenticated
-            auth={props.auth}
-            header={
-                <h2 className="font-semibold text-xl text-gray-800 leading-tight">
-                    Memory
-                </h2>
-            }
-        >
+        <Authenticated auth={props.auth} header={null}>
             <form onSubmit={handleSubmit}>
                 <div className="p-5">
                     <div className="p-3">
