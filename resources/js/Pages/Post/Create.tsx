@@ -13,7 +13,7 @@ export type Post = {
 const Create = (props: any) => {
     const { games, gamesDate }: any = props;
     const { data, setData, post } = useForm<Post>({
-        game_id: localStorage.getItem("id"),
+        game_id: "",
         title: "",
         detail: "",
     });

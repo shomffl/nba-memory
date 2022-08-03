@@ -67,9 +67,11 @@ const GameSelect = (props: Props) => {
             </select>
             <select
                 value={gameId}
-                onChange={(e: React.ChangeEvent<HTMLSelectElement>) =>
-                    setData("game_id", e.target.value)
-                }
+                onChange={(e: React.ChangeEvent<HTMLSelectElement>) => {
+                    localStorage.setItem("id", e.target.value);
+                    setGameId(e.target.value);
+                    setData("game_id", e.target.value);
+                }}
             >
                 <option>Unselected</option>
                 {gameList}
