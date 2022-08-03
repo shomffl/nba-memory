@@ -8,18 +8,42 @@ import dayGridPlugin from "@fullcalendar/daygrid";
 import interactionPlugin from "@fullcalendar/interaction";
 import allLocales from "@fullcalendar/core/locales-all";
 
+type Team = {
+    id: number;
+    name: string;
+};
+
+type Game = {
+    id: number;
+    home_team_id: number;
+    away_team_id: number;
+    home_team: Team;
+    away_team: Team;
+    matched_at: string;
+    series_id: number;
+};
+
 const Index = (props: any) => {
-    const { schedules } = props;
+    const { schedules, gamesByDate } = props;
     const { data, setData } = useForm({
         matched_at: "",
     });
+    const [todayGames, setTodayGames] = useState<Array<Game>>([]);
 
     const handleDateClick = useCallback((arg: any) => {
         setData({
             matched_at: arg.dateStr,
         });
+        console.log(arg.dateStr);
+        if (arg.dateStr in gamesByDate) {
+            setTodayGames(gamesByDate[arg.dateStr]);
+        } else {
+            console.log("no !!");
+        }
     }, []);
 
+    console.log("gamesByDate", gamesByDate);
+    console.log("todayGame", todayGames);
     const handleEventClick = useCallback((clickInfo: EventClickArg) => {
         console.log(clickInfo.event.title);
     }, []);
@@ -44,38 +68,47 @@ const Index = (props: any) => {
         }
     };
 
-    console.log(localStorage.getItem("matched_at"));
     return (
         <Authenticated auth={props.auth} header={null}>
             <Head title="Memory"></Head>
-            <div className="w-9/12 px-10 py-5">
-                <FullCalendar
-                    plugins={[dayGridPlugin, interactionPlugin]}
-                    initialView="dayGridMonth"
-                    locale="ja"
-                    locales={allLocales}
-                    titleFormat={{
-                        year: "2-digit",
-                        month: "2-digit",
-                        day: "2-digit",
-                    }}
-                    headerToolbar={{
-                        start: "dayGridMonth",
-                        center: "title",
-                        end: "myCustomButton today prev,next",
-                    }}
-                    customButtons={{
-                        myCustomButton: {
-                            text: "create",
-                            click: clickCreateButton,
-                        },
-                    }}
-                    contentHeight="auto"
-                    dayMaxEvents={2}
-                    events={schedules}
-                    eventClick={handleEventClick}
-                    dateClick={handleDateClick}
-                />
+            <div className="flex px-10 py-5">
+                <div className="w-9/12">
+                    <FullCalendar
+                        plugins={[dayGridPlugin, interactionPlugin]}
+                        initialView="dayGridMonth"
+                        locale="ja"
+                        locales={allLocales}
+                        titleFormat={{
+                            year: "2-digit",
+                            month: "2-digit",
+                            day: "2-digit",
+                        }}
+                        headerToolbar={{
+                            start: "dayGridMonth",
+                            center: "title",
+                            end: "myCustomButton today prev,next",
+                        }}
+                        customButtons={{
+                            myCustomButton: {
+                                text: "create",
+                                click: clickCreateButton,
+                            },
+                        }}
+                        contentHeight="auto"
+                        dayMaxEvents={2}
+                        events={schedules}
+                        eventClick={handleEventClick}
+                        dateClick={handleDateClick}
+                    />
+                </div>
+                <div className="w-3/12 ml-5 bg-gray-200 rounded shadow-xl">
+                    {todayGames.map((todayGame) => (
+                        <div key={todayGame.id}>
+                            {todayGame.home_team.name} vs{" "}
+                            {todayGame.away_team.name}
+                        </div>
+                    ))}
+                </div>
             </div>
         </Authenticated>
     );

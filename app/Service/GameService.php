@@ -24,7 +24,8 @@ class GameService {
         {
            $data = [
                 "display" => "background",
-                "date" =>  $game->matched_at,
+                "date" => $game->matched_at,
+                "match" => $game->homeTeam->name . " vs " . $game->awayTeam->name,
             ];
             array_push($schedules_list,$data);
         }
