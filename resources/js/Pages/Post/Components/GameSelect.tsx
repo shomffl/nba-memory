@@ -34,6 +34,7 @@ const GameSelect = (props: Props) => {
     const [changeDate, setChangeDate] = useState<any>(
         localStorage.getItem("matched_at")
     );
+    const [gameId, setGameId] = useState<any>(localStorage.getItem("id"));
     let gameList: any[] = [];
 
     for (let i = 0; i < games.length; i++) {
@@ -47,6 +48,8 @@ const GameSelect = (props: Props) => {
         }
     }
 
+    console.log("changeDate", changeDate);
+    console.log("gameId", gameId);
     return (
         <>
             <select
@@ -63,6 +66,7 @@ const GameSelect = (props: Props) => {
                 ))}
             </select>
             <select
+                value={gameId}
                 onChange={(e: React.ChangeEvent<HTMLSelectElement>) =>
                     setData("game_id", e.target.value)
                 }

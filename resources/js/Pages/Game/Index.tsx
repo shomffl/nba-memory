@@ -34,11 +34,10 @@ const Index = (props: any) => {
         setData({
             matched_at: arg.dateStr,
         });
-        console.log(arg.dateStr);
         if (arg.dateStr in gamesByDate) {
             setTodayGames(gamesByDate[arg.dateStr]);
         } else {
-            console.log("no !!");
+            setTodayGames([]);
         }
     }, []);
 
@@ -50,6 +49,7 @@ const Index = (props: any) => {
 
     useEffect(() => {
         localStorage.setItem("matched_at", schedules[0].date);
+        localStorage.setItem("id", gamesByDate[schedules[0]["date"]][0].id);
     }, []);
 
     const clickCreateButton = () => {
@@ -66,6 +66,13 @@ const Index = (props: any) => {
                 }
             }
         }
+    };
+
+    const transitionCreatePage = (id: any, matched_at: any) => {
+        localStorage.setItem("id", id);
+        localStorage.setItem("matched_at", matched_at);
+
+        Inertia.get("/posts/create");
     };
 
     return (
@@ -102,10 +109,24 @@ const Index = (props: any) => {
                     />
                 </div>
                 <div className="w-3/12 ml-5 bg-gray-200 rounded shadow-xl">
+                    <div>{}</div>
+                    {todayGames[0]?.matched_at || "not game"}
+
                     {todayGames.map((todayGame) => (
                         <div key={todayGame.id}>
                             {todayGame.home_team.name} vs{" "}
                             {todayGame.away_team.name}
+                            <button
+                                onClick={() =>
+                                    transitionCreatePage(
+                                        todayGame.id,
+                                        todayGame.matched_at
+                                    )
+                                }
+                                className="px-3 mx-2 bg-blue-300 rounded hover:bg-blue-400"
+                            >
+                                add
+                            </button>
                         </div>
                     ))}
                 </div>
