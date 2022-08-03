@@ -5,7 +5,7 @@ import { useForm, usePage } from "@inertiajs/inertia-react";
 import GameSelect from "./Components/GameSelect";
 
 export type Post = {
-    game_id: string;
+    game_id: string | any;
     title: string;
     detail: string;
 };
@@ -22,15 +22,11 @@ const Create = (props: any) => {
         e.preventDefault();
         post(route("posts.store"));
     };
+
+    console.log(localStorage.getItem("matched_at"));
+
     return (
-        <Authenticated
-            auth={props.auth}
-            header={
-                <h2 className="font-semibold text-xl text-gray-800 leading-tight">
-                    Memory
-                </h2>
-            }
-        >
+        <Authenticated auth={props.auth} header={null}>
             <form onSubmit={handleSubmit}>
                 <div className="p-5">
                     <div className="p-3">
@@ -44,7 +40,6 @@ const Create = (props: any) => {
                             <span>The match-up field is required.</span>
                         )}
                     </div>
-
                     <div>
                         <label>Score</label>
                         <div className="flex ">
@@ -77,7 +72,6 @@ const Create = (props: any) => {
                         ></textarea>
                         <label>{props.errors.detail}</label>
                     </div>
-
                     <div>
                         <button>Send</button>
                     </div>

@@ -8,74 +8,106 @@ import dayGridPlugin from "@fullcalendar/daygrid";
 import interactionPlugin from "@fullcalendar/interaction";
 import allLocales from "@fullcalendar/core/locales-all";
 
+type Team = {
+    id: number;
+    name: string;
+};
+
+type Game = {
+    id: number;
+    home_team_id: number;
+    away_team_id: number;
+    home_team: Team;
+    away_team: Team;
+    matched_at: string;
+    series_id: number;
+};
+
 const Index = (props: any) => {
-    const { schedules } = props;
+    const { schedules, gamesByDate } = props;
     const { data, setData } = useForm({
         matched_at: "",
     });
+    const [todayGames, setTodayGames] = useState<Array<Game>>([]);
 
     const handleDateClick = useCallback((arg: any) => {
         setData({
             matched_at: arg.dateStr,
         });
+        if (arg.dateStr in gamesByDate) {
+            setTodayGames(gamesByDate[arg.dateStr]);
+        } else {
+            setTodayGames([]);
+        }
     }, []);
 
+    console.log("gamesByDate", gamesByDate);
+    console.log("todayGame", todayGames);
     const handleEventClick = useCallback((clickInfo: EventClickArg) => {
         console.log(clickInfo.event.title);
     }, []);
 
-    const clickCreateButton = () => {
-        Inertia.get(route("posts.create"));
-        if (data.matched_at == "") {
-            localStorage.setItem("matched_at", schedules[0].date);
-        } else {
-            for (let i = 0; i < schedules.length; i++) {
-                if (data.matched_at == schedules[i].date) {
-                    localStorage.setItem("matched_at", data.matched_at);
-                } else {
-                    localStorage.setItem("matched_at", schedules[0].date);
-                }
-            }
-        }
+    useEffect(() => {
+        localStorage.setItem("matched_at", schedules[0].date);
+        localStorage.setItem("id", gamesByDate[schedules[0]["date"]][0].id);
+    }, []);
+
+    const transitionCreatePage = (id: any, matched_at: any) => {
+        localStorage.setItem("id", id);
+        localStorage.setItem("matched_at", matched_at);
+
+        Inertia.get("/posts/create");
     };
 
     return (
-        <Authenticated
-            auth={props.auth}
-            header={
-                <h2 className="font-semibold text-xl text-gray-800 leading-tight">
-                    Memory
-                </h2>
-            }
-        >
+        <Authenticated auth={props.auth} header={null}>
             <Head title="Memory"></Head>
-            <div className="p-10 ">
-                <FullCalendar
-                    plugins={[dayGridPlugin, interactionPlugin]}
-                    initialView="dayGridMonth"
-                    locale="ja"
-                    locales={allLocales}
-                    titleFormat={{
-                        year: "2-digit",
-                        month: "2-digit",
-                        day: "2-digit",
-                    }}
-                    headerToolbar={{
-                        start: "dayGridMonth",
-                        center: "title",
-                        end: "myCustomButton today prev,next",
-                    }}
-                    customButtons={{
-                        myCustomButton: {
-                            text: "create",
-                            click: clickCreateButton,
-                        },
-                    }}
-                    dayMaxEventRows={true}
-                    events={schedules}
-                    eventClick={handleEventClick}
-                    dateClick={handleDateClick}
-                />
+            <div className="flex px-10 py-5">
+                <div className="w-9/12">
+                    <FullCalendar
+                        plugins={[dayGridPlugin, interactionPlugin]}
+                        initialView="dayGridMonth"
+                        locale="ja"
+                        locales={allLocales}
+                        titleFormat={{
+                            year: "2-digit",
+                            month: "2-digit",
+                            day: "2-digit",
+                        }}
+                        headerToolbar={{
+                            start: "dayGridMonth",
+                            center: "title",
+                            end: "today prev,next",
+                        }}
+                        contentHeight="auto"
+                        dayMaxEvents={2}
+                        events={schedules}
+                        eventClick={handleEventClick}
+                        dateClick={handleDateClick}
+                    />
+                </div>
+                <div className="w-3/12 ml-5 bg-gray-200 rounded shadow-xl">
+                    <div>{}</div>
+                    {todayGames[0]?.matched_at || "not game"}
+
+                    {todayGames.map((todayGame) => (
+                        <div key={todayGame.id}>
+                            {todayGame.home_team.name} vs{" "}
+                            {todayGame.away_team.name}
+                            <button
+                                onClick={() =>
+                                    transitionCreatePage(
+                                        todayGame.id,
+                                        todayGame.matched_at
+                                    )
+                                }
+                                className="px-3 mx-2 bg-blue-300 rounded hover:bg-blue-400"
+                            >
+                                add
+                            </button>
+                        </div>
+                    ))}
+                </div>
             </div>
         </Authenticated>
     );
