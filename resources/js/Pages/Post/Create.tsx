@@ -22,6 +22,9 @@ const Create = (props: any) => {
         e.preventDefault();
         post(route("posts.store"));
     };
+
+    console.log(localStorage.getItem("matched_at"));
+
     return (
         <Authenticated
             auth={props.auth}
@@ -44,7 +47,6 @@ const Create = (props: any) => {
                             <span>The match-up field is required.</span>
                         )}
                     </div>
-
                     <div>
                         <label>Score</label>
                         <div className="flex ">
@@ -77,7 +79,6 @@ const Create = (props: any) => {
                         ></textarea>
                         <label>{props.errors.detail}</label>
                     </div>
-
                     <div>
                         <button>Send</button>
                     </div>

@@ -24,6 +24,10 @@ const Index = (props: any) => {
         console.log(clickInfo.event.title);
     }, []);
 
+    useEffect(() => {
+        localStorage.setItem("matched_at", schedules[0].date);
+    }, []);
+
     const clickCreateButton = () => {
         Inertia.get(route("posts.create"));
         if (data.matched_at == "") {
@@ -32,6 +36,7 @@ const Index = (props: any) => {
             for (let i = 0; i < schedules.length; i++) {
                 if (data.matched_at == schedules[i].date) {
                     localStorage.setItem("matched_at", data.matched_at);
+                    break;
                 } else {
                     localStorage.setItem("matched_at", schedules[0].date);
                 }
@@ -39,6 +44,7 @@ const Index = (props: any) => {
         }
     };
 
+    console.log(localStorage.getItem("matched_at"));
     return (
         <Authenticated
             auth={props.auth}
