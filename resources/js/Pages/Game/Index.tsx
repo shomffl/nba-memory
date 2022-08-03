@@ -48,7 +48,7 @@ const Index = (props: any) => {
     return (
         <Authenticated auth={props.auth} header={null}>
             <Head title="Memory"></Head>
-            <div className="p-10 ">
+            <div className="w-9/12 px-10 py-5">
                 <FullCalendar
                     plugins={[dayGridPlugin, interactionPlugin]}
                     initialView="dayGridMonth"
@@ -70,7 +70,8 @@ const Index = (props: any) => {
                             click: clickCreateButton,
                         },
                     }}
-                    dayMaxEventRows={true}
+                    contentHeight="auto"
+                    dayMaxEvents={2}
                     events={schedules}
                     eventClick={handleEventClick}
                     dateClick={handleDateClick}
