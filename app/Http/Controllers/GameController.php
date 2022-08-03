@@ -18,12 +18,14 @@ class GameController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Game $game)
     {
         $games = Game::with("homeTeam","awayTeam","series")->get();
         $posts = Post::with("game.homeTeam","game.awayTeam")->where("user_id", auth()->id())->get();
         $schedules = new GameService;
-        return Inertia::render("Game/Index",["schedules" => $schedules->getAllSchedules($games, $posts)]);
+        $games_by_date = $game->orderBy("matched_at")->get()->groupBy("matched_at");
+
+        return Inertia::render("Game/Index",["schedules" => $schedules->getAllSchedules($games, $posts), "gamesByDate" => $games_by_date]);
     }
 
     public function indexAdmin()
