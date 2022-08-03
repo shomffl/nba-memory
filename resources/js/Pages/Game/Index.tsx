@@ -52,22 +52,6 @@ const Index = (props: any) => {
         localStorage.setItem("id", gamesByDate[schedules[0]["date"]][0].id);
     }, []);
 
-    const clickCreateButton = () => {
-        Inertia.get(route("posts.create"));
-        if (data.matched_at == "") {
-            localStorage.setItem("matched_at", schedules[0].date);
-        } else {
-            for (let i = 0; i < schedules.length; i++) {
-                if (data.matched_at == schedules[i].date) {
-                    localStorage.setItem("matched_at", data.matched_at);
-                    break;
-                } else {
-                    localStorage.setItem("matched_at", schedules[0].date);
-                }
-            }
-        }
-    };
-
     const transitionCreatePage = (id: any, matched_at: any) => {
         localStorage.setItem("id", id);
         localStorage.setItem("matched_at", matched_at);
@@ -93,13 +77,7 @@ const Index = (props: any) => {
                         headerToolbar={{
                             start: "dayGridMonth",
                             center: "title",
-                            end: "myCustomButton today prev,next",
-                        }}
-                        customButtons={{
-                            myCustomButton: {
-                                text: "create",
-                                click: clickCreateButton,
-                            },
+                            end: "today prev,next",
                         }}
                         contentHeight="auto"
                         dayMaxEvents={2}
