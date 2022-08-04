@@ -21,6 +21,7 @@ type Game = {
 };
 
 type Post = {
+    id: number;
     title: string;
     detail: string;
     game: Game;
@@ -59,7 +60,8 @@ const Index = (props: any) => {
         localStorage.setItem("matched_at", schedules[0].date);
         localStorage.setItem("id", gamesByDate[schedules[0]["date"]][0].id);
     }, []);
-
+    console.log(todayGames);
+    console.log(todayPosts);
     /**
      * Create.tsxへ遷移するための関数
      *
@@ -86,24 +88,34 @@ const Index = (props: any) => {
                 </div>
                 <div className="w-3/12 ml-5 bg-gray-200 rounded shadow-xl">
                     {todayGames[0]?.matched_at || "not game"}
-
-                    {todayGames.map((todayGame) => (
-                        <div key={todayGame.id}>
-                            {todayGame.home_team.name} vs{" "}
-                            {todayGame.away_team.name}
-                            <button
-                                onClick={() =>
-                                    transitionCreatePage(
-                                        todayGame.id,
-                                        todayGame.matched_at
-                                    )
-                                }
-                                className="px-3 mx-2 bg-blue-300 rounded hover:bg-blue-400"
-                            >
-                                add
-                            </button>
-                        </div>
-                    ))}
+                    <div>
+                        {todayGames.map((todayGame) => (
+                            <div key={todayGame.id}>
+                                {todayGame.home_team.name} vs{" "}
+                                {todayGame.away_team.name}
+                                <button
+                                    onClick={() =>
+                                        transitionCreatePage(
+                                            todayGame.id,
+                                            todayGame.matched_at
+                                        )
+                                    }
+                                    className="px-3 mx-2 bg-blue-300 rounded hover:bg-blue-400"
+                                >
+                                    add
+                                </button>
+                            </div>
+                        ))}
+                    </div>
+                    <div className="pt-5">
+                        {todayPosts.map((todayPost) => (
+                            <div key={todayPost.id}>
+                                {todayPost.title}{" "}
+                                {todayPost.game.home_team.name} vs{" "}
+                                {todayPost.game.away_team.name}
+                            </div>
+                        ))}
+                    </div>
                 </div>
             </div>
         </Authenticated>
