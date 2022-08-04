@@ -76,7 +76,6 @@ const Index = (props: any) => {
                     />
                 </div>
                 <div className="w-3/12 ml-5 bg-gray-200 rounded shadow-xl">
-                    <div>{}</div>
                     {todayGames[0]?.matched_at || "not game"}
 
                     {todayGames.map((todayGame) => (

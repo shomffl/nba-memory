@@ -18,12 +18,16 @@ const Create = (props: any) => {
         detail: "",
     });
 
+    /**
+     *  添字に使用するための試合ID
+     *  IDは1から始まるがデータの数え方は0から始まるためマイナス1している
+     */
+    const indexOfGame = Number(localStorage.getItem("id")) - 1;
+
     const handleSubmit = (e: any) => {
         e.preventDefault();
         post(route("posts.store"));
     };
-
-    console.log(localStorage.getItem("matched_at"));
 
     return (
         <Authenticated auth={props.auth} header={null}>
@@ -45,14 +49,14 @@ const Create = (props: any) => {
                         <div className="flex ">
                             <div className="pr-4">
                                 <span>HOME : </span>
-                                {games[data.game_id] != null
-                                    ? games[data.game_id]?.home_team_point
+                                {games[indexOfGame] != null
+                                    ? games[indexOfGame]?.home_team_point
                                     : "????"}
                             </div>
                             <div>
                                 <span>AWAY : </span>
-                                {games[data.game_id] != null
-                                    ? games[data.game_id]?.away_team_point
+                                {games[indexOfGame] != null
+                                    ? games[indexOfGame]?.away_team_point
                                     : "????"}
                             </div>
                         </div>
