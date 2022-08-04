@@ -48,8 +48,6 @@ const GameSelect = (props: Props) => {
         }
     }
 
-    console.log("changeDate", changeDate);
-    console.log("gameId", gameId);
     return (
         <>
             <select
