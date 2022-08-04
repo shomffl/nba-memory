@@ -34,6 +34,7 @@ class GameService {
             $data = [
                 "title" => $post->game->homeTeam->name . " vs " . $post->game->awayTeam->name,
                 "date" => $post->game->matched_at,
+                "game_id" => $post->game_id
             ];
             array_push($schedules_list,$data);
         }
