@@ -2,11 +2,8 @@ import React, { useState, useEffect, useCallback } from "react";
 import { Inertia } from "@inertiajs/inertia";
 import Authenticated from "@/Layouts/Authenticated";
 import { Head, useForm } from "@inertiajs/inertia-react";
-import "@fullcalendar/react/dist/vdom";
-import FullCalendar, { EventClickArg } from "@fullcalendar/react";
-import dayGridPlugin from "@fullcalendar/daygrid";
-import interactionPlugin from "@fullcalendar/interaction";
-import allLocales from "@fullcalendar/core/locales-all";
+import { EventClickArg } from "@fullcalendar/react";
+import Calendar from "./Components/Calendar";
 
 type Team = {
     id: number;
@@ -64,26 +61,10 @@ const Index = (props: any) => {
             <Head title="Memory"></Head>
             <div className="flex px-10 py-5">
                 <div className="w-9/12">
-                    <FullCalendar
-                        plugins={[dayGridPlugin, interactionPlugin]}
-                        initialView="dayGridMonth"
-                        locale="ja"
-                        locales={allLocales}
-                        titleFormat={{
-                            year: "2-digit",
-                            month: "2-digit",
-                            day: "2-digit",
-                        }}
-                        headerToolbar={{
-                            start: "dayGridMonth",
-                            center: "title",
-                            end: "today prev,next",
-                        }}
-                        contentHeight="auto"
-                        dayMaxEvents={2}
-                        events={schedules}
-                        eventClick={handleEventClick}
-                        dateClick={handleDateClick}
+                    <Calendar
+                        schedules={schedules}
+                        handleEventClick={handleEventClick}
+                        handleDateClick={handleDateClick}
                     />
                 </div>
                 <div className="w-3/12 ml-5 bg-gray-200 rounded shadow-xl">
