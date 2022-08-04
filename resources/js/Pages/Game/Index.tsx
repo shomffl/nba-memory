@@ -22,15 +22,13 @@ type Game = {
 
 const Index = (props: any) => {
     const { schedules, gamesByDate } = props;
-    const { data, setData } = useForm({
-        matched_at: "",
-    });
     const [todayGames, setTodayGames] = useState<Array<Game>>([]);
 
+    /**
+     * カレンダーの日付クリック時に実行される関数
+     * クリックした日付に試合があればtodayGamesに格納
+     */
     const handleDateClick = useCallback((arg: any) => {
-        setData({
-            matched_at: arg.dateStr,
-        });
         if (arg.dateStr in gamesByDate) {
             setTodayGames(gamesByDate[arg.dateStr]);
         } else {
@@ -38,17 +36,27 @@ const Index = (props: any) => {
         }
     }, []);
 
-    console.log("gamesByDate", gamesByDate);
-    console.log("todayGame", todayGames);
+    /**
+     * カレンダーイベントのクリック時に実行される関数
+     */
     const handleEventClick = useCallback((clickInfo: EventClickArg) => {
         console.log(clickInfo.event.title);
     }, []);
 
+    /**
+     * 初回レンダリングジに実行される関数。試合のidと日付をデフォルトで格納する。
+     */
     useEffect(() => {
         localStorage.setItem("matched_at", schedules[0].date);
         localStorage.setItem("id", gamesByDate[schedules[0]["date"]][0].id);
     }, []);
 
+    /**
+     * Create.tsxへ遷移するための関数
+     *
+     * @param id 試合ID
+     * @param matched_at 試合日時
+     */
     const transitionCreatePage = (id: any, matched_at: any) => {
         localStorage.setItem("id", id);
         localStorage.setItem("matched_at", matched_at);
