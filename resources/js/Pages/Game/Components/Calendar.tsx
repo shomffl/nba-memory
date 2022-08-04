@@ -3,10 +3,22 @@ import { Inertia } from "@inertiajs/inertia";
 import "@fullcalendar/react/dist/vdom";
 import FullCalendar, { EventClickArg } from "@fullcalendar/react";
 import dayGridPlugin from "@fullcalendar/daygrid";
-import interactionPlugin from "@fullcalendar/interaction";
+import interactionPlugin, { DateClickArg } from "@fullcalendar/interaction";
 import allLocales from "@fullcalendar/core/locales-all";
 
-const Calendar = (props: any) => {
+type Schedule = {
+    display: string;
+    date: string;
+    match: string;
+};
+
+type Props = {
+    schedules: Schedule[];
+    handleEventClick: (arg: EventClickArg) => void;
+    handleDateClick: (arg: DateClickArg) => void;
+};
+
+const Calendar = (props: Props) => {
     const { schedules, handleEventClick, handleDateClick } = props;
     return (
         <FullCalendar
