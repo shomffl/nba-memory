@@ -31,6 +31,7 @@ const Index = (props: any) => {
     const { schedules, gamesByDate, postsByDate } = props;
     const [todayGames, setTodayGames] = useState<Array<Game>>([]);
     const [todayPosts, setTodayPosts] = useState<Array<Post>>([]);
+    console.log(props);
     /**
      * カレンダーの日付クリック時に実行される関数
      * クリックした日付に試合があればtodayGamesに格納
@@ -108,7 +109,7 @@ const Index = (props: any) => {
                         ))}
                     </div>
                     <div className="pt-5">
-                        {todayPosts.map((todayPost) => (
+                        {todayPosts?.map((todayPost) => (
                             <div key={todayPost.id}>
                                 {todayPost.title}{" "}
                                 {todayPost.game.home_team.name} vs{" "}
