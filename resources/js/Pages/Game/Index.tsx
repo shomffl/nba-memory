@@ -57,6 +57,7 @@ const Index = (props: any) => {
      * カレンダーイベントのクリック時に実行される関数
      */
     const handleEventClick = useCallback((clickInfo: EventClickArg) => {
+        setTodayPosts(postsByDate[clickInfo.event.extendedProps.matched_at]);
         setSelectedGame({
             postInfo: clickInfo.event.extendedProps,
             match: clickInfo.event.title,
@@ -97,41 +98,42 @@ const Index = (props: any) => {
                         handleDateClick={handleDateClick}
                     />
                 </div>
-                <div className="w-3/12 ml-5 bg-gray-200 rounded shadow-xl">
-                    {todayGames[0]?.matched_at || "not game"}
-                    <div>
-                        {todayGames.map((todayGame) => (
-                            <div key={todayGame.id}>
-                                {todayGame.home_team.name} vs{" "}
-                                {todayGame.away_team.name}
-                                <button
-                                    onClick={() =>
-                                        transitionCreatePage(
-                                            todayGame.id,
-                                            todayGame.matched_at
-                                        )
-                                    }
-                                    className="px-3 mx-2 bg-blue-300 rounded hover:bg-blue-400"
-                                >
-                                    add
-                                </button>
-                            </div>
-                        ))}
+                <div className="flex flex-col w-3/12">
+                    <div className="overflow-auto h-10 ml-5 mb-5 bg-gray-200 rounded shadow-xl">
+                        <h1>{todayGames[0]?.matched_at || "not game"}</h1>
                     </div>
-                    <div className="pt-5">
-                        {todayPosts?.map((todayPost) => (
-                            <div key={todayPost.id}>
-                                {todayPost.title}{" "}
-                                {todayPost.game.home_team.name} vs{" "}
-                                {todayPost.game.away_team.name}
-                            </div>
-                        ))}
+
+                    <div className="overflow-auto h-80 ml-5 mb-5 bg-gray-200 rounded shadow-xl">
+                        <div>
+                            {todayGames.map((todayGame) => (
+                                <div key={todayGame.id}>
+                                    {todayGame.home_team.name} vs{" "}
+                                    {todayGame.away_team.name}
+                                    <button
+                                        onClick={() =>
+                                            transitionCreatePage(
+                                                todayGame.id,
+                                                todayGame.matched_at
+                                            )
+                                        }
+                                        className="px-3 mx-2 bg-blue-300 rounded hover:bg-blue-400"
+                                    >
+                                        add
+                                    </button>
+                                </div>
+                            ))}
+                        </div>
                     </div>
-                    <div>
-                        <h1>{selectedGame?.postInfo.matched_at}</h1>
-                        <h1>{selectedGame?.match}</h1>
-                        <h2>{selectedGame?.postInfo.post_title}</h2>
-                        <p>{selectedGame?.postInfo.post_detail}</p>
+                    <div className="overflow-auto h-48 ml-5 bg-gray-200 rounded shadow-xl">
+                        <div>
+                            {todayPosts?.map((todayPost) => (
+                                <div key={todayPost.id}>
+                                    {todayPost.title}{" "}
+                                    {todayPost.game.home_team.name} vs{" "}
+                                    {todayPost.game.away_team.name}
+                                </div>
+                            ))}
+                        </div>
                     </div>
                 </div>
             </div>
