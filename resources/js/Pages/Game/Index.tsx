@@ -99,11 +99,11 @@ const Index = (props: any) => {
                     />
                 </div>
                 <div className="flex flex-col w-3/12">
-                    <div className="overflow-auto h-10 ml-5 mb-5 bg-gray-200 rounded shadow-xl">
+                    <div className="overflow-auto h-12 ml-5 mb-5 bg-gray-200 rounded shadow-xl">
                         <h1>{todayGames[0]?.matched_at || "not game"}</h1>
                     </div>
 
-                    <div className="overflow-auto h-80 ml-5 mb-5 bg-gray-200 rounded shadow-xl">
+                    <div className="overflow-auto h-96 ml-5 mb-5 bg-gray-200 rounded shadow-xl">
                         <div>
                             <h1>試合</h1>
                             {todayGames.map((todayGame) => (
@@ -125,7 +125,7 @@ const Index = (props: any) => {
                             ))}
                         </div>
                     </div>
-                    <div className="overflow-auto h-48 ml-5 bg-gray-200 rounded shadow-xl">
+                    <div className="overflow-auto h-56 ml-5 bg-gray-200 rounded shadow-xl">
                         <div>
                             <h1>感想</h1>
                             {todayPosts?.map((todayPost) => (
