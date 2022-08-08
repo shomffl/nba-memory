@@ -105,6 +105,7 @@ const Index = (props: any) => {
 
                     <div className="overflow-auto h-80 ml-5 mb-5 bg-gray-200 rounded shadow-xl">
                         <div>
+                            <h1>試合</h1>
                             {todayGames.map((todayGame) => (
                                 <div key={todayGame.id}>
                                     {todayGame.home_team.name} vs{" "}
@@ -126,6 +127,7 @@ const Index = (props: any) => {
                     </div>
                     <div className="overflow-auto h-48 ml-5 bg-gray-200 rounded shadow-xl">
                         <div>
+                            <h1>感想</h1>
                             {todayPosts?.map((todayPost) => (
                                 <div key={todayPost.id}>
                                     {todayPost.title}{" "}
