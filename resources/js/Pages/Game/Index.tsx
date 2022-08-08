@@ -4,6 +4,11 @@ import Authenticated from "@/Layouts/Authenticated";
 import { Head, useForm } from "@inertiajs/inertia-react";
 import { EventClickArg } from "@fullcalendar/react";
 import Calendar from "./Components/Calendar";
+import Accordion from "@mui/material/Accordion";
+import AccordionSummary from "@mui/material/AccordionSummary";
+import AccordionDetails from "@mui/material/AccordionDetails";
+import Typography from "@mui/material/Typography";
+import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 
 type Team = {
     id: number;
@@ -132,10 +137,24 @@ const Index = (props: any) => {
                         <div>
                             <h1>感想</h1>
                             {todayPosts?.map((todayPost) => (
-                                <div key={todayPost.id}>
-                                    {todayPost.title}{" "}
-                                    {todayPost.game.home_team.name} vs{" "}
-                                    {todayPost.game.away_team.name}
+                                <div key={todayPost.id} className="py-1">
+                                    <Accordion>
+                                        <AccordionSummary
+                                            expandIcon={<ExpandMoreIcon />}
+                                        >
+                                            <Typography>
+                                                {todayPost.title}{" "}
+                                                {todayPost.game.home_team.name}{" "}
+                                                vs{" "}
+                                                {todayPost.game.away_team.name}
+                                            </Typography>
+                                        </AccordionSummary>
+                                        <AccordionDetails>
+                                            <Typography>
+                                                {todayPost.detail}
+                                            </Typography>
+                                        </AccordionDetails>
+                                    </Accordion>
                                 </div>
                             ))}
                         </div>

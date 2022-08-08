@@ -26,10 +26,14 @@
         "vite": "^2.9.11"
     },
     "dependencies": {
+        "@emotion/react": "^11.10.0",
+        "@emotion/styled": "^11.10.0",
         "@fullcalendar/core": "^5.11.0",
         "@fullcalendar/daygrid": "^5.11.0",
         "@fullcalendar/interaction": "^5.11.0",
         "@fullcalendar/react": "^5.11.1",
+        "@mui/icons-material": "^5.8.4",
+        "@mui/material": "^5.9.3",
         "vite-plugin-checker": "^0.4.9"
     }
 }
