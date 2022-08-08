@@ -27,10 +27,17 @@ type Post = {
     game: Game;
 };
 
+type RegisterdPost = {};
+
 const Index = (props: any) => {
     const { schedules, gamesByDate, postsByDate } = props;
     const [todayGames, setTodayGames] = useState<Array<Game>>([]);
     const [todayPosts, setTodayPosts] = useState<Array<Post>>([]);
+    const [selectedGame, setSelectedGame] = useState<any>({
+        postInfo: "",
+        match: "",
+    });
+    console.log(props);
     /**
      * カレンダーの日付クリック時に実行される関数
      * クリックした日付に試合があればtodayGamesに格納
@@ -50,8 +57,12 @@ const Index = (props: any) => {
      * カレンダーイベントのクリック時に実行される関数
      */
     const handleEventClick = useCallback((clickInfo: EventClickArg) => {
-        console.log("event", clickInfo.event.extendedProps.game_id);
+        setSelectedGame({
+            postInfo: clickInfo.event.extendedProps,
+            match: clickInfo.event.title,
+        });
     }, []);
+    console.log("selectedGame", selectedGame);
 
     /**
      * 初回レンダリングジに実行される関数。試合のidと日付をデフォルトで格納する。
@@ -60,8 +71,8 @@ const Index = (props: any) => {
         localStorage.setItem("matched_at", schedules[0].date);
         localStorage.setItem("id", gamesByDate[schedules[0]["date"]][0].id);
     }, []);
-    console.log(todayGames);
-    console.log(todayPosts);
+    console.log("todayGames", todayGames);
+    console.log("todayPosts", todayPosts);
     /**
      * Create.tsxへ遷移するための関数
      *
@@ -108,13 +119,19 @@ const Index = (props: any) => {
                         ))}
                     </div>
                     <div className="pt-5">
-                        {todayPosts.map((todayPost) => (
+                        {todayPosts?.map((todayPost) => (
                             <div key={todayPost.id}>
                                 {todayPost.title}{" "}
                                 {todayPost.game.home_team.name} vs{" "}
                                 {todayPost.game.away_team.name}
                             </div>
                         ))}
+                    </div>
+                    <div>
+                        <h1>{selectedGame?.postInfo.matched_at}</h1>
+                        <h1>{selectedGame?.match}</h1>
+                        <h2>{selectedGame?.postInfo.post_title}</h2>
+                        <p>{selectedGame?.postInfo.post_detail}</p>
                     </div>
                 </div>
             </div>
