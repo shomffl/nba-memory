@@ -57,6 +57,7 @@ const Index = (props: any) => {
      * カレンダーイベントのクリック時に実行される関数
      */
     const handleEventClick = useCallback((clickInfo: EventClickArg) => {
+        setTodayGames(gamesByDate[clickInfo.event.extendedProps.matched_at]);
         setTodayPosts(postsByDate[clickInfo.event.extendedProps.matched_at]);
         setSelectedGame({
             postInfo: clickInfo.event.extendedProps,
