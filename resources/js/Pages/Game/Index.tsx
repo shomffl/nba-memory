@@ -37,13 +37,13 @@ const Index = (props: any) => {
         postInfo: "",
         match: "",
     });
-    console.log(props);
     /**
      * カレンダーの日付クリック時に実行される関数
      * クリックした日付に試合があればtodayGamesに格納
      * クリックした日付に感想があればtodayPostsに格納
      */
     const handleDateClick = useCallback((arg: any) => {
+        console.log("handleDateClick", arg.dateStr);
         if (arg.dateStr in gamesByDate) {
             setTodayGames(gamesByDate[arg.dateStr]);
             setTodayPosts(postsByDate[arg.dateStr]);
@@ -55,16 +55,18 @@ const Index = (props: any) => {
 
     /**
      * カレンダーイベントのクリック時に実行される関数
+     * 日付をクリックしても実行されるため、条件分岐でイベントがクリックされた時にのみ実行されるように変更
      */
     const handleEventClick = useCallback((clickInfo: EventClickArg) => {
-        setTodayGames(gamesByDate[clickInfo.event.extendedProps.matched_at]);
-        setTodayPosts(postsByDate[clickInfo.event.extendedProps.matched_at]);
-        setSelectedGame({
-            postInfo: clickInfo.event.extendedProps,
-            match: clickInfo.event.title,
-        });
+        if (clickInfo.event.title != "") {
+            setTodayPosts(
+                postsByDate[clickInfo.event.extendedProps.matched_at]
+            );
+            setTodayGames(
+                gamesByDate[clickInfo.event.extendedProps.matched_at]
+            );
+        }
     }, []);
-    console.log("selectedGame", selectedGame);
 
     /**
      * 初回レンダリングジに実行される関数。試合のidと日付をデフォルトで格納する。
