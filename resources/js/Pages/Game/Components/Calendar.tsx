@@ -37,7 +37,7 @@ const Calendar = (props: Props) => {
                 end: "today prev,next",
             }}
             contentHeight="auto"
-            dayMaxEvents={2}
+            dayMaxEvents={1}
             events={schedules}
             eventClick={handleEventClick}
             dateClick={handleDateClick}
