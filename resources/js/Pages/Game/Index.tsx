@@ -4,6 +4,11 @@ import Authenticated from "@/Layouts/Authenticated";
 import { Head, useForm } from "@inertiajs/inertia-react";
 import { EventClickArg } from "@fullcalendar/react";
 import Calendar from "./Components/Calendar";
+import Accordion from "@mui/material/Accordion";
+import AccordionSummary from "@mui/material/AccordionSummary";
+import AccordionDetails from "@mui/material/AccordionDetails";
+import Typography from "@mui/material/Typography";
+import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 
 type Team = {
     id: number;
@@ -37,13 +42,13 @@ const Index = (props: any) => {
         postInfo: "",
         match: "",
     });
-    console.log(props);
     /**
      * カレンダーの日付クリック時に実行される関数
      * クリックした日付に試合があればtodayGamesに格納
      * クリックした日付に感想があればtodayPostsに格納
      */
     const handleDateClick = useCallback((arg: any) => {
+        console.log("handleDateClick", arg.dateStr);
         if (arg.dateStr in gamesByDate) {
             setTodayGames(gamesByDate[arg.dateStr]);
             setTodayPosts(postsByDate[arg.dateStr]);
@@ -55,14 +60,18 @@ const Index = (props: any) => {
 
     /**
      * カレンダーイベントのクリック時に実行される関数
+     * 日付をクリックしても実行されるため、条件分岐でイベントがクリックされた時にのみ実行されるように変更
      */
     const handleEventClick = useCallback((clickInfo: EventClickArg) => {
-        setSelectedGame({
-            postInfo: clickInfo.event.extendedProps,
-            match: clickInfo.event.title,
-        });
+        if (clickInfo.event.title != "") {
+            setTodayPosts(
+                postsByDate[clickInfo.event.extendedProps.matched_at]
+            );
+            setTodayGames(
+                gamesByDate[clickInfo.event.extendedProps.matched_at]
+            );
+        }
     }, []);
-    console.log("selectedGame", selectedGame);
 
     /**
      * 初回レンダリングジに実行される関数。試合のidと日付をデフォルトで格納する。
@@ -97,41 +106,58 @@ const Index = (props: any) => {
                         handleDateClick={handleDateClick}
                     />
                 </div>
-                <div className="w-3/12 ml-5 bg-gray-200 rounded shadow-xl">
-                    {todayGames[0]?.matched_at || "not game"}
-                    <div>
-                        {todayGames.map((todayGame) => (
-                            <div key={todayGame.id}>
-                                {todayGame.home_team.name} vs{" "}
-                                {todayGame.away_team.name}
-                                <button
-                                    onClick={() =>
-                                        transitionCreatePage(
-                                            todayGame.id,
-                                            todayGame.matched_at
-                                        )
-                                    }
-                                    className="px-3 mx-2 bg-blue-300 rounded hover:bg-blue-400"
-                                >
-                                    add
-                                </button>
-                            </div>
-                        ))}
+                <div className="flex flex-col w-3/12">
+                    <div className="overflow-auto h-12 ml-5 mb-5 bg-gray-200 rounded shadow-xl">
+                        <h1>{todayGames[0]?.matched_at || "not game"}</h1>
                     </div>
-                    <div className="pt-5">
-                        {todayPosts?.map((todayPost) => (
-                            <div key={todayPost.id}>
-                                {todayPost.title}{" "}
-                                {todayPost.game.home_team.name} vs{" "}
-                                {todayPost.game.away_team.name}
-                            </div>
-                        ))}
+
+                    <div className="overflow-auto h-96 ml-5 mb-5 bg-gray-200 rounded shadow-xl">
+                        <div>
+                            <h1>試合</h1>
+                            {todayGames.map((todayGame) => (
+                                <div key={todayGame.id}>
+                                    {todayGame.home_team.name} vs{" "}
+                                    {todayGame.away_team.name}
+                                    <button
+                                        onClick={() =>
+                                            transitionCreatePage(
+                                                todayGame.id,
+                                                todayGame.matched_at
+                                            )
+                                        }
+                                        className="px-3 mx-2 bg-blue-300 rounded hover:bg-blue-400"
+                                    >
+                                        add
+                                    </button>
+                                </div>
+                            ))}
+                        </div>
                     </div>
-                    <div>
-                        <h1>{selectedGame?.postInfo.matched_at}</h1>
-                        <h1>{selectedGame?.match}</h1>
-                        <h2>{selectedGame?.postInfo.post_title}</h2>
-                        <p>{selectedGame?.postInfo.post_detail}</p>
+                    <div className="overflow-auto h-56 ml-5 bg-gray-200 rounded shadow-xl">
+                        <div>
+                            <h1>感想</h1>
+                            {todayPosts?.map((todayPost) => (
+                                <div key={todayPost.id} className="py-1">
+                                    <Accordion>
+                                        <AccordionSummary
+                                            expandIcon={<ExpandMoreIcon />}
+                                        >
+                                            <Typography>
+                                                {todayPost.title}{" "}
+                                                {todayPost.game.home_team.name}{" "}
+                                                vs{" "}
+                                                {todayPost.game.away_team.name}
+                                            </Typography>
+                                        </AccordionSummary>
+                                        <AccordionDetails>
+                                            <Typography>
+                                                {todayPost.detail}
+                                            </Typography>
+                                        </AccordionDetails>
+                                    </Accordion>
+                                </div>
+                            ))}
+                        </div>
                     </div>
                 </div>
             </div>
