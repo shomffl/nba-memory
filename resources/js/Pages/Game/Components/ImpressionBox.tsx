@@ -5,7 +5,6 @@ import AccordionSummary from "@mui/material/AccordionSummary";
 import AccordionDetails from "@mui/material/AccordionDetails";
 import Typography from "@mui/material/Typography";
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
-import { Post } from "../Index";
 
 const ImpressionBox = (props: { todayPosts: Array<Post> }) => {
     const { todayPosts } = props;
