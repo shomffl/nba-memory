@@ -9,6 +9,12 @@ import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 const ImpressionBox = (props: { todayPosts: Array<Post> }) => {
     const { todayPosts } = props;
 
+    const handleDeletePost = (id: any) => {
+        Inertia.delete(`/posts/${id}`, {
+            onBefore: () => confirm("本当に削除しますか？"),
+        });
+    };
+
     return (
         <div>
             <h1>感想</h1>
@@ -38,7 +44,10 @@ const ImpressionBox = (props: { todayPosts: Array<Post> }) => {
                             </button>
                         </div>
                         <div>
-                            <button className="bg-red-400 hover:bg-red-600 px-1 rounded duration-150">
+                            <button
+                                onClick={(e) => handleDeletePost(todayPost.id)}
+                                className="bg-red-400 hover:bg-red-600 px-1 rounded duration-150"
+                            >
                                 delete
                             </button>
                         </div>
