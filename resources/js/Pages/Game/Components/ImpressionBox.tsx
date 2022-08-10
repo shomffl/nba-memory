@@ -12,6 +12,7 @@ const ImpressionBox = (props: { todayPosts: Array<Post> }) => {
     const handleDeletePost = (id: any) => {
         Inertia.delete(`/posts/${id}`, {
             onBefore: () => confirm("本当に削除しますか？"),
+            onSuccess: () => console.log("success!!!"),
         });
     };
 
@@ -19,20 +20,22 @@ const ImpressionBox = (props: { todayPosts: Array<Post> }) => {
         <div>
             <h1>感想</h1>
             {todayPosts?.map((todayPost) => (
-                <div key={todayPost.id} className="py-1 flex">
-                    <Accordion>
-                        <AccordionSummary expandIcon={<ExpandMoreIcon />}>
-                            <Typography>
-                                {todayPost.title} <br />
-                                {todayPost.game.home_team.name} vs{" "}
-                                {todayPost.game.away_team.name}
-                            </Typography>
-                        </AccordionSummary>
-                        <AccordionDetails>
-                            <Typography>{todayPost.detail}</Typography>
-                        </AccordionDetails>
-                    </Accordion>
-                    <div className="flex flex-col justify-start py-1 pl-1">
+                <div key={todayPost.id} className="py-1 flex justify-between">
+                    <div className="w-2/3">
+                        <Accordion>
+                            <AccordionSummary expandIcon={<ExpandMoreIcon />}>
+                                <Typography>
+                                    {todayPost.title} <br />
+                                    {todayPost.game.home_team.name} vs{" "}
+                                    {todayPost.game.away_team.name}
+                                </Typography>
+                            </AccordionSummary>
+                            <AccordionDetails>
+                                <Typography>{todayPost.detail}</Typography>
+                            </AccordionDetails>
+                        </Accordion>
+                    </div>
+                    <div className="flex flex-col justify-start py-1 px-1">
                         <div className="pb-3">
                             <button
                                 onClick={(e) =>
