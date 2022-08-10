@@ -1,47 +1,21 @@
 import React, { useState, useEffect, useCallback } from "react";
 import { Inertia } from "@inertiajs/inertia";
 import Authenticated from "@/Layouts/Authenticated";
-import { Head, useForm } from "@inertiajs/inertia-react";
+import { Head, useRemember } from "@inertiajs/inertia-react";
 import { EventClickArg } from "@fullcalendar/react";
 import Calendar from "./Components/Calendar";
-import Accordion from "@mui/material/Accordion";
-import AccordionSummary from "@mui/material/AccordionSummary";
-import AccordionDetails from "@mui/material/AccordionDetails";
-import Typography from "@mui/material/Typography";
-import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
-
-type Team = {
-    id: number;
-    name: string;
-};
-
-type Game = {
-    id: number;
-    home_team_id: number;
-    away_team_id: number;
-    home_team: Team;
-    away_team: Team;
-    matched_at: string;
-    series_id: number;
-};
-
-type Post = {
-    id: number;
-    title: string;
-    detail: string;
-    game: Game;
-};
-
-type RegisterdPost = {};
+import ImpressionBox from "./Components/ImpressionBox";
 
 const Index = (props: any) => {
     const { schedules, gamesByDate, postsByDate } = props;
-    const [todayGames, setTodayGames] = useState<Array<Game>>([]);
-    const [todayPosts, setTodayPosts] = useState<Array<Post>>([]);
-    const [selectedGame, setSelectedGame] = useState<any>({
-        postInfo: "",
-        match: "",
-    });
+    const [todayGames, setTodayGames] = useRemember<Array<Game>>(
+        [],
+        "IndexTodayGames"
+    );
+    const [todayPosts, setTodayPosts] = useRemember<Array<Post>>(
+        [],
+        "IndexTodayPosts"
+    );
     /**
      * カレンダーの日付クリック時に実行される関数
      * クリックした日付に試合があればtodayGamesに格納
@@ -112,7 +86,7 @@ const Index = (props: any) => {
                     </div>
 
                     <div className="overflow-auto h-96 ml-5 mb-5 bg-gray-200 rounded shadow-xl">
-                        <div>
+                        <div className="m-3">
                             <h1>試合</h1>
                             {todayGames.map((todayGame) => (
                                 <div key={todayGame.id}>
@@ -134,29 +108,8 @@ const Index = (props: any) => {
                         </div>
                     </div>
                     <div className="overflow-auto h-56 ml-5 bg-gray-200 rounded shadow-xl">
-                        <div>
-                            <h1>感想</h1>
-                            {todayPosts?.map((todayPost) => (
-                                <div key={todayPost.id} className="py-1">
-                                    <Accordion>
-                                        <AccordionSummary
-                                            expandIcon={<ExpandMoreIcon />}
-                                        >
-                                            <Typography>
-                                                {todayPost.title}{" "}
-                                                {todayPost.game.home_team.name}{" "}
-                                                vs{" "}
-                                                {todayPost.game.away_team.name}
-                                            </Typography>
-                                        </AccordionSummary>
-                                        <AccordionDetails>
-                                            <Typography>
-                                                {todayPost.detail}
-                                            </Typography>
-                                        </AccordionDetails>
-                                    </Accordion>
-                                </div>
-                            ))}
+                        <div className="m-3">
+                            <ImpressionBox todayPosts={todayPosts} />
                         </div>
                     </div>
                 </div>

@@ -62,7 +62,7 @@ class PostController extends Controller
      */
     public function show(Post $post)
     {
-        //
+        return Inertia::render("Post/Show", ["post" => Post::with("game.homeTeam", "game.awayTeam")->find($post->id)]);
     }
 
     /**
@@ -96,6 +96,7 @@ class PostController extends Controller
      */
     public function destroy(Post $post)
     {
-        //
+        $post->delete();
+        return redirect("/games");
     }
 }
