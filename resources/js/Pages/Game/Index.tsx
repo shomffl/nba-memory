@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useCallback } from "react";
 import { Inertia } from "@inertiajs/inertia";
 import Authenticated from "@/Layouts/Authenticated";
-import { Head, useForm } from "@inertiajs/inertia-react";
+import { Head, useForm, useRemember } from "@inertiajs/inertia-react";
 import { EventClickArg } from "@fullcalendar/react";
 import Calendar from "./Components/Calendar";
 import Accordion from "@mui/material/Accordion";
@@ -32,18 +32,16 @@ type Post = {
     game: Game;
 };
 
-type RegisterdPost = {};
-
 const Index = (props: any) => {
     const { schedules, gamesByDate, postsByDate } = props;
-    const [todayGames, setTodayGames] = useState<Array<Game>>([]);
-    const [todayPosts, setTodayPosts] = useState<Array<Post>>([]);
-
-    // const [selectedGame, setSelectedGame] = useState<any>({
-    //     postInfo: "",
-    //     match: "",
-    // });
-
+    const [todayGames, setTodayGames] = useRemember<Array<Game>>(
+        [],
+        "IndexTodayGames"
+    );
+    const [todayPosts, setTodayPosts] = useRemember<Array<Post>>(
+        [],
+        "IndexTodayPosts"
+    );
     /**
      * カレンダーの日付クリック時に実行される関数
      * クリックした日付に試合があればtodayGamesに格納
@@ -162,7 +160,14 @@ const Index = (props: any) => {
                                     </Accordion>
                                     <div className="flex flex-col justify-start py-1 pl-1">
                                         <div className="pb-3">
-                                            <button className="bg-green-400 hover:bg-green-600 px-0.5 rounded duration-150">
+                                            <button
+                                                onClick={(e) =>
+                                                    Inertia.get(
+                                                        `/posts/${todayPost.id}`
+                                                    )
+                                                }
+                                                className="bg-green-400 hover:bg-green-600 px-0.5 rounded duration-150"
+                                            >
                                                 &nbsp;show&nbsp;
                                             </button>
                                         </div>
