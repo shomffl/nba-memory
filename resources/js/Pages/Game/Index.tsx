@@ -38,10 +38,12 @@ const Index = (props: any) => {
     const { schedules, gamesByDate, postsByDate } = props;
     const [todayGames, setTodayGames] = useState<Array<Game>>([]);
     const [todayPosts, setTodayPosts] = useState<Array<Post>>([]);
-    const [selectedGame, setSelectedGame] = useState<any>({
-        postInfo: "",
-        match: "",
-    });
+
+    // const [selectedGame, setSelectedGame] = useState<any>({
+    //     postInfo: "",
+    //     match: "",
+    // });
+
     /**
      * カレンダーの日付クリック時に実行される関数
      * クリックした日付に試合があればtodayGamesに格納
@@ -112,7 +114,7 @@ const Index = (props: any) => {
                     </div>
 
                     <div className="overflow-auto h-96 ml-5 mb-5 bg-gray-200 rounded shadow-xl">
-                        <div>
+                        <div className="m-3">
                             <h1>試合</h1>
                             {todayGames.map((todayGame) => (
                                 <div key={todayGame.id}>
@@ -134,17 +136,20 @@ const Index = (props: any) => {
                         </div>
                     </div>
                     <div className="overflow-auto h-56 ml-5 bg-gray-200 rounded shadow-xl">
-                        <div>
+                        <div className="m-3">
                             <h1>感想</h1>
                             {todayPosts?.map((todayPost) => (
-                                <div key={todayPost.id} className="py-1">
+                                <div key={todayPost.id} className="py-1 flex">
                                     <Accordion>
                                         <AccordionSummary
                                             expandIcon={<ExpandMoreIcon />}
                                         >
                                             <Typography>
-                                                {todayPost.title}{" "}
-                                                {todayPost.game.home_team.name}{" "}
+                                                {todayPost.title} <br />
+                                                {
+                                                    todayPost.game.home_team
+                                                        .name
+                                                }{" "}
                                                 vs{" "}
                                                 {todayPost.game.away_team.name}
                                             </Typography>
@@ -155,6 +160,18 @@ const Index = (props: any) => {
                                             </Typography>
                                         </AccordionDetails>
                                     </Accordion>
+                                    <div className="flex flex-col justify-start py-1 pl-1">
+                                        <div className="pb-3">
+                                            <button className="bg-green-400 hover:bg-green-600 px-2 rounded duration-150">
+                                                &nbsp;edit&nbsp;
+                                            </button>
+                                        </div>
+                                        <div>
+                                            <button className="bg-red-400 hover:bg-red-600 px-1 rounded duration-150">
+                                                delete
+                                            </button>
+                                        </div>
+                                    </div>
                                 </div>
                             ))}
                         </div>
