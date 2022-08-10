@@ -1,21 +1,17 @@
 import React, { useState, useEffect, useCallback } from "react";
 import { Inertia } from "@inertiajs/inertia";
 import Authenticated from "@/Layouts/Authenticated";
-import { Head, useForm, useRemember } from "@inertiajs/inertia-react";
+import { Head, useRemember } from "@inertiajs/inertia-react";
 import { EventClickArg } from "@fullcalendar/react";
 import Calendar from "./Components/Calendar";
-import Accordion from "@mui/material/Accordion";
-import AccordionSummary from "@mui/material/AccordionSummary";
-import AccordionDetails from "@mui/material/AccordionDetails";
-import Typography from "@mui/material/Typography";
-import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
+import ImpressionBox from "./Components/ImpressionBox";
 
-type Team = {
+export type Team = {
     id: number;
     name: string;
 };
 
-type Game = {
+export type Game = {
     id: number;
     home_team_id: number;
     away_team_id: number;
@@ -25,7 +21,7 @@ type Game = {
     series_id: number;
 };
 
-type Post = {
+export type Post = {
     id: number;
     title: string;
     detail: string;
@@ -135,50 +131,7 @@ const Index = (props: any) => {
                     </div>
                     <div className="overflow-auto h-56 ml-5 bg-gray-200 rounded shadow-xl">
                         <div className="m-3">
-                            <h1>感想</h1>
-                            {todayPosts?.map((todayPost) => (
-                                <div key={todayPost.id} className="py-1 flex">
-                                    <Accordion>
-                                        <AccordionSummary
-                                            expandIcon={<ExpandMoreIcon />}
-                                        >
-                                            <Typography>
-                                                {todayPost.title} <br />
-                                                {
-                                                    todayPost.game.home_team
-                                                        .name
-                                                }{" "}
-                                                vs{" "}
-                                                {todayPost.game.away_team.name}
-                                            </Typography>
-                                        </AccordionSummary>
-                                        <AccordionDetails>
-                                            <Typography>
-                                                {todayPost.detail}
-                                            </Typography>
-                                        </AccordionDetails>
-                                    </Accordion>
-                                    <div className="flex flex-col justify-start py-1 pl-1">
-                                        <div className="pb-3">
-                                            <button
-                                                onClick={(e) =>
-                                                    Inertia.get(
-                                                        `/posts/${todayPost.id}`
-                                                    )
-                                                }
-                                                className="bg-green-400 hover:bg-green-600 px-0.5 rounded duration-150"
-                                            >
-                                                &nbsp;show&nbsp;
-                                            </button>
-                                        </div>
-                                        <div>
-                                            <button className="bg-red-400 hover:bg-red-600 px-1 rounded duration-150">
-                                                delete
-                                            </button>
-                                        </div>
-                                    </div>
-                                </div>
-                            ))}
+                            <ImpressionBox todayPosts={todayPosts} />
                         </div>
                     </div>
                 </div>
