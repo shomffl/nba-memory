@@ -162,8 +162,8 @@ const Index = (props: any) => {
                                     </Accordion>
                                     <div className="flex flex-col justify-start py-1 pl-1">
                                         <div className="pb-3">
-                                            <button className="bg-green-400 hover:bg-green-600 px-2 rounded duration-150">
-                                                &nbsp;edit&nbsp;
+                                            <button className="bg-green-400 hover:bg-green-600 px-0.5 rounded duration-150">
+                                                &nbsp;show&nbsp;
                                             </button>
                                         </div>
                                         <div>
