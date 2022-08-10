@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import Authenticated from "../../Layouts/Authenticated";
 import { Inertia } from "@inertiajs/inertia";
-import { useForm, usePage } from "@inertiajs/inertia-react";
+import { useForm } from "@inertiajs/inertia-react";
 import GameSelect from "./Components/GameSelect";
 
 export type Post = {
@@ -12,7 +12,7 @@ export type Post = {
 
 const Create = (props: any) => {
     const { games, gamesDate }: any = props;
-    const { data, setData, post } = useForm<Post>({
+    const { data, setData, post } = useForm<Post>("PostCreate", {
         game_id: localStorage.getItem("id"),
         title: "",
         detail: "",
@@ -65,13 +65,18 @@ const Create = (props: any) => {
                         <label>Title</label>
                         <input
                             type="text"
-                            onChange={(e) => setData("title", e.target.value)}
+                            value={data.title}
+                            onChange={(e) => {
+                                setData("title", e.target.value);
+                                Inertia.remember(data, "title");
+                            }}
                         />
                         <label>{props.errors.title}</label>
                     </div>
                     <div>
                         <label>Detail</label>
                         <textarea
+                            value={data.detail}
                             onChange={(e) => setData("detail", e.target.value)}
                         ></textarea>
                         <label>{props.errors.detail}</label>
