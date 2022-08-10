@@ -68,7 +68,6 @@ const Create = (props: any) => {
                             value={data.title}
                             onChange={(e) => {
                                 setData("title", e.target.value);
-                                Inertia.remember(data, "title");
                             }}
                         />
                         <label>{props.errors.title}</label>
