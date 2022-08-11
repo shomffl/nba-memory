@@ -5,6 +5,7 @@ import { Head, useRemember } from "@inertiajs/inertia-react";
 import { EventClickArg } from "@fullcalendar/react";
 import Calendar from "./Components/Calendar";
 import ImpressionBox from "./Components/ImpressionBox";
+import GamesBox from "./Components/GamesBox";
 
 const Index = (props: any) => {
     const { schedules, gamesByDate, postsByDate } = props;
@@ -61,7 +62,7 @@ const Index = (props: any) => {
      * @param id 試合ID
      * @param matched_at 試合日時
      */
-    const transitionCreatePage = (id: any, matched_at: any) => {
+    const transitionCreatePage = (id: any, matched_at: string) => {
         localStorage.setItem("id", id);
         localStorage.setItem("matched_at", matched_at);
 
@@ -86,24 +87,10 @@ const Index = (props: any) => {
 
                     <div className="overflow-auto h-96 ml-5 mb-5 bg-gray-200 rounded shadow-xl">
                         <div className="m-3">
-                            <h1>試合</h1>
-                            {todayGames.map((todayGame) => (
-                                <div key={todayGame.id}>
-                                    {todayGame.home_team.name} vs{" "}
-                                    {todayGame.away_team.name}
-                                    <button
-                                        onClick={() =>
-                                            transitionCreatePage(
-                                                todayGame.id,
-                                                todayGame.matched_at
-                                            )
-                                        }
-                                        className="px-3 mx-2 bg-blue-300 rounded hover:bg-blue-400"
-                                    >
-                                        add
-                                    </button>
-                                </div>
-                            ))}
+                            <GamesBox
+                                todayGames={todayGames}
+                                transitionCreatePage={transitionCreatePage}
+                            />
                         </div>
                     </div>
                     <div className="overflow-auto h-56 ml-5 bg-gray-200 rounded shadow-xl">
