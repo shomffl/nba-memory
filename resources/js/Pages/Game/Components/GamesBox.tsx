@@ -1,5 +1,4 @@
 import React from "react";
-import { Link } from "@inertiajs/inertia-react";
 
 const GamesBox = (props: {
     todayGames: Array<Game>;
@@ -14,7 +13,7 @@ const GamesBox = (props: {
                     key={todayGame.id}
                     className="flex justify-between my-2 items-center"
                 >
-                    <div className="w-3/4 bg-white hover:bg-gray-100 hover:scale-105 text-center p-1 rounded font-bold">
+                    <div className="w-4/5 bg-white hover:bg-gray-100 hover:scale-105 text-center p-1 rounded font-bold">
                         <h2>
                             <button
                                 onClick={() =>

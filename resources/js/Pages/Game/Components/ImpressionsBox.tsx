@@ -6,7 +6,7 @@ import AccordionDetails from "@mui/material/AccordionDetails";
 import Typography from "@mui/material/Typography";
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 
-const ImpressionBox = (props: {
+const ImpressionBoxs = (props: {
     postsByDate: any;
     todayPosts: Array<Post>;
     setTodayPosts: any;
@@ -81,4 +81,4 @@ const ImpressionBox = (props: {
     );
 };
 
-export default ImpressionBox;
+export default ImpressionBoxs;

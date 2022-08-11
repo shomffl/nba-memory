@@ -4,7 +4,7 @@ import Authenticated from "@/Layouts/Authenticated";
 import { Head, useRemember } from "@inertiajs/inertia-react";
 import { EventClickArg } from "@fullcalendar/react";
 import Calendar from "./Components/Calendar";
-import ImpressionBox from "./Components/ImpressionBox";
+import ImpressionBox from "./Components/ImpressionsBox";
 import GamesBox from "./Components/GamesBox";
 
 const Index = (props: any) => {
