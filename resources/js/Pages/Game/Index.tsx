@@ -16,13 +16,13 @@ const Index = (props: any) => {
         [],
         "IndexTodayPosts"
     );
+
     /**
      * カレンダーの日付クリック時に実行される関数
      * クリックした日付に試合があればtodayGamesに格納
      * クリックした日付に感想があればtodayPostsに格納
      */
-    const handleDateClick = useCallback((arg: any) => {
-        console.log("handleDateClick", arg.dateStr);
+    const handleDateClick = (arg: any) => {
         if (arg.dateStr in gamesByDate) {
             setTodayGames(gamesByDate[arg.dateStr]);
             setTodayPosts(postsByDate[arg.dateStr]);
@@ -30,13 +30,13 @@ const Index = (props: any) => {
             setTodayGames([]);
             setTodayPosts([]);
         }
-    }, []);
+    };
 
     /**
      * カレンダーイベントのクリック時に実行される関数
      * 日付をクリックしても実行されるため、条件分岐でイベントがクリックされた時にのみ実行されるように変更
      */
-    const handleEventClick = useCallback((clickInfo: EventClickArg) => {
+    const handleEventClick = (clickInfo: EventClickArg) => {
         if (clickInfo.event.title != "") {
             setTodayPosts(
                 postsByDate[clickInfo.event.extendedProps.matched_at]
@@ -45,7 +45,7 @@ const Index = (props: any) => {
                 gamesByDate[clickInfo.event.extendedProps.matched_at]
             );
         }
-    }, []);
+    };
 
     /**
      * 初回レンダリングジに実行される関数。試合のidと日付をデフォルトで格納する。
@@ -54,8 +54,7 @@ const Index = (props: any) => {
         localStorage.setItem("matched_at", schedules[0].date);
         localStorage.setItem("id", gamesByDate[schedules[0]["date"]][0].id);
     }, []);
-    console.log("todayGames", todayGames);
-    console.log("todayPosts", todayPosts);
+
     /**
      * Create.tsxへ遷移するための関数
      *
@@ -109,7 +108,11 @@ const Index = (props: any) => {
                     </div>
                     <div className="overflow-auto h-56 ml-5 bg-gray-200 rounded shadow-xl">
                         <div className="m-3">
-                            <ImpressionBox todayPosts={todayPosts} />
+                            <ImpressionBox
+                                postsByDate={postsByDate}
+                                todayPosts={todayPosts}
+                                setTodayPosts={setTodayPosts}
+                            />
                         </div>
                     </div>
                 </div>
