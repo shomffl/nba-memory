@@ -1,9 +1,5 @@
 import React from "react";
-import Accordion from "@mui/material/Accordion";
-import AccordionSummary from "@mui/material/AccordionSummary";
-import AccordionDetails from "@mui/material/AccordionDetails";
-import Typography from "@mui/material/Typography";
-import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
+import { Link } from "@inertiajs/inertia-react";
 
 const GamesBox = (props: {
     todayGames: Array<Game>;
@@ -18,12 +14,21 @@ const GamesBox = (props: {
                     key={todayGame.id}
                     className="flex justify-between my-2 items-center"
                 >
-                    <div className="w-3/4 bg-white text-center p-1 rounded font-bold">
+                    <div className="w-3/4 bg-white hover:bg-gray-100 hover:scale-105 text-center p-1 rounded font-bold">
                         <h2>
-                            {todayGame.home_team.name} (
-                            {todayGame.home_team_point}) vs{" "}
-                            {todayGame.away_team.name} (
-                            {todayGame.away_team_point})
+                            <button
+                                onClick={() =>
+                                    transitionCreatePage(
+                                        todayGame.id,
+                                        todayGame.matched_at
+                                    )
+                                }
+                            >
+                                {todayGame.home_team.name} (
+                                {todayGame.home_team_point}) vs{" "}
+                                {todayGame.away_team.name} (
+                                {todayGame.away_team_point})
+                            </button>
                         </h2>
                     </div>
                     <div>
