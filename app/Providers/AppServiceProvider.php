@@ -27,13 +27,5 @@ class AppServiceProvider extends ServiceProvider
     public function boot()
     {
         Model::preventLazyLoading(! $this->app->isProduction());
-
-        Gate::define("admin", function($user) {
-            return ($user->role == 0);
-        });
-
-        Gate::define("member", function($user) {
-            return ($user->role == 1);
-        });
     }
 }

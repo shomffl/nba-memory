@@ -8,6 +8,7 @@ use Illuminate\Support\Facades\Redirect;
 use Inertia\Inertia;
 use App\Models\Game;
 use App\Models\Team;
+use App\Http\Requests\PostRequest;
 
 class PostController extends Controller
 {
@@ -39,14 +40,8 @@ class PostController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request, Post $post)
+    public function store(PostRequest $request, Post $post)
     {
-        $request->validate([
-            "game_id" => "required",
-            "title" => "required",
-            "detail" => "required"
-        ]);
-
         $post->fill($request->all());
         $post->user_id = auth()->id();
         $post->save();
@@ -62,6 +57,9 @@ class PostController extends Controller
      */
     public function show(Post $post)
     {
+        if(!auth()->user()->can("view", $post)){
+            return Inertia::render("Error/Forbidden");
+        }
         return Inertia::render("Post/Show", ["post" => Post::with("game.homeTeam", "game.awayTeam")->find($post->id)]);
     }
 
@@ -73,7 +71,10 @@ class PostController extends Controller
      */
     public function edit(Post $post)
     {
-        //
+        if(!auth()->user()->can("update", $post)){
+            return Inertia::render("Error/Forbidden");
+        }
+        return Inertia::render("Post/Edit", ["post" => Post::with("game.homeTeam", "game.awayTeam")->find($post->id)]);
     }
 
     /**
@@ -85,7 +86,10 @@ class PostController extends Controller
      */
     public function update(Request $request, Post $post)
     {
-        //
+        $this->authorize("update", $post);
+        $input = $request->all();
+        $post->fill($input)->save();
+        return redirect("/posts/" . $post->id);
     }
 
     /**
