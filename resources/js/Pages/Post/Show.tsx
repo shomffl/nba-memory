@@ -14,13 +14,11 @@ const Show = (props: { auth: any; post: Post }) => {
 
                     <div>
                         <h2 className="p-2 pr-5">
-                            {post.game.home_team.name} vs{" "}
-                            {post.game.away_team.name}
+                            {post.game.home_team.name}&nbsp;(
+                            {post.game.home_team_point})&nbsp;vs&nbsp;
+                            {post.game.away_team.name}&nbsp;(
+                            {post.game.away_team_point})
                         </h2>
-                        <h1 className="p-2 pr-5">
-                            {post.game.home_team_point} vs{" "}
-                            {post.game.away_team_point}
-                        </h1>
                     </div>
                     <div>
                         <p>{post.detail}</p>

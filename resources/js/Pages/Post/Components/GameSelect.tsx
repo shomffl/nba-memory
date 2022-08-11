@@ -4,18 +4,6 @@ import {
     setDataByKeyValuePair,
 } from "@inertiajs/inertia-react";
 import React, { useState, useEffect } from "react";
-import { Post } from "../Create";
-
-type Game = {
-    id: number;
-    matched_at: string;
-    home_team: {
-        name: string;
-    };
-    away_team: {
-        name: string;
-    };
-};
 
 type GamesDate = {
     matched_at: string;
@@ -24,9 +12,9 @@ type GamesDate = {
 type Props = {
     games: Game[];
     gamesDate: GamesDate[];
-    setData: setDataByObject<Post> &
-        setDataByMethod<Post> &
-        setDataByKeyValuePair<Post>;
+    setData: setDataByObject<SendPost> &
+        setDataByMethod<SendPost> &
+        setDataByKeyValuePair<SendPost>;
 };
 
 const GameSelect = (props: Props) => {
@@ -35,14 +23,16 @@ const GameSelect = (props: Props) => {
         localStorage.getItem("matched_at")
     );
     const [gameId, setGameId] = useState<any>(localStorage.getItem("id"));
+
     let gameList: any[] = [];
 
     for (let i = 0; i < games.length; i++) {
         if (games[i].matched_at == localStorage.getItem("matched_at")) {
             gameList.push(
                 <option key={games[i].id} value={games[i].id}>
-                    {games[i].home_team.name}&nbsp; vs&nbsp;
-                    {games[i].away_team.name}
+                    {games[i].home_team.name}&nbsp;({games[i].home_team_point})
+                    vs&nbsp;
+                    {games[i].away_team.name}&nbsp;({games[i].away_team_point})
                 </option>
             );
         }

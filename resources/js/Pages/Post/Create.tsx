@@ -39,23 +39,6 @@ const Create = (props: any) => {
                         )}
                     </div>
                     <div>
-                        <label>Score</label>
-                        <div className="flex ">
-                            <div className="pr-4">
-                                <span>HOME : </span>
-                                {games[indexOfGame] != null
-                                    ? games[indexOfGame]?.home_team_point
-                                    : "????"}
-                            </div>
-                            <div>
-                                <span>AWAY : </span>
-                                {games[indexOfGame] != null
-                                    ? games[indexOfGame]?.away_team_point
-                                    : "????"}
-                            </div>
-                        </div>
-                    </div>
-                    <div>
                         <label>Title</label>
                         <input
                             type="text"
