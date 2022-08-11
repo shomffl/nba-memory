@@ -8,6 +8,7 @@ use Illuminate\Support\Facades\Redirect;
 use Inertia\Inertia;
 use App\Models\Game;
 use App\Models\Team;
+use App\Http\Requests\PostRequest;
 
 class PostController extends Controller
 {
@@ -39,14 +40,8 @@ class PostController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request, Post $post)
+    public function store(PostRequest $request, Post $post)
     {
-        $request->validate([
-            "game_id" => "required",
-            "title" => "required",
-            "detail" => "required"
-        ]);
-
         $post->fill($request->all());
         $post->user_id = auth()->id();
         $post->save();
