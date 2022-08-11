@@ -4,15 +4,9 @@ import { Inertia } from "@inertiajs/inertia";
 import { useForm } from "@inertiajs/inertia-react";
 import GameSelect from "./Components/GameSelect";
 
-export type Post = {
-    game_id: string | any;
-    title: string;
-    detail: string;
-};
-
 const Create = (props: any) => {
     const { games, gamesDate }: any = props;
-    const { data, setData, post } = useForm<Post>("PostCreate", {
+    const { data, setData, post } = useForm<SendPost>("PostCreate", {
         game_id: localStorage.getItem("id"),
         title: "",
         detail: "",

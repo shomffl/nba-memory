@@ -26,3 +26,9 @@ type Post = {
     detail: string;
     game: Game;
 };
+
+type SendPost = {
+    game_id: string | any;
+    title: string;
+    detail: string;
+};
