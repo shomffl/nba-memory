@@ -12,6 +12,8 @@ type Game = {
     id: number;
     home_team_id: number;
     away_team_id: number;
+    home_team_point: number;
+    away_team_point: number;
     home_team: Team;
     away_team: Team;
     matched_at: string;
