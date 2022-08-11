@@ -1,10 +1,17 @@
 import React from "react";
+import { useForm } from "@inertiajs/inertia-react";
 import Authenticated from "@/Layouts/Authenticated";
 import { Inertia } from "@inertiajs/inertia";
 
-const Show = (props: { auth: any; post: Post }) => {
-    const { post } = props;
+export type Post = {
+    game_id: string | any;
+    title: string;
+    detail: string;
+};
 
+const Edit = (props: any) => {
+    const { post } = props;
+    console.log(post);
     return (
         <Authenticated auth={props.auth} header={null}>
             <div className="px-40 py-20">
@@ -27,11 +34,8 @@ const Show = (props: { auth: any; post: Post }) => {
                     </div>
                 </div>
                 <div>
-                    <button
-                        onClick={(e) => Inertia.get(`/posts/${post.id}/edit`)}
-                        className="bg-yellow-400 hover:bg-yellow-600 px-3 rounded"
-                    >
-                        edit
+                    <button className="bg-yellow-400 hover:bg-yellow-600 px-3 rounded">
+                        save
                     </button>
                 </div>
             </div>
@@ -39,4 +43,4 @@ const Show = (props: { auth: any; post: Post }) => {
     );
 };
 
-export default Show;
+export default Edit;
