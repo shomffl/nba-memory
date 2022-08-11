@@ -36,7 +36,7 @@ const ImpressionBox = (props: {
             <h1>感想</h1>
             {todayPosts?.map((todayPost) => (
                 <div key={todayPost.id} className="py-1 flex justify-between">
-                    <div className="w-2/3">
+                    <div className="w-3/4">
                         <Accordion>
                             <AccordionSummary expandIcon={<ExpandMoreIcon />}>
                                 <Typography>
