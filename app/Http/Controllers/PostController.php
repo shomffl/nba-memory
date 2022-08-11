@@ -71,6 +71,9 @@ class PostController extends Controller
      */
     public function edit(Post $post)
     {
+        if(!auth()->user()->can("update", $post)){
+            return Inertia::render("Error/Forbidden");
+        }
         return Inertia::render("Post/Edit", ["post" => Post::with("game.homeTeam", "game.awayTeam")->find($post->id)]);
     }
 
@@ -83,7 +86,10 @@ class PostController extends Controller
      */
     public function update(Request $request, Post $post)
     {
-        //
+        $this->authorize("update", $post);
+        $input = $request->all();
+        $post->fill($input)->save();
+        return redirect("/posts/" . $post->id);
     }
 
     /**
