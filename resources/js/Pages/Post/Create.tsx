@@ -23,6 +23,10 @@ const Create = (props: any) => {
         post(route("posts.store"));
     };
 
+    const handleAllDeletePost = () => {
+        setData({ game_id: "", title: "", detail: "" });
+    };
+
     return (
         <Authenticated auth={props.auth} header={null}>
             <form onSubmit={handleSubmit}>
@@ -58,10 +62,18 @@ const Create = (props: any) => {
                         <label>{props.errors.detail}</label>
                     </div>
                     <div>
-                        <button>Send</button>
+                        <button type="submit">Send</button>
                     </div>
                 </div>
             </form>
+            <div>
+                <button
+                    onClick={handleAllDeletePost}
+                    className="bg-red-500 hover:bg-red-600 px-2 py-1 rounded duration-100"
+                >
+                    ALL DELETE
+                </button>
+            </div>
         </Authenticated>
     );
 };
