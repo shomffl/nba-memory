@@ -71,7 +71,7 @@ const Index = (props: any) => {
 
     return (
         <Authenticated auth={props.auth} header={null}>
-            <Head title="Memory"></Head>
+            <Head title="PULL ORIGIN"></Head>
             <div className="flex px-10 py-5">
                 <div className="w-9/12">
                     <Calendar

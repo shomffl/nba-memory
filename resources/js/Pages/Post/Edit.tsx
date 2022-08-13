@@ -1,5 +1,5 @@
 import React from "react";
-import { useForm } from "@inertiajs/inertia-react";
+import { Head, useForm } from "@inertiajs/inertia-react";
 import Authenticated from "@/Layouts/Authenticated";
 import { Inertia } from "@inertiajs/inertia";
 
@@ -18,6 +18,8 @@ const Edit = (props: any) => {
 
     return (
         <Authenticated auth={props.auth} header={null}>
+            <Head title="PULL ORIGIN" />
+
             <form onSubmit={handleEditPost}>
                 <div className="px-40 py-20">
                     <h1 className="text-5xl p-2">

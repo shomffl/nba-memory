@@ -1,12 +1,15 @@
 import React from "react";
 import Authenticated from "@/Layouts/Authenticated";
 import { Inertia } from "@inertiajs/inertia";
+import { Head } from "@inertiajs/inertia-react";
 
 const Show = (props: { auth: any; post: Post }) => {
     const { post } = props;
 
     return (
         <Authenticated auth={props.auth} header={null}>
+            <Head title="PULL ORIGIN" />
+
             <div className="px-40 py-20">
                 <h1 className="text-5xl p-2">{post.title}</h1>
                 <div>
