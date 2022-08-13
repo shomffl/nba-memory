@@ -22,7 +22,7 @@ export default function Authenticated({ auth, header, children }: Props) {
                         <div className="flex">
                             <div className="shrink-0 flex items-center">
                                 <Link href="/games">
-                                    <ApplicationLogo className="block h-9 w-auto text-gray-500" />
+                                    <ApplicationLogo className="block h-10 w-auto text-gray-500" />
                                 </Link>
                             </div>
 
