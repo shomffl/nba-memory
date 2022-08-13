@@ -22,7 +22,7 @@ type Props = {
 const Calendar = (props: Props) => {
     const { schedules, handleEventClick, handleDateClick } = props;
     return (
-        <div className="bg-white text-black bg-opacity-20 shadow-2xl">
+        <div className="bg-gray-100 text-black shadow-2xl">
             <FullCalendar
                 eventTextColor="#262626"
                 plugins={[dayGridPlugin, interactionPlugin]}

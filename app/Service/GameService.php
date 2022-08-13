@@ -33,7 +33,7 @@ class GameService {
         foreach($posts as $post)
         {
             $data = [
-                "color" => "#F2F2F2",
+                "color" => "#EBEBEB",
                 "title" => $post->game->homeTeam->name . " vs " . $post->game->awayTeam->name,
                 "date" => $post->game->matched_at,
                 "game_id" => $post->game_id,

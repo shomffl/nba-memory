@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import Authenticated from "../../Layouts/Authenticated";
 import { Inertia } from "@inertiajs/inertia";
-import { useForm } from "@inertiajs/inertia-react";
+import { Head, useForm } from "@inertiajs/inertia-react";
 import GameSelect from "./Components/GameSelect";
 
 const Create = (props: any) => {
@@ -29,6 +29,7 @@ const Create = (props: any) => {
 
     return (
         <Authenticated auth={props.auth} header={null}>
+            <Head title="PULL ORIGIN" />
             <form onSubmit={handleSubmit}>
                 <div className="p-5">
                     <div className="p-3">
