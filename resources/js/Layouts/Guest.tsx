@@ -1,6 +1,6 @@
-import React from 'react';
-import ApplicationLogo from '@/Components/ApplicationLogo';
-import { Link } from '@inertiajs/inertia-react';
+import React from "react";
+import ApplicationLargeLogo from "@/Components/ApplicationLargeLogo";
+import { Link } from "@inertiajs/inertia-react";
 
 interface Props {
     children: React.ReactNode;
@@ -8,10 +8,10 @@ interface Props {
 
 export default function Guest({ children }: Props) {
     return (
-        <div className="min-h-screen flex flex-col sm:justify-center items-center pt-6 sm:pt-0 bg-gray-100">
+        <div className="min-h-screen flex flex-col justify-start items-center p-28  bg-gray-100">
             <div>
-                <Link href="/">
-                    <ApplicationLogo className="w-20 h-20 fill-current text-gray-500" />
+                <Link href="/games">
+                    <ApplicationLargeLogo className="w-auto h-40 fill-current text-gray-500" />
                 </Link>
             </div>
 

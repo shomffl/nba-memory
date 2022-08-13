@@ -13,7 +13,7 @@ const GamesBox = (props: {
                     key={todayGame.id}
                     className="flex justify-between my-2 items-center"
                 >
-                    <div className="w-4/5 bg-white hover:bg-gray-100 hover:scale-105 text-center p-1 rounded font-bold">
+                    <div className="w-4/5 bg-white hover:bg-white hover:shadow hover:scale-105 text-center p-1 rounded font-bold border border-gray-200">
                         <h2>
                             <button
                                 onClick={() =>
@@ -38,9 +38,9 @@ const GamesBox = (props: {
                                     todayGame.matched_at
                                 )
                             }
-                            className="px-3 py-1 mx-2 bg-blue-300 rounded hover:bg-blue-400 uppercase"
+                            className="px-3 py-1 mx-2 bg-[#A6A6A6] hover:text-white hover:bg-[#2E4159] hover:shadow-2xl hover:scale-105 rounded duration-200"
                         >
-                            add
+                            ADD
                         </button>
                     </div>
                 </div>
