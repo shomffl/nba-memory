@@ -82,7 +82,7 @@ const Index = (props: any) => {
                 </div>
                 <div className="flex flex-col w-3/12">
                     <div className="flex justify-center items-center font-bold h-12 ml-5 mb-5 bg-gray-100 rounded shadow-xl">
-                        <h1>{todayGames[0]?.matched_at || "not game"}</h1>
+                        <h1>{todayGames[0]?.matched_at || "no match"}</h1>
                     </div>
 
                     <div className="overflow-auto h-96 ml-5 mb-5 bg-gray-100 rounded shadow-xl">
