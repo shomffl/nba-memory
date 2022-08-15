@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useRef } from "react";
 import { Inertia } from "@inertiajs/inertia";
 import "@fullcalendar/react/dist/vdom";
 import FullCalendar, { EventClickArg } from "@fullcalendar/react";
@@ -21,6 +21,8 @@ type Props = {
 
 const Calendar = (props: Props) => {
     const { schedules, handleEventClick, handleDateClick } = props;
+
+    const defaultDate: any = localStorage.getItem("matched_at");
     return (
         <div className="bg-gray-100 text-black shadow-2xl">
             <FullCalendar
@@ -39,6 +41,7 @@ const Calendar = (props: Props) => {
                     center: "title",
                     end: "today prev,next",
                 }}
+                initialDate={defaultDate}
                 contentHeight="75vh"
                 dayMaxEvents={1}
                 events={schedules}
