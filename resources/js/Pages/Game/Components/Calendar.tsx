@@ -5,7 +5,7 @@ import FullCalendar, { EventClickArg } from "@fullcalendar/react";
 import dayGridPlugin from "@fullcalendar/daygrid";
 import interactionPlugin, { DateClickArg } from "@fullcalendar/interaction";
 import allLocales from "@fullcalendar/core/locales-all";
-import "../../../../css/app.css";
+import { CalendarStyleWrapper } from "./CalendarStyleWrapper";
 
 type Schedule = {
     display: string;
@@ -25,29 +25,31 @@ const Calendar = (props: Props) => {
     const defaultDate: any = localStorage.getItem("matched_at");
     return (
         <div className="bg-gray-100 text-black shadow-2xl">
-            <FullCalendar
-                eventTextColor="#262626"
-                plugins={[dayGridPlugin, interactionPlugin]}
-                initialView="dayGridMonth"
-                locale="us"
-                locales={allLocales}
-                titleFormat={{
-                    year: "2-digit",
-                    month: "2-digit",
-                    day: "2-digit",
-                }}
-                headerToolbar={{
-                    start: "",
-                    center: "title",
-                    end: "today prev,next",
-                }}
-                initialDate={defaultDate}
-                contentHeight="75vh"
-                dayMaxEvents={1}
-                events={schedules}
-                eventClick={handleEventClick}
-                dateClick={handleDateClick}
-            />
+            <CalendarStyleWrapper>
+                <FullCalendar
+                    eventTextColor="#262626"
+                    plugins={[dayGridPlugin, interactionPlugin]}
+                    initialView="dayGridMonth"
+                    locale="us"
+                    locales={allLocales}
+                    titleFormat={{
+                        year: "2-digit",
+                        month: "2-digit",
+                        day: "2-digit",
+                    }}
+                    headerToolbar={{
+                        start: "",
+                        center: "title",
+                        end: "today prev,next",
+                    }}
+                    initialDate={defaultDate}
+                    contentHeight="75vh"
+                    dayMaxEvents={1}
+                    events={schedules}
+                    eventClick={handleEventClick}
+                    dateClick={handleDateClick}
+                />
+            </CalendarStyleWrapper>
         </div>
     );
 };
