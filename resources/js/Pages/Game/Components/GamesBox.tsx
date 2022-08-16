@@ -38,7 +38,7 @@ const GamesBox = (props: {
                                     todayGame.matched_at
                                 )
                             }
-                            className="px-3 py-1 mx-2 bg-gray-400 hover:text-white hover:bg-blue-1000 hover:shadow-2xl hover:scale-105 rounded duration-200"
+                            className="px-3 py-1 mx-2 bg-gray-1000 text-white hover:text-white hover:bg-blue-1000 hover:shadow-2xl hover:scale-105 rounded duration-200"
                         >
                             ADD
                         </button>

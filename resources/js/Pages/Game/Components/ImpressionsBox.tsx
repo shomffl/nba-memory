@@ -56,7 +56,7 @@ const ImpressionBoxs = (props: {
                                 onClick={(e) =>
                                     Inertia.get(`/posts/${todayPost.id}`)
                                 }
-                                className="bg-gray-400 hover:bg-blue-1000 hover:text-white  hover:shadow-2xl px-0.5 py-0.5 rounded duration-150"
+                                className="bg-gray-1000 text-white hover:bg-blue-1000 hover:text-white  hover:shadow-2xl px-0.5 py-0.5 rounded duration-150"
                             >
                                 &nbsp;SHOW&nbsp;
                             </button>
@@ -69,7 +69,7 @@ const ImpressionBoxs = (props: {
                                         todayPost.game.matched_at
                                     )
                                 }
-                                className="bg-gray-400 hover:bg-red-900 hover:text-white hover:shadow-2xl px-1 py-0.5 rounded duration-150"
+                                className="bg-gray-1000 text-white hover:bg-red-900 hover:text-white hover:shadow-2xl px-1 py-0.5 rounded duration-150"
                             >
                                 DELETE
                             </button>
