@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useCallback } from "react";
 import { Inertia } from "@inertiajs/inertia";
 import Authenticated from "@/Layouts/Authenticated";
-import { Head, useRemember } from "@inertiajs/inertia-react";
+import { Head, useRemember, InertiaLink } from "@inertiajs/inertia-react";
 import { EventClickArg } from "@fullcalendar/react";
 import Calendar from "./Components/Calendar";
 import ImpressionBox from "./Components/ImpressionsBox";
@@ -62,12 +62,12 @@ const Index = (props: any) => {
      * @param id 試合ID
      * @param matched_at 試合日時
      */
-    const transitionCreatePage = (id: any, matched_at: string) => {
+    const transitionCreatePage = useCallback((id: any, matched_at: string) => {
         localStorage.setItem("id", id);
         localStorage.setItem("matched_at", matched_at);
 
         Inertia.get("/posts/create");
-    };
+    }, []);
 
     return (
         <Authenticated auth={props.auth} header={null}>
