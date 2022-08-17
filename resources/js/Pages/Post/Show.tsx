@@ -10,30 +10,57 @@ const Show = (props: { auth: any; post: Post }) => {
         <Authenticated auth={props.auth} header={null}>
             <Head title="PULL ORIGIN" />
 
-            <div className="px-40 py-20">
-                <h1 className="text-5xl p-2">{post.title}</h1>
-                <div>
-                    <h2 className="p-2 pr-5">{post.game.matched_at}</h2>
+            <div className="px-28 py-20">
+                <div className="bg-gray-100 rounded py-20 px-20 shadow-xl">
+                    <div className="pb-10">
+                        <h2>Match</h2>
+                        <div className="flex">
+                            <h1 className="bg-white text-3xl rounded px-5 py-2 mr-2 shadow">
+                                {post.game.matched_at}
+                            </h1>
 
-                    <div>
-                        <h2 className="p-2 pr-5">
-                            {post.game.home_team.name}&nbsp;(
-                            {post.game.home_team_point})&nbsp;vs&nbsp;
-                            {post.game.away_team.name}&nbsp;(
-                            {post.game.away_team_point})
-                        </h2>
+                            <h1 className="flex items-center bg-white text-3xl rounded px-5 py-2 mr-2 shadow">
+                                <img
+                                    className="w-8 max-h-8"
+                                    src={post.game.home_team.logo}
+                                />
+                                &nbsp;
+                                {post.game.home_team.name}&nbsp;(
+                                {post.game.home_team_point})&nbsp;vs&nbsp;
+                                {post.game.away_team.name}&nbsp;(
+                                {post.game.away_team_point})&nbsp;
+                                <img
+                                    className="w-8 max-h-8"
+                                    src={post.game.away_team.logo}
+                                />
+                            </h1>
+                        </div>
                     </div>
-                    <div>
-                        <p>{post.detail}</p>
+
+                    <div className="pb-10">
+                        <h2>Title</h2>
+                        <h1 className="bg-white text-3xl rounded px-5 py-2 shadow w-max ">
+                            {post.title}
+                        </h1>
                     </div>
-                </div>
-                <div>
-                    <button
-                        onClick={(e) => Inertia.get(`/posts/${post.id}/edit`)}
-                        className="bg-yellow-400 hover:bg-yellow-600 px-3 rounded"
-                    >
-                        edit
-                    </button>
+
+                    <div className="pb-16">
+                        <h2>Detail</h2>
+                        <p className="bg-white rounded px-5 py-2 shadow w-max  ">
+                            {post.detail}
+                        </p>
+                    </div>
+
+                    <div className="flex justify-end">
+                        <button
+                            onClick={(e) =>
+                                Inertia.get(`/posts/${post.id}/edit`)
+                            }
+                            className="bg-gray-1000 text-white hover:text-white hover:bg-blue-1000 shadow hover:shadow-2xl hover:scale-105 px-5 py-1 rounded duration-200"
+                        >
+                            Edit
+                        </button>
+                    </div>
                 </div>
             </div>
         </Authenticated>
