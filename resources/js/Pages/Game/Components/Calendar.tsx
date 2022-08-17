@@ -24,10 +24,12 @@ const Calendar = (props: Props) => {
 
     const defaultDate: any = localStorage.getItem("matched_at");
     return (
-        <div className="bg-gray-100 text-black shadow-2xl">
+        <div className="bg-gray-100 shadow-2xl">
             <CalendarStyleWrapper>
                 <FullCalendar
                     eventTextColor="#262626"
+                    eventBackgroundColor="white"
+                    eventBorderColor="#889c9b"
                     plugins={[dayGridPlugin, interactionPlugin]}
                     initialView="dayGridMonth"
                     locale="us"
