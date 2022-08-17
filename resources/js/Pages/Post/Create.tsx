@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import Authenticated from "../../Layouts/Authenticated";
 import { Inertia } from "@inertiajs/inertia";
-import { Head, useForm } from "@inertiajs/inertia-react";
+import { Head, useForm, Link } from "@inertiajs/inertia-react";
 import GameSelect from "./Components/GameSelect";
 
 const Create = (props: any) => {
@@ -73,14 +73,12 @@ const Create = (props: any) => {
                             </label>
                         </div>
                         <div className="flex justify-between">
-                            <button
-                                onClick={(e) =>
-                                    Inertia.get(route("games.index"))
-                                }
+                            <Link
+                                href={route("games.index")}
                                 className="bg-gray-1000 text-white hover:text-white hover:bg-red-900 shadow hover:shadow-2xl hover:scale-105 px-5 py-1 rounded duration-200"
                             >
                                 Back
-                            </button>
+                            </Link>
 
                             <button
                                 className="bg-gray-1000 text-white hover:text-white hover:bg-blue-1000 shadow hover:shadow-2xl hover:scale-105 px-5 py-1 rounded duration-200"
