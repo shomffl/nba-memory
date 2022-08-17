@@ -24,7 +24,7 @@ const GamesBox = (props: {
                     >
                         <div className="flex justify-between items-center p-2 bg-white hover:bg-white hover:shadow hover:scale-105 text-center  rounded font-bold border border-gray-200">
                             <img
-                                className="w-8 max-h-8"
+                                className="w-1/12"
                                 src={todayGame.home_team.logo}
                             />
                             <h2>
@@ -42,7 +42,7 @@ const GamesBox = (props: {
                                 </div>
                             </h2>
                             <img
-                                className="w-8 max-h-8"
+                                className="w-1/12"
                                 src={todayGame.away_team.logo}
                             />
                         </div>
