@@ -41,6 +41,7 @@ const GameSelect = (props: Props) => {
     return (
         <>
             <select
+                className="w-3/12 text-3xl rounded border-gray-1000 focus:border-gray-1000 focus:ring-1 focus:ring-gray-1000"
                 value={changeDate}
                 onChange={(e) => {
                     localStorage.setItem("matched_at", e.target.value);
@@ -54,6 +55,7 @@ const GameSelect = (props: Props) => {
                 ))}
             </select>
             <select
+                className="w-5/12 text-3xl mx-2 rounded border-gray-1000 focus:border-gray-1000 focus:ring-1 focus:ring-gray-1000"
                 value={gameId}
                 onChange={(e: React.ChangeEvent<HTMLSelectElement>) => {
                     localStorage.setItem("id", e.target.value);
