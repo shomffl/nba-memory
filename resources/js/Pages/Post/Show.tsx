@@ -53,7 +53,7 @@ const Show = (props: { auth: any; post: Post }) => {
 
                     <div className="flex justify-between">
                         <button
-                            onClick={(e) => Inertia.get(route("games.index"))}
+                            onClick={(e) => window.history.back()}
                             className="bg-gray-1000 text-white hover:text-white hover:bg-red-900 shadow hover:shadow-2xl hover:scale-105 px-5 py-1 rounded duration-200"
                         >
                             Back
