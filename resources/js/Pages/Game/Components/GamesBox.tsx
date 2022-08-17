@@ -13,23 +13,41 @@ const GamesBox = (props: {
                     key={todayGame.id}
                     className="flex justify-between my-2 items-center"
                 >
-                    <div className="w-4/5 bg-white hover:bg-white hover:shadow hover:scale-105 text-center p-1 rounded font-bold border border-gray-200">
-                        <h2>
-                            <button
-                                onClick={() =>
-                                    transitionCreatePage(
-                                        todayGame.id,
-                                        todayGame.matched_at
-                                    )
-                                }
-                            >
-                                {todayGame.home_team.name} (
-                                {todayGame.home_team_point}) vs{" "}
-                                {todayGame.away_team.name} (
-                                {todayGame.away_team_point})
-                            </button>
-                        </h2>
-                    </div>
+                    <button
+                        className="w-4/5"
+                        onClick={() =>
+                            transitionCreatePage(
+                                todayGame.id,
+                                todayGame.matched_at
+                            )
+                        }
+                    >
+                        <div className="flex justify-between items-center p-2 bg-white hover:bg-white hover:shadow hover:scale-105 text-center  rounded font-bold border border-gray-200">
+                            <img
+                                className="w-8 max-h-8"
+                                src={todayGame.home_team.logo}
+                            />
+                            <h2>
+                                <div className="flex items-center justify-between">
+                                    <div className="flex items-center">
+                                        &nbsp;
+                                        {todayGame.home_team.name} (
+                                        {todayGame.home_team_point})
+                                    </div>
+                                    &nbsp;vs&nbsp;
+                                    <div className="flex items-center">
+                                        {todayGame.away_team.name} (
+                                        {todayGame.away_team_point})&nbsp;
+                                    </div>
+                                </div>
+                            </h2>
+                            <img
+                                className="w-8 max-h-8"
+                                src={todayGame.away_team.logo}
+                            />
+                        </div>
+                    </button>
+
                     <div>
                         <button
                             onClick={() =>

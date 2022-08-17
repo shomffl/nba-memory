@@ -6,6 +6,7 @@ declare var route: any;
 type Team = {
     id: number;
     name: string;
+    logo: string;
 };
 
 type Game = {
