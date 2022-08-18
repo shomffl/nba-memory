@@ -13,8 +13,11 @@ const Index = (props: any) => {
     );
     const [changeMode, setChangeMode] = useState<boolean>(true);
     const [editGameData, setEditGameData] = useState<Game>();
-    console.log(changeMode);
-    console.log("editGameData", editGameData);
+    const [sendPoint, setSendPoint] = useState<any>({
+        home_team_point: 0,
+        away_team_point: 0,
+    });
+
     /**
      * カレンダーの日付クリック時に実行される関数
      * クリックした日付に試合があればtodayGamesに格納
@@ -74,20 +77,48 @@ const Index = (props: any) => {
                         </div>
                     ) : (
                         <div>
-                            <div className="flex items-center justify-between">
-                                <h2 className="flex items-center rounded font-bold shadow w-3/4 my-3 px-2 py-3 bg-white">
-                                    <div>
-                                        {editGameData?.home_team.name}
-                                        &nbsp;(
-                                        {editGameData?.home_team_point})
+                            <div>
+                                <div>
+                                    <h2 className="flex items-center rounded font-bold shadow w-3/4 my-3 px-2 py-3 bg-white">
+                                        <div>
+                                            {editGameData?.home_team.name}
+                                            &nbsp;
+                                        </div>
+                                        &nbsp;vs&nbsp;
+                                        <div>
+                                            {editGameData?.away_team.name}
+                                            &nbsp;
+                                        </div>
+                                    </h2>
+                                    <div className="flex items-center">
+                                        <input
+                                            className="w-1/4"
+                                            type="number"
+                                            value={sendPoint.home_team_point}
+                                            onChange={(e) =>
+                                                setSendPoint({
+                                                    ...sendPoint,
+                                                    home_team_point:
+                                                        e.target.value,
+                                                })
+                                            }
+                                        />
+                                        &nbsp;vs&nbsp;
+                                        <input
+                                            className="w-1/4"
+                                            type="number"
+                                            value={sendPoint.away_team_point}
+                                            onChange={(e) =>
+                                                setSendPoint({
+                                                    ...sendPoint,
+                                                    away_team_point:
+                                                        e.target.value,
+                                                })
+                                            }
+                                        />
                                     </div>
-                                    &nbsp;vs&nbsp;
-                                    <div>
-                                        {editGameData?.away_team.name}
-                                        &nbsp;(
-                                        {editGameData?.away_team_point})
-                                    </div>
-                                </h2>
+                                </div>
+
                                 <div className="flex">
                                     <button
                                         onClick={(e) => {
