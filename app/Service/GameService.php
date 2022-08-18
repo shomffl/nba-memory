@@ -9,6 +9,7 @@ class GameService {
         foreach($games as $game)
         {
            $data = [
+                "color" => "#889C9B",
                 "display" => "background",
                 "date" =>  $game->matched_at,
             ];

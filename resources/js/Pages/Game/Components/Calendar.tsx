@@ -5,7 +5,7 @@ import FullCalendar, { EventClickArg } from "@fullcalendar/react";
 import dayGridPlugin from "@fullcalendar/daygrid";
 import interactionPlugin, { DateClickArg } from "@fullcalendar/interaction";
 import allLocales from "@fullcalendar/core/locales-all";
-import { CalendarStyleWrapper } from "./CalendarStyleWrapper";
+import { CalendarStyleWrapper } from "../../../Components/CalendarStyleWrapper";
 
 type Schedule = {
     display: string;
