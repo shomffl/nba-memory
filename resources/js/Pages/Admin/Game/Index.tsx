@@ -32,28 +32,56 @@ const Index = (props: any) => {
     return (
         <Authenticated auth={props.auth} header={null}>
             <Head title="Memory"></Head>
-            <div className="py-5 p-10">
-                <CalendarStyleWrapper>
-                    <FullCalendar
-                        plugins={[dayGridPlugin, interactionPlugin]}
-                        initialView="dayGridMonth"
-                        locale="us"
-                        locales={allLocales}
-                        titleFormat={{
-                            year: "2-digit",
-                            month: "2-digit",
-                            day: "2-digit",
-                        }}
-                        headerToolbar={{
-                            start: "",
-                            center: "title",
-                            end: "today prev,next",
-                        }}
-                        contentHeight="75vh"
-                        events={schedules}
-                        dateClick={handleDateClick}
-                    />
-                </CalendarStyleWrapper>
+            <div className="flex py-5 p-10">
+                <div className="w-3/5 bg-gray-100 shadow-2xl mr-5">
+                    <CalendarStyleWrapper>
+                        <FullCalendar
+                            plugins={[dayGridPlugin, interactionPlugin]}
+                            initialView="dayGridMonth"
+                            locale="us"
+                            locales={allLocales}
+                            titleFormat={{
+                                year: "2-digit",
+                                month: "2-digit",
+                                day: "2-digit",
+                            }}
+                            headerToolbar={{
+                                start: "",
+                                center: "title",
+                                end: "today prev,next",
+                            }}
+                            contentHeight="75vh"
+                            events={schedules}
+                            dateClick={handleDateClick}
+                        />
+                    </CalendarStyleWrapper>
+                </div>
+                <div className="w-2/5 bg-gray-100 shadow-2xl p-5">
+                    <h1>試合</h1>
+                    {todayGames?.map((todayGame) => (
+                        <div
+                            key={todayGame.id}
+                            className="flex items-center justify-between"
+                        >
+                            <h2 className="flex items-center rounded font-bold shadow w-3/4 my-3 px-2 py-3 bg-white">
+                                <div>
+                                    {todayGame.home_team.name}&nbsp;(
+                                    {todayGame.home_team_point})
+                                </div>
+                                &nbsp;vs&nbsp;
+                                <div>
+                                    {todayGame.away_team.name}&nbsp;(
+                                    {todayGame.away_team_point})
+                                </div>
+                            </h2>
+                            <div>
+                                <button className="px-5 py-2 bg-gray-1000 text-white shadow hover:text-white hover:bg-blue-1000 hover:shadow-2xl hover:scale-105 rounded duration-200">
+                                    Edit
+                                </button>
+                            </div>
+                        </div>
+                    ))}
+                </div>
             </div>
         </Authenticated>
     );
