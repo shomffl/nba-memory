@@ -3,11 +3,7 @@ import { Inertia } from "@inertiajs/inertia";
 import Authenticated from "@/Layouts/AdminAuthenticated";
 import { Head, useRemember } from "@inertiajs/inertia-react";
 import "@fullcalendar/react/dist/vdom";
-import FullCalendar, { EventContentArg, formatDate } from "@fullcalendar/react";
-import dayGridPlugin from "@fullcalendar/daygrid";
-import interactionPlugin from "@fullcalendar/interaction";
-import allLocales from "@fullcalendar/core/locales-all";
-import { CalendarStyleWrapper } from "../../../Components/CalendarStyleWrapper";
+import Calendar from "./Components/Calendar";
 
 const Index = (props: any) => {
     const { schedules, gamesByDate } = props;
@@ -33,29 +29,10 @@ const Index = (props: any) => {
         <Authenticated auth={props.auth} header={null}>
             <Head title="Memory"></Head>
             <div className="flex py-5 p-10">
-                <div className="w-3/5 bg-gray-100 shadow-2xl mr-5">
-                    <CalendarStyleWrapper>
-                        <FullCalendar
-                            plugins={[dayGridPlugin, interactionPlugin]}
-                            initialView="dayGridMonth"
-                            locale="us"
-                            locales={allLocales}
-                            titleFormat={{
-                                year: "2-digit",
-                                month: "2-digit",
-                                day: "2-digit",
-                            }}
-                            headerToolbar={{
-                                start: "",
-                                center: "title",
-                                end: "today prev,next",
-                            }}
-                            contentHeight="75vh"
-                            events={schedules}
-                            dateClick={handleDateClick}
-                        />
-                    </CalendarStyleWrapper>
-                </div>
+                <Calendar
+                    schedules={schedules}
+                    handleDateClick={handleDateClick}
+                />
                 <div className="w-2/5 bg-gray-100 shadow-2xl p-5">
                     <h1>試合</h1>
                     {todayGames?.map((todayGame) => (
