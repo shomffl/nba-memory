@@ -7,12 +7,6 @@ import interactionPlugin, { DateClickArg } from "@fullcalendar/interaction";
 import allLocales from "@fullcalendar/core/locales-all";
 import { CalendarStyleWrapper } from "../../../Components/CalendarStyleWrapper";
 
-type Schedule = {
-    display: string;
-    date: string;
-    match: string;
-};
-
 type Props = {
     schedules: Schedule[];
     handleEventClick: (arg: EventClickArg) => void;

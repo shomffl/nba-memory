@@ -33,3 +33,9 @@ type SendPost = {
     title: string;
     detail: string;
 };
+
+type Schedule = {
+    display: string;
+    date: string;
+    match: string;
+};
