@@ -27,6 +27,7 @@ class DatabaseSeeder extends Seeder
             RostersTableSeeder::class,
             GamesTableSeeder::class,
             Games2021TableSeeder::class,
+            AdminsTableSeeder::class,
         ]);
     }
 }
