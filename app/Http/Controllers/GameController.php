@@ -33,7 +33,9 @@ class GameController extends Controller
     {
         $games = Game::with("homeTeam","awayTeam","series")->get();
         $schedules = new GameService;
-        return Inertia::render("Admin/Game/Index",["schedules" => $schedules->getGameSchedules($games)]);
+        $games_by_date = Game::with("homeTeam","awayTeam")->orderBy("matched_at")->get()->groupBy("matched_at");
+
+        return Inertia::render("Admin/Game/Index",["schedules" => $schedules->getGameSchedules($games), "gamesByDate" => $games_by_date]);
     }
 
     /**
