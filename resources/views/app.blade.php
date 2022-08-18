@@ -8,14 +8,14 @@
 
         <!-- Fonts -->
         <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700&display=swap">
-
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Alumni+Sans+Pinstripe&family=Noto+Serif+JP&family=Oswald&display=swap">
         <!-- Scripts -->
         @routes
         @viteReactRefresh
         @vite('resources/js/app.tsx')
         @inertiaHead
     </head>
-    <body class="font-sans antialiased">
+    <body class="font-fancy antialiased">
         @inertia
     </body>
 </html>

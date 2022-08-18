@@ -5,6 +5,8 @@ import AccordionSummary from "@mui/material/AccordionSummary";
 import AccordionDetails from "@mui/material/AccordionDetails";
 import Typography from "@mui/material/Typography";
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
+import { createTheme } from "@mui/material";
+import { ThemeProvider } from "@mui/material";
 
 const ImpressionBoxs = memo(
     (props: {
@@ -13,6 +15,12 @@ const ImpressionBoxs = memo(
         setTodayPosts: any;
     }) => {
         const { postsByDate, todayPosts, setTodayPosts } = props;
+
+        const theme = createTheme({
+            typography: {
+                fontFamily: ["Noto Serif JP"].join(","),
+            },
+        });
 
         const handleDeletePost = (id: number, mathced_at: string) => {
             Inertia.delete(`/posts/${id}`, {
@@ -43,20 +51,25 @@ const ImpressionBoxs = memo(
                         className="py-1 flex justify-between"
                     >
                         <div className="w-4/5">
-                            <Accordion>
-                                <AccordionSummary
-                                    expandIcon={<ExpandMoreIcon />}
-                                >
-                                    <Typography>
-                                        {todayPost.title} <br />
-                                        {todayPost.game.home_team.name} vs{" "}
-                                        {todayPost.game.away_team.name}
-                                    </Typography>
-                                </AccordionSummary>
-                                <AccordionDetails>
-                                    <Typography>{todayPost.detail}</Typography>
-                                </AccordionDetails>
-                            </Accordion>
+                            <ThemeProvider theme={theme}>
+                                <Accordion>
+                                    <AccordionSummary
+                                        expandIcon={<ExpandMoreIcon />}
+                                    >
+                                        <Typography>
+                                            {todayPost.title} <br />
+                                            {
+                                                todayPost.game.home_team.name
+                                            } vs {todayPost.game.away_team.name}
+                                        </Typography>
+                                    </AccordionSummary>
+                                    <AccordionDetails>
+                                        <Typography>
+                                            {todayPost.detail}
+                                        </Typography>
+                                    </AccordionDetails>
+                                </Accordion>
+                            </ThemeProvider>
                         </div>
                         <div className="flex flex-col justify-start py-1 px-1">
                             <div className="pb-3">
@@ -66,7 +79,7 @@ const ImpressionBoxs = memo(
                                     }
                                     className="bg-gray-1000 text-white hover:bg-blue-1000 hover:text-white  hover:shadow-2xl px-0.5 py-0.5 rounded duration-150"
                                 >
-                                    &nbsp;SHOW&nbsp;
+                                    &nbsp;&nbsp;SHOW&nbsp;&nbsp;
                                 </button>
                             </div>
                             <div>
