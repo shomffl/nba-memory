@@ -13,7 +13,7 @@ const Edit = (props: any) => {
 
     const handleEditPost = (e: any) => {
         e.preventDefault();
-        put(route("posts.update", post.id));
+        put(route("posts.update", post.id), { preserveScroll: true });
     };
 
     return (
