@@ -72,7 +72,7 @@ class GameController extends Controller
         $game->away_roster_id = $away_team->id;
         $game->save();
 
-        return Redirect::route("games.index");
+        return Redirect::route("admin.games.index");
     }
 
     /**
@@ -106,7 +106,8 @@ class GameController extends Controller
      */
     public function update(Request $request, Game $game)
     {
-        //
+        $game->fill($request->all())->save();
+        return Redirect::route("admin.games.index");
     }
 
     /**
