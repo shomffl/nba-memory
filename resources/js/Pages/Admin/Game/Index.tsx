@@ -30,6 +30,11 @@ const Index = (props: any) => {
         }
     };
 
+    const handleUpdatePoint = (e: any) => {
+        e.preventDefault();
+        Inertia.put(`/admin/games/${editGameData?.id}`, sendPoint);
+    };
+
     return (
         <Authenticated auth={props.auth} header={null}>
             <Head title="Memory"></Head>
@@ -129,12 +134,13 @@ const Index = (props: any) => {
                                         Cancel
                                     </button>
                                     <button
-                                        onClick={(e) => {
-                                            setChangeMode(!changeMode);
-                                        }}
+                                        onClick={
+                                            handleUpdatePoint
+                                            // setChangeMode(!changeMode);
+                                        }
                                         className="px-5 py-2 bg-gray-1000 text-white shadow hover:text-white hover:bg-blue-1000 hover:shadow-2xl hover:scale-105 rounded duration-200"
                                     >
-                                        Save
+                                        Update
                                     </button>
                                 </div>
                             </div>

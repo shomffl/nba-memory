@@ -37,6 +37,7 @@ Route::group(["middleware" => ["auth:admin", 'verified']], function(){
     Route::get("admin/games",[GameController::class, "indexAdmin"])->name("admin.games.index");
     Route::get("admin/games/create", [GameController::class, "create"])->name("admin.games.create");
     Route::post("admin/games/store", [GameController::class, "store"])->name("admin.games.store");
+    Route::put("admin/games/{game}", [GameController::class, "update"])->name("admin.games.update");
 
     Route::get('admin/dashboard', function () {
         return Inertia::render('Admin/Dashboard');
