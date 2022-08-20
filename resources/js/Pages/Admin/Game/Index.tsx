@@ -4,6 +4,8 @@ import Authenticated from "@/Layouts/AdminAuthenticated";
 import { Head, useRemember } from "@inertiajs/inertia-react";
 import "@fullcalendar/react/dist/vdom";
 import Calendar from "./Components/Calendar";
+import GamesBox from "./Components/GamesBox";
+import EditGameBox from "./Components/EditGameBox";
 
 const Index = (props: any) => {
     const { schedules, gamesByDate } = props;
@@ -57,121 +59,20 @@ const Index = (props: any) => {
                 <div className="w-2/5 bg-gray-100 shadow-2xl p-5">
                     <h1>試合</h1>
                     {changeMode ? (
-                        <div>
-                            {todayGames?.map((todayGame) => (
-                                <div
-                                    key={todayGame.id}
-                                    className="flex items-center justify-between"
-                                >
-                                    <h2 className="flex justify-between items-center rounded font-bold shadow w-3/4 my-3 px-2 py-3 bg-white">
-                                        <img
-                                            className="w-1/12"
-                                            src={todayGame.home_team.logo}
-                                        />
-                                        <div>
-                                            {todayGame.home_team.name}
-                                            &nbsp;(
-                                            {todayGame.home_team_point})
-                                        </div>
-                                        &nbsp;vs&nbsp;
-                                        <div>
-                                            {todayGame.away_team.name}
-                                            &nbsp;(
-                                            {todayGame.away_team_point})
-                                        </div>
-                                        <img
-                                            className="w-1/12"
-                                            src={todayGame.away_team.logo}
-                                        />
-                                    </h2>
-                                    <div>
-                                        <button
-                                            onClick={(e) => {
-                                                setChangeMode(!changeMode);
-                                                setEditGameData(todayGame);
-                                            }}
-                                            className="px-5 py-2 bg-gray-1000 text-white shadow hover:text-white hover:bg-blue-1000 hover:shadow-2xl hover:scale-105 rounded duration-200"
-                                        >
-                                            Edit
-                                        </button>
-                                    </div>
-                                </div>
-                            ))}
-                        </div>
+                        <GamesBox
+                            todayGames={todayGames}
+                            changeMode={changeMode}
+                            setChangeMode={setChangeMode}
+                            setEditGameData={setEditGameData}
+                        />
                     ) : (
-                        <div>
-                            <div>
-                                <div>
-                                    <h2 className="flex justify-between items-center rounded font-bold shadow  my-3 px-4 py-3 bg-white">
-                                        <img
-                                            className="w-1/12"
-                                            src={editGameData?.home_team.logo}
-                                        />
-                                        <div>
-                                            {editGameData?.home_team.name}
-                                            &nbsp;
-                                        </div>
-                                        &nbsp;vs&nbsp;
-                                        <div>
-                                            {editGameData?.away_team.name}
-                                            &nbsp;
-                                        </div>
-                                        <img
-                                            className="w-1/12"
-                                            src={editGameData?.away_team.logo}
-                                        />
-                                    </h2>
-                                    <div className="flex items-center">
-                                        <input
-                                            className="text-2xl w-2/4 text-center"
-                                            type="number"
-                                            value={
-                                                editGameData?.home_team_point
-                                            }
-                                            onChange={(e) =>
-                                                setEditGameData({
-                                                    ...editGameData,
-                                                    home_team_point:
-                                                        e.target.value,
-                                                })
-                                            }
-                                        />
-                                        &nbsp;vs&nbsp;
-                                        <input
-                                            className="text-2xl w-2/4 text-center"
-                                            type="number"
-                                            value={
-                                                editGameData?.away_team_point
-                                            }
-                                            onChange={(e) =>
-                                                setEditGameData({
-                                                    ...editGameData,
-                                                    away_team_point:
-                                                        e.target.value,
-                                                })
-                                            }
-                                        />
-                                    </div>
-                                </div>
-
-                                <div className="flex justify-between px-4 py-8">
-                                    <button
-                                        onClick={(e) => {
-                                            setChangeMode(!changeMode);
-                                        }}
-                                        className="px-6 py-2 bg-gray-1000 text-white shadow hover:text-white hover:bg-red-900 hover:shadow-2xl hover:scale-105 rounded duration-200"
-                                    >
-                                        Cancel
-                                    </button>
-                                    <button
-                                        onClick={handleUpdatePoint}
-                                        className="px-6 py-2 bg-gray-1000 text-white shadow hover:text-white hover:bg-blue-1000 hover:shadow-2xl hover:scale-105 rounded duration-200"
-                                    >
-                                        Update
-                                    </button>
-                                </div>
-                            </div>
-                        </div>
+                        <EditGameBox
+                            editGameData={editGameData}
+                            setEditGameData={setEditGameData}
+                            changeMode={changeMode}
+                            setChangeMode={setChangeMode}
+                            handleUpdatePoint={handleUpdatePoint}
+                        />
                     )}
                 </div>
             </div>
