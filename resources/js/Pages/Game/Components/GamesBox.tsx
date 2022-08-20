@@ -24,7 +24,7 @@ const GamesBox = memo(
                                 )
                             }
                         >
-                            <div className="flex justify-between items-center p-2 bg-white hover:bg-white hover:shadow hover:scale-105 text-center  rounded font-bold border border-gray-200">
+                            <div className="flex justify-between items-center p-2 bg-white hover:bg-white hover:shadow hover:scale-105 text-center duration-150 rounded font-bold border border-gray-200">
                                 <img
                                     className="w-1/12"
                                     src={todayGame.home_team.logo}
