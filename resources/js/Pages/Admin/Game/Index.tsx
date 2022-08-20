@@ -123,7 +123,7 @@ const Index = (props: any) => {
                                     </h2>
                                     <div className="flex items-center">
                                         <input
-                                            className="w-1/4"
+                                            className="text-2xl w-2/4 text-center"
                                             type="number"
                                             value={
                                                 editGameData?.home_team_point
@@ -138,7 +138,7 @@ const Index = (props: any) => {
                                         />
                                         &nbsp;vs&nbsp;
                                         <input
-                                            className="w-1/4"
+                                            className="text-2xl w-2/4 text-center"
                                             type="number"
                                             value={
                                                 editGameData?.away_team_point
@@ -154,18 +154,18 @@ const Index = (props: any) => {
                                     </div>
                                 </div>
 
-                                <div className="flex">
+                                <div className="flex justify-between px-4 py-8">
                                     <button
                                         onClick={(e) => {
                                             setChangeMode(!changeMode);
                                         }}
-                                        className="px-3 py-2 mx-3 bg-gray-1000 text-white shadow hover:text-white hover:bg-red-900 hover:shadow-2xl hover:scale-105 rounded duration-200"
+                                        className="px-6 py-2 bg-gray-1000 text-white shadow hover:text-white hover:bg-red-900 hover:shadow-2xl hover:scale-105 rounded duration-200"
                                     >
                                         Cancel
                                     </button>
                                     <button
                                         onClick={handleUpdatePoint}
-                                        className="px-5 py-2 bg-gray-1000 text-white shadow hover:text-white hover:bg-blue-1000 hover:shadow-2xl hover:scale-105 rounded duration-200"
+                                        className="px-6 py-2 bg-gray-1000 text-white shadow hover:text-white hover:bg-blue-1000 hover:shadow-2xl hover:scale-105 rounded duration-200"
                                     >
                                         Update
                                     </button>
