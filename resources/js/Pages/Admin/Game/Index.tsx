@@ -56,7 +56,10 @@ const Index = (props: any) => {
                     handleDateClick={handleDateClick}
                 />
 
-                <div className="w-2/5 bg-gray-100 shadow-2xl p-5">
+                <div
+                    className="w-2/5 overflow-auto bg-gray-100 shadow-2xl p-5"
+                    style={{ height: "700px" }}
+                >
                     <h1>試合</h1>
                     {changeMode ? (
                         <GamesBox
