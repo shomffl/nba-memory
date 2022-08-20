@@ -7,16 +7,9 @@ import Calendar from "./Components/Calendar";
 
 const Index = (props: any) => {
     const { schedules, gamesByDate } = props;
-    const [todayGames, setTodayGames] = useRemember<Array<Game>>(
-        [],
-        "IndexTodayGames"
-    );
+    const [todayGames, setTodayGames] = useRemember<Array<Game>>([]);
     const [changeMode, setChangeMode] = useState<boolean>(true);
-    const [editGameData, setEditGameData] = useState<Game>();
-    const [sendPoint, setSendPoint] = useState<any>({
-        home_team_point: 0,
-        away_team_point: 0,
-    });
+    const [editGameData, setEditGameData] = useState<any>();
 
     /**
      * カレンダーの日付クリック時に実行される関数
@@ -32,7 +25,24 @@ const Index = (props: any) => {
 
     const handleUpdatePoint = (e: any) => {
         e.preventDefault();
-        Inertia.put(`/admin/games/${editGameData?.id}`, sendPoint);
+        Inertia.put(`/admin/games/${editGameData?.id}`, editGameData, {
+            onSuccess: () => {
+                setChangeMode(!changeMode);
+                rewriteData();
+            },
+        });
+    };
+
+    /**
+     * 点数更新後にデータを書き換えるための関数
+     * propsの更新タイミングが遅いため、propsの更新を待たずに直接データをsetする
+     */
+    const rewriteData = () => {
+        const data = todayGames?.filter(
+            (e: any) => !(e.id == editGameData?.id)
+        );
+        data.push(editGameData);
+        setTodayGames(data);
     };
 
     return (
@@ -99,10 +109,12 @@ const Index = (props: any) => {
                                         <input
                                             className="w-1/4"
                                             type="number"
-                                            value={sendPoint.home_team_point}
+                                            value={
+                                                editGameData?.home_team_point
+                                            }
                                             onChange={(e) =>
-                                                setSendPoint({
-                                                    ...sendPoint,
+                                                setEditGameData({
+                                                    ...editGameData,
                                                     home_team_point:
                                                         e.target.value,
                                                 })
@@ -112,10 +124,12 @@ const Index = (props: any) => {
                                         <input
                                             className="w-1/4"
                                             type="number"
-                                            value={sendPoint.away_team_point}
+                                            value={
+                                                editGameData?.away_team_point
+                                            }
                                             onChange={(e) =>
-                                                setSendPoint({
-                                                    ...sendPoint,
+                                                setEditGameData({
+                                                    ...editGameData,
                                                     away_team_point:
                                                         e.target.value,
                                                 })
@@ -134,10 +148,7 @@ const Index = (props: any) => {
                                         Cancel
                                     </button>
                                     <button
-                                        onClick={
-                                            handleUpdatePoint
-                                            // setChangeMode(!changeMode);
-                                        }
+                                        onClick={handleUpdatePoint}
                                         className="px-5 py-2 bg-gray-1000 text-white shadow hover:text-white hover:bg-blue-1000 hover:shadow-2xl hover:scale-105 rounded duration-200"
                                     >
                                         Update

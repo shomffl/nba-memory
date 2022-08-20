@@ -106,7 +106,10 @@ class GameController extends Controller
      */
     public function update(Request $request, Game $game)
     {
-        $game->fill($request->all())->save();
+        $input = $request->all();
+        $home_team_point = $input["home_team_point"];
+        $away_team_point = $input["away_team_point"];
+        $game->fill(["home_team_point" => $home_team_point, "away_team_point" => $away_team_point])->save();
         return Redirect::route("admin.games.index");
     }
 
