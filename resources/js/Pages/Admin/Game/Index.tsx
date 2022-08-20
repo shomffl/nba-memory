@@ -63,7 +63,11 @@ const Index = (props: any) => {
                                     key={todayGame.id}
                                     className="flex items-center justify-between"
                                 >
-                                    <h2 className="flex items-center rounded font-bold shadow w-3/4 my-3 px-2 py-3 bg-white">
+                                    <h2 className="flex justify-between items-center rounded font-bold shadow w-3/4 my-3 px-2 py-3 bg-white">
+                                        <img
+                                            className="w-1/12"
+                                            src={todayGame.home_team.logo}
+                                        />
                                         <div>
                                             {todayGame.home_team.name}
                                             &nbsp;(
@@ -75,6 +79,10 @@ const Index = (props: any) => {
                                             &nbsp;(
                                             {todayGame.away_team_point})
                                         </div>
+                                        <img
+                                            className="w-1/12"
+                                            src={todayGame.away_team.logo}
+                                        />
                                     </h2>
                                     <div>
                                         <button
@@ -94,7 +102,11 @@ const Index = (props: any) => {
                         <div>
                             <div>
                                 <div>
-                                    <h2 className="flex items-center rounded font-bold shadow w-3/4 my-3 px-2 py-3 bg-white">
+                                    <h2 className="flex justify-between items-center rounded font-bold shadow  my-3 px-4 py-3 bg-white">
+                                        <img
+                                            className="w-1/12"
+                                            src={editGameData?.home_team.logo}
+                                        />
                                         <div>
                                             {editGameData?.home_team.name}
                                             &nbsp;
@@ -104,6 +116,10 @@ const Index = (props: any) => {
                                             {editGameData?.away_team.name}
                                             &nbsp;
                                         </div>
+                                        <img
+                                            className="w-1/12"
+                                            src={editGameData?.away_team.logo}
+                                        />
                                     </h2>
                                     <div className="flex items-center">
                                         <input
