@@ -16,11 +16,32 @@ type Props = {
 const Calendar = (props: Props) => {
     const { schedules, handleEventClick, handleDateClick } = props;
 
-    const defaultDate: any = localStorage.getItem("matched_at");
+    const defaultDate: any = localStorage.getItem("view_date");
+
+    /**
+     * 現在表示されているカレンダーの月をデフォルトで表示
+     * リロードしても表示される月が変わらないようするための関数
+     * @param date カレンダーに表示されている日付
+     */
+    const getViewDate = (date: any) => {
+        let viewDefaultDate = null;
+        if (date.getMonth() + 1 < 10) {
+            viewDefaultDate =
+                date.getFullYear() + "-0" + (date.getMonth() + 1) + "-01";
+        } else {
+            viewDefaultDate =
+                date.getFullYear() + "-" + (date.getMonth() + 1) + "-01";
+        }
+        localStorage.setItem("view_date", viewDefaultDate);
+    };
+
     return (
         <div className="bg-gray-100 shadow-2xl">
             <CalendarStyleWrapper>
                 <FullCalendar
+                    datesSet={(arg) => {
+                        getViewDate(arg.view.currentStart);
+                    }}
                     eventTextColor="#262626"
                     eventBackgroundColor="white"
                     eventBorderColor="#889c9b"
