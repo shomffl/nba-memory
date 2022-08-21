@@ -19,7 +19,8 @@ class PostController extends Controller
      */
     public function index()
     {
-        //
+        $posts = Post::with("game.homeTeam", "game.awayTeam")->where("user_id", auth()->id())->orderBy("updated_at")->get();
+        return Inertia::render("Post/Index",["posts" => $posts]);
     }
 
     /**
