@@ -25,6 +25,7 @@ type Post = {
     id: number;
     title: string;
     detail: string;
+    game_id: number;
     game: Game;
 };
 

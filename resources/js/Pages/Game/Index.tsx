@@ -89,6 +89,7 @@ const Index = (props: any) => {
                         <div className="m-3">
                             <GamesBox
                                 todayGames={todayGames}
+                                todayPosts={todayPosts}
                                 transitionCreatePage={transitionCreatePage}
                             />
                         </div>
