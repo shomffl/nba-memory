@@ -81,11 +81,11 @@ const Index = (props: any) => {
                     />
                 </div>
                 <div className="flex flex-col w-4/12">
-                    <div className="flex justify-center items-center font-bold h-12 ml-5 mb-5 bg-gray-100 rounded shadow-xl">
+                    <div className="flex justify-center items-center font-bold h-12 ml-5 mb-5 bg-gray-100 rounded shadow-lg">
                         <h1>{todayGames[0]?.matched_at || "no match"}</h1>
                     </div>
 
-                    <div className="overflow-auto h-96 ml-5 mb-5 bg-gray-100 rounded shadow-xl">
+                    <div className="overflow-auto h-[40vh] ml-5 mb-10 bg-gray-100 rounded shadow-lg">
                         <div className="m-3">
                             <GamesBox
                                 todayGames={todayGames}
@@ -94,7 +94,10 @@ const Index = (props: any) => {
                             />
                         </div>
                     </div>
-                    <div className="overflow-auto h-56 ml-5 bg-gray-100 rounded shadow-xl">
+                    <div
+                        // style={{ height: "30vh" }}
+                        className="overflow-auto ml-5 h-[30vh] bg-gray-100 rounded shadow-lg"
+                    >
                         <div className="m-3">
                             <ImpressionBox
                                 postsByDate={postsByDate}

@@ -36,7 +36,7 @@ const Calendar = (props: Props) => {
     };
 
     return (
-        <div className="bg-gray-100 shadow-2xl">
+        <div className="bg-gray-100 shadow-lg">
             <CalendarStyleWrapper>
                 <FullCalendar
                     datesSet={(arg) => {
