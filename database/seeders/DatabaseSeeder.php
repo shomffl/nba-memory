@@ -22,6 +22,7 @@ class DatabaseSeeder extends Seeder
         // ]);
         $this->call([
             UsersTableSeeder::class,
+            SeasonsTableSeeder::class,
             TeamsTableSeeder::class,
             SeriesTableSeeder::class,
             RostersTableSeeder::class,

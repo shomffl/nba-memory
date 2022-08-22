@@ -23,6 +23,7 @@ return new class extends Migration
             $table->foreignId("away_roster_id")->constrained("rosters")->nullable();
             $table->date("matched_at");
             $table->foreignId("series_id")->constrained("series")->nullable();
+            $table->foreignId("season_id")->constrained("seasons");
             $table->timestamps();
         });
     }

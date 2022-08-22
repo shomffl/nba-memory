@@ -29,6 +29,7 @@ class Games2021TableSeeder extends Seeder
                 "away_roster_id" => 2,
                 "matched_at" => $value->matched_at,
                 "series_id" => 1,
+                "season_id" => 1,
             ]);
         }
     }
