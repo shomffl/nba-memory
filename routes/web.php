@@ -20,7 +20,9 @@ use App\Http\Controllers\PostController;
 
 
 Route::group(["middleware" => ["auth"]], function() {
-    // Route::get("games",[GameController::class, "index"])->name("games.index");
+    Route::get("/", function () {
+        return redirect(route("games.index"));
+    });
     Route::resource('games', GameController::class);
     Route::resource('posts', PostController::class);
 
