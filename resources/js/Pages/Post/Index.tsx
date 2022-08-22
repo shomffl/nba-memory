@@ -1,17 +1,15 @@
-import React from "react";
+import React, { useState } from "react";
 import Authenticated from "@/Layouts/Authenticated";
-import { Link } from "@inertiajs/inertia-react";
 
 const Index = (props: { auth: any; posts: any }) => {
     const { posts } = props;
-    console.log(posts);
     return (
         <Authenticated auth={props.auth} header={null}>
             <div className="px-28 py-20">
                 <div>
-                    {posts.data.map((post: Post) => (
+                    {posts.map((post: Post) => (
                         <div
-                            className="bg-gray-100 my-10 pb-5 px-10"
+                            className="bg-gray-100 my-10 pb-5 px-10 rounded-md shadow-lg"
                             key={post.id}
                         >
                             <div className="flex items-center">
