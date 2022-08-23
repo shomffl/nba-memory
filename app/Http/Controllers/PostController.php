@@ -8,7 +8,9 @@ use Illuminate\Support\Facades\Redirect;
 use Inertia\Inertia;
 use App\Models\Game;
 use App\Models\Team;
+use App\Models\Season;
 use App\Http\Requests\PostRequest;
+
 
 class PostController extends Controller
 {
@@ -17,10 +19,25 @@ class PostController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $reqeust, Season $seasons)
     {
-        $posts = Post::with("game.homeTeam", "game.awayTeam")->where("user_id", auth()->id())->orderBy("updated_at")->get();
-        return Inertia::render("Post/Index",["posts" => $posts]);
+        $season = $reqeust->all();
+        $latest_season = Season::orderBy("id", "desc")->first()->id;
+
+        if($season == null){
+            $posts = Post::whereHas("game", function ($query) use($latest_season) {
+                $query->where("season_id", "=", $latest_season);
+            })->with("game.homeTeam", "game.awayTeam")->get();
+        }
+
+        if($season != null){
+            $posts = Post::whereHas("game", function ($query) use($season) {
+                $query->where("season_id", "=", $season["season"]);
+            })->with("game.homeTeam", "game.awayTeam")->where("user_id", auth()->id())->get();
+        }
+
+
+        return Inertia::render("Post/Index",["posts" => $posts, "seasons" => $seasons->get()]);
     }
 
     /**
