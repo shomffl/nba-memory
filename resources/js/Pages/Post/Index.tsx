@@ -3,13 +3,19 @@ import Authenticated from "@/Layouts/Authenticated";
 import { Inertia } from "@inertiajs/inertia";
 import { useForm } from "@inertiajs/inertia-react";
 
-const Index = (props: { auth: any; posts: Array<Post>; seasons: any }) => {
-    const { posts, seasons } = props;
+const Index = (props: {
+    auth: any;
+    posts: Array<Post>;
+    seasons: any;
+    viewOption: number;
+}) => {
+    const { posts, seasons, viewOption } = props;
     const { data, setData } = useForm<any>({
-        season: seasons[0].id,
-        orderby: 0,
+        season: "",
+        orderby: "",
     });
 
+    console.log(props);
     console.log(posts);
     return (
         <Authenticated auth={props.auth} header={null}>
@@ -42,38 +48,49 @@ const Index = (props: { auth: any; posts: Array<Post>; seasons: any }) => {
 
                     <button
                         className="bg-blue-1000 text-white px-3 py-1 rounded-lg"
-                        onClick={(e) => Inertia.get(route("posts.index"), data)}
+                        onClick={(e) =>
+                            Inertia.get(route("posts.index"), data, {
+                                preserveState: true,
+                            })
+                        }
                     >
                         send
                     </button>
-                    {posts.map((post) => (
-                        <div
-                            className="bg-gray-100 my-10 pb-5 px-10 rounded-md shadow-lg"
-                            key={post.id}
-                        >
-                            <div className="flex items-center">
-                                <p>{post.game.matched_at}</p>
-                                <div className="flex items-center p-4">
-                                    <img
-                                        src={post.game.home_team.logo}
-                                        className="w-8 mx-1"
-                                    />
-                                    <p>
-                                        {post.game.home_team.name}&nbsp; (
-                                        {post.game.home_team_point}
-                                        )&nbsp;vs&nbsp;
-                                        {post.game.away_team.name}&nbsp;(
-                                        {post.game.away_team_point})
-                                    </p>
-                                    <img
-                                        src={post.game.away_team.logo}
-                                        className="w-8 mx-1"
-                                    />
+                    {viewOption == 0 ? (
+                        <div>
+                            {posts.map((post) => (
+                                <div
+                                    className="bg-gray-100 my-10 pb-5 px-10 rounded-md shadow-lg"
+                                    key={post.id}
+                                >
+                                    <div className="flex items-center">
+                                        <p>{post.game.matched_at}</p>
+                                        <div className="flex items-center p-4">
+                                            <img
+                                                src={post.game.home_team.logo}
+                                                className="w-8 mx-1"
+                                            />
+                                            <p>
+                                                {post.game.home_team.name}&nbsp;
+                                                ({post.game.home_team_point}
+                                                )&nbsp;vs&nbsp;
+                                                {post.game.away_team.name}
+                                                &nbsp;(
+                                                {post.game.away_team_point})
+                                            </p>
+                                            <img
+                                                src={post.game.away_team.logo}
+                                                className="w-8 mx-1"
+                                            />
+                                        </div>
+                                    </div>
+                                    <h1>title&nbsp;:&nbsp;{post.title}</h1>
                                 </div>
-                            </div>
-                            <h1>title&nbsp;:&nbsp;{post.title}</h1>
+                            ))}
                         </div>
-                    ))}
+                    ) : (
+                        <div></div>
+                    )}
                 </div>
             </div>
         </Authenticated>
