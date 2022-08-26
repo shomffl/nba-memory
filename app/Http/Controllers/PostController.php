@@ -46,7 +46,7 @@ class PostController extends Controller
             }
 
         }
-        return Inertia::render("Post/Index",["posts" => $posts->get(), "seasons" => $seasons->get()]);
+        return Inertia::render("Post/Index",["posts" => $posts->get(), "seasons" => $seasons->orderBy("season", "DESC")->get()]);
     }
 
     /**
