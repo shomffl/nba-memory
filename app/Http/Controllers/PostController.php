@@ -28,7 +28,7 @@ class PostController extends Controller
         if($season == null){
             $posts = Post::whereHas("game", function ($query) use($latest_season) {
                 $query->where("season_id", "=", $latest_season);
-            })->with("game.homeTeam", "game.awayTeam");
+            })->with("game.homeTeam", "game.awayTeam")->get();
         }
 
         if($season != null){
@@ -39,14 +39,15 @@ class PostController extends Controller
 
             if($season["orderby"] == 0){
                 $posts->orderBy("updated_at", "ASC");
+                $posts = $posts->get();
             }
 
             if($season["orderby"] == 1){
                 $posts->orderBy("updated_at", "DESC");
+                $posts = $posts->get();
             }
-
         }
-        return Inertia::render("Post/Index",["posts" => $posts->get(), "seasons" => $seasons->orderBy("season", "DESC")->get()]);
+        return Inertia::render("Post/Index",["posts" => $posts, "seasons" => $seasons->orderBy("season", "DESC")->get()]);
     }
 
     /**
