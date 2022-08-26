@@ -9,6 +9,7 @@ use Inertia\Inertia;
 use App\Models\Game;
 use App\Models\Team;
 use App\Models\Season;
+use App\Models\Series;
 use App\Http\Requests\PostRequest;
 
 
@@ -27,17 +28,25 @@ class PostController extends Controller
         if($season == null){
             $posts = Post::whereHas("game", function ($query) use($latest_season) {
                 $query->where("season_id", "=", $latest_season);
-            })->with("game.homeTeam", "game.awayTeam")->get();
+            })->with("game.homeTeam", "game.awayTeam");
         }
 
         if($season != null){
+
             $posts = Post::whereHas("game", function ($query) use($season) {
                 $query->where("season_id", "=", $season["season"]);
-            })->with("game.homeTeam", "game.awayTeam")->where("user_id", auth()->id())->get();
+            })->with("game.homeTeam", "game.awayTeam")->where("user_id", auth()->id());
+
+            if($season["orderby"] == 0){
+                $posts->orderBy("updated_at", "ASC");
+            }
+
+            if($season["orderby"] == 1){
+                $posts->orderBy("updated_at", "DESC");
+            }
+
         }
-
-
-        return Inertia::render("Post/Index",["posts" => $posts, "seasons" => $seasons->get()]);
+        return Inertia::render("Post/Index",["posts" => $posts->get(), "seasons" => $seasons->get()]);
     }
 
     /**
