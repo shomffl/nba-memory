@@ -24,6 +24,7 @@ class PostController extends Controller
     {
         $season = $reqeust->all();
         $latest_season = Season::orderBy("id", "desc")->first()->id;
+        $view_option = 0;
 
         if($season == null){
             $posts = Post::whereHas("game", function ($query) use($latest_season) {
@@ -33,21 +34,35 @@ class PostController extends Controller
 
         if($season != null){
 
-            $posts = Post::whereHas("game", function ($query) use($season) {
-                $query->where("season_id", "=", $season["season"]);
-            })->with("game.homeTeam", "game.awayTeam")->where("user_id", auth()->id());
-
             if($season["orderby"] == 0){
-                $posts->orderBy("updated_at", "ASC");
-                $posts = $posts->get();
+                $posts = Post::whereHas("game", function ($query) use($season) {
+                    $query->where("season_id", "=", $season["season"]);
+                })->with("game.homeTeam", "game.awayTeam")->where("user_id", auth()->id())->orderBy("updated_at", "ASC")->get();
+
             }
 
             if($season["orderby"] == 1){
-                $posts->orderBy("updated_at", "DESC");
-                $posts = $posts->get();
+                $posts = Post::whereHas("game", function ($query) use($season) {
+                    $query->where("season_id", "=", $season["season"]);
+                })->with("game.homeTeam", "game.awayTeam")->where("user_id", auth()->id())->orderBy("updated_at", "DESC")->get();
             }
+
+            if($season["orderby"] == 2){
+                $view_option = 1;
+                $posts = Game::whereHas("posts", function ($query) {
+                    $query->where("user_id", auth()->id());
+                })->with("posts", "homeTeam", "awayTeam")->where("season_id", auth()->id())->orderBy("matched_at", "ASC")->get();
+            }
+
+            if($season["orderby"] == 3){
+                $view_option = 1;
+                $posts = Game::whereHas("posts", function ($query) {
+                    $query->where("user_id", auth()->id());
+                })->with("posts", "homeTeam", "awayTeam")->where("season_id", auth()->id())->orderBy("matched_at", "DESC")->get();
+            }
+
         }
-        return Inertia::render("Post/Index",["posts" => $posts, "seasons" => $seasons->orderBy("season", "DESC")->get()]);
+        return Inertia::render("Post/Index",["posts" => $posts, "seasons" => $seasons->orderBy("season", "DESC")->get(), "viewOption" => $view_option]);
     }
 
     /**
