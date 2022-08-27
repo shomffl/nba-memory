@@ -20,6 +20,11 @@ class Game extends Model
         "away_roster_id",
     ];
 
+    public function posts()
+    {
+        return $this->hasMany(Post::class);
+    }
+
     public function homeTeam()
     {
         return $this->belongsTo(Team::class, "home_team_id");
