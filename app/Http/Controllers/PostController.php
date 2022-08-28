@@ -103,7 +103,7 @@ class PostController extends Controller
         if(!auth()->user()->can("view", $post)){
             return Inertia::render("Error/Forbidden");
         }
-        return Inertia::render("Post/Show", ["post" => Post::with("game.homeTeam", "game.awayTeam")->find($post->id)]);
+        return Inertia::render("Post/Show", ["post" => $post->load("game.homeTeam", "game.awayTeam")]);
     }
 
     /**
