@@ -5,11 +5,13 @@ import { useForm } from "@inertiajs/inertia-react";
 
 const Index = (props: {
     auth: any;
-    posts: Array<Post> | Array<any>;
+    postsSortByPosted: Array<Post>;
+    postsSortByMatched: Array<PostSortByMatched>;
     seasons: Array<Season>;
     viewOption: number;
 }) => {
-    const { posts, seasons, viewOption } = props;
+    const { postsSortByPosted, postsSortByMatched, seasons, viewOption } =
+        props;
     const { data, setData } = useForm<any>({
         season: "",
         orderby: "",
@@ -56,7 +58,7 @@ const Index = (props: {
                     </button>
                     {viewOption == 0 ? (
                         <div>
-                            {posts.map((post) => (
+                            {postsSortByPosted.map((post) => (
                                 <div
                                     className="bg-gray-100 my-10 pb-5 px-10 rounded-md shadow-lg"
                                     key={post.id}
@@ -88,7 +90,7 @@ const Index = (props: {
                         </div>
                     ) : (
                         <div>
-                            {posts.map((post) => (
+                            {postsSortByMatched.map((post) => (
                                 <div
                                     className="bg-gray-100 my-10 pb-5 px-10 rounded-md shadow-lg"
                                     key={post.id}
