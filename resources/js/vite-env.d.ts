@@ -40,3 +40,8 @@ type Schedule = {
     date: string;
     match: string;
 };
+
+type Season = {
+    id: number;
+    season: string;
+};

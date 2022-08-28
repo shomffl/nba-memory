@@ -5,8 +5,8 @@ import { useForm } from "@inertiajs/inertia-react";
 
 const Index = (props: {
     auth: any;
-    posts: Array<Post>;
-    seasons: any;
+    posts: Array<Post> | Array<any>;
+    seasons: Array<Season>;
     viewOption: number;
 }) => {
     const { posts, seasons, viewOption } = props;
@@ -15,8 +15,6 @@ const Index = (props: {
         orderby: "",
     });
 
-    console.log(props);
-    console.log(posts);
     return (
         <Authenticated auth={props.auth} header={null}>
             <div className="px-28 py-20">
@@ -89,7 +87,39 @@ const Index = (props: {
                             ))}
                         </div>
                     ) : (
-                        <div></div>
+                        <div>
+                            {posts.map((post) => (
+                                <div
+                                    className="bg-gray-100 my-10 pb-5 px-10 rounded-md shadow-lg"
+                                    key={post.id}
+                                >
+                                    <div className="flex items-center">
+                                        <p>{post.matched_at}</p>
+                                        <div className="flex items-center p-4">
+                                            <img
+                                                src={post.home_team.logo}
+                                                className="w-8 mx-1"
+                                            />
+                                            <p>
+                                                {post.home_team.name}&nbsp; (
+                                                {post.home_team_point}
+                                                )&nbsp;vs&nbsp;
+                                                {post.away_team.name}
+                                                &nbsp;(
+                                                {post.away_team_point})
+                                            </p>
+                                            <img
+                                                src={post.away_team.logo}
+                                                className="w-8 mx-1"
+                                            />
+                                        </div>
+                                    </div>
+                                    <h1>
+                                        title&nbsp;:&nbsp;{post.posts[0].title}
+                                    </h1>
+                                </div>
+                            ))}
+                        </div>
                     )}
                 </div>
             </div>
