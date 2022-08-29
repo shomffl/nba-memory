@@ -31,7 +31,15 @@ export default function Authenticated({ auth, header, children }: Props) {
                                     href={route("games.index")}
                                     active={route().current("games.index")}
                                 >
-                                    Memory
+                                    Calendar
+                                </NavLink>
+                            </div>
+                            <div className="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
+                                <NavLink
+                                    href={route("posts.index")}
+                                    active={route().current("posts.index")}
+                                >
+                                    Posts
                                 </NavLink>
                             </div>
                             <div className="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
