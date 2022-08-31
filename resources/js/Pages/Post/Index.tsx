@@ -13,7 +13,7 @@ const Index = (props: {
     const { postsSortByPosted, postsSortByMatched, seasons, viewOption } =
         props;
     const { data, setData } = useForm<any>({
-        season: "",
+        season: seasons[0].id,
         orderby: "",
     });
 
@@ -26,7 +26,7 @@ const Index = (props: {
                         <select
                             onChange={(e) => setData("season", e.target.value)}
                         >
-                            {seasons.map((season: any) => (
+                            {seasons.map((season) => (
                                 <option key={season.id} value={season.id}>
                                     {season.season}
                                 </option>
