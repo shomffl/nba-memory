@@ -39,14 +39,14 @@ const Show = (props: { auth: any; post: Post }) => {
 
                     <div className="pb-10">
                         <h2>Title</h2>
-                        <h1 className="bg-white text-3xl rounded px-5 py-2 shadow w-max ">
+                        <h1 className="bg-white text-3xl rounded px-5 py-2 shadow max-w-max">
                             {post.title}
                         </h1>
                     </div>
 
                     <div className="pb-16">
                         <h2>Detail</h2>
-                        <p className="bg-white rounded px-5 py-2 shadow w-max  ">
+                        <p className="bg-white rounded px-5 py-2 shadow max-w-max">
                             {post.detail}
                         </p>
                     </div>
