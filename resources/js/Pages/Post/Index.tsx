@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import Authenticated from "@/Layouts/Authenticated";
 import { Inertia } from "@inertiajs/inertia";
-import { useForm } from "@inertiajs/inertia-react";
+import { useForm, Link } from "@inertiajs/inertia-react";
 
 const Index = (props: {
     auth: any;
@@ -16,6 +16,8 @@ const Index = (props: {
         season: seasons[0].id,
         orderby: "",
     });
+
+    console.log(postsSortByMatched);
 
     return (
         <Authenticated auth={props.auth} header={null}>
@@ -59,8 +61,11 @@ const Index = (props: {
                     {viewOption == 0 ? (
                         <div>
                             {postsSortByPosted.map((post) => (
-                                <div
-                                    className="bg-gray-100 my-10 pb-5 px-10 rounded-md shadow-lg"
+                                <button
+                                    onClick={(e) =>
+                                        Inertia.get(`posts/${post.id}`)
+                                    }
+                                    className="bg-gray-100 w-full my-10 pb-5 px-10 rounded-md shadow-lg"
                                     key={post.id}
                                 >
                                     <div className="flex items-center">
@@ -84,15 +89,22 @@ const Index = (props: {
                                             />
                                         </div>
                                     </div>
-                                    <h1>title&nbsp;:&nbsp;{post.title}</h1>
-                                </div>
+                                    <h1 className="flex">
+                                        title&nbsp;:&nbsp;{post.title}
+                                    </h1>
+                                </button>
                             ))}
                         </div>
                     ) : (
                         <div>
                             {postsSortByMatched.map((post) => (
-                                <div
-                                    className="bg-gray-100 my-10 pb-5 px-10 rounded-md shadow-lg"
+                                <button
+                                    onClick={(e) =>
+                                        Inertia.get(
+                                            `/posts/${post.posts[0].id}`
+                                        )
+                                    }
+                                    className="bg-gray-100 w-full my-10 pb-5 px-10 rounded-md shadow-lg"
                                     key={post.id}
                                 >
                                     <div className="flex items-center">
@@ -116,10 +128,10 @@ const Index = (props: {
                                             />
                                         </div>
                                     </div>
-                                    <h1>
+                                    <h1 className="flex">
                                         title&nbsp;:&nbsp;{post.posts[0].title}
                                     </h1>
-                                </div>
+                                </button>
                             ))}
                         </div>
                     )}
