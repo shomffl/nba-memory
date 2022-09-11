@@ -59,14 +59,14 @@ const Show = (props: { auth: any; post: Post; previousURL: string }) => {
                                 onClick={(e) =>
                                     Inertia.get(route("games.index"))
                                 }
-                                className="bg-gray-1000 text-white hover:text-white hover:bg-red-900 shadow hover:shadow-2xl hover:scale-105 px-5 py-1 rounded duration-200"
+                                className="bg-gray-1000 text-white hover:text-white hover:bg-red-900 shadow hover:shadow-2xl hover:scale-105 active:scale-100 px-5 py-1 rounded duration-200"
                             >
                                 Back
                             </button>
                         ) : (
                             <button
                                 onClick={(e) => Inertia.get(previousURL)}
-                                className="bg-gray-1000 text-white hover:text-white hover:bg-red-900 shadow hover:shadow-2xl hover:scale-105 px-5 py-1 rounded duration-200"
+                                className="bg-gray-1000 text-white hover:text-white hover:bg-red-900 shadow hover:shadow-2xl hover:scale-105 active:scale-100 px-5 py-1 rounded duration-200"
                             >
                                 Back
                             </button>
@@ -76,7 +76,7 @@ const Show = (props: { auth: any; post: Post; previousURL: string }) => {
                             onClick={(e) =>
                                 Inertia.get(`/posts/${post.id}/edit`)
                             }
-                            className="bg-gray-1000 text-white hover:text-white hover:bg-blue-1000 shadow hover:shadow-2xl hover:scale-105 px-5 py-1 rounded duration-200"
+                            className="bg-gray-1000 text-white hover:text-white hover:bg-blue-1000 shadow hover:shadow-2xl hover:scale-105 active:scale-100 px-5 py-1 rounded duration-200"
                         >
                             Edit
                         </button>

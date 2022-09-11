@@ -38,7 +38,7 @@ const SearchBox = (props: {
             </div>
 
             <button
-                className="border border-gray-500 ml-10 px-5 py-1 shadow hover:shadow-md bg-gradient-to-r hover:from-white hover:to-gray-100 duration-200"
+                className="border border-gray-500 ml-10 px-5 py-1 shadow hover:shadow-md bg-gradient-to-r hover:from-white hover:to-gray-100 duration-200 active:scale-95"
                 onClick={(e) =>
                     Inertia.get(route("posts.index"), data, {
                         preserveState: true,

@@ -77,7 +77,7 @@ const ImpressionBoxs = memo(
                                     onClick={(e) =>
                                         Inertia.get(`/posts/${todayPost.id}`)
                                     }
-                                    className="bg-gray-1000 text-white hover:bg-blue-1000 hover:text-white  hover:shadow-2xl px-0.5 py-0.5 rounded duration-150"
+                                    className="bg-gray-1000 text-white hover:bg-blue-1000 hover:text-white hover:shadow-2xl hover:scale-105 hover:scale-100 px-0.5 py-0.5 rounded duration-150"
                                 >
                                     &nbsp;&nbsp;SHOW&nbsp;&nbsp;
                                 </button>
@@ -90,7 +90,7 @@ const ImpressionBoxs = memo(
                                             todayPost.game.matched_at
                                         )
                                     }
-                                    className="bg-gray-1000 text-white hover:bg-red-900 hover:text-white hover:shadow-2xl px-1 py-0.5 rounded duration-150"
+                                    className="bg-gray-1000 text-white hover:bg-red-900 hover:text-white hover:shadow-2xl hover:scale-105 active:scale-100 px-1 py-0.5 rounded duration-150"
                                 >
                                     DELETE
                                 </button>
