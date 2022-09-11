@@ -15,9 +15,9 @@ const SearchBox = (props: {
 }) => {
     const { data, setData, seasons } = props;
     return (
-        <div>
+        <div className="flex gap-6">
             <div>
-                <label>SEASON</label>
+                <label className="pr-3">SEASON</label>
                 <select onChange={(e) => setData("season", e.target.value)}>
                     {seasons.map((season) => (
                         <option key={season.id} value={season.id}>
@@ -28,7 +28,7 @@ const SearchBox = (props: {
             </div>
 
             <div>
-                <label>ORDER BY</label>
+                <label className="pr-3">ORDER BY</label>
                 <select onChange={(e) => setData("orderby", e.target.value)}>
                     <option value={0}>POSTED DATE↑</option>
                     <option value={1}>POSTED DATE↓</option>
@@ -38,7 +38,7 @@ const SearchBox = (props: {
             </div>
 
             <button
-                className="bg-blue-1000 text-white px-3 py-1 rounded-lg"
+                className="border border-gray-500 ml-10 px-5 py-1 shadow hover:shadow-md bg-gradient-to-r hover:from-white hover:to-gray-100 duration-200"
                 onClick={(e) =>
                     Inertia.get(route("posts.index"), data, {
                         preserveState: true,
