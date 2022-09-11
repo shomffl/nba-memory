@@ -1,10 +1,11 @@
 import React from "react";
 import Authenticated from "@/Layouts/Authenticated";
 import { Inertia } from "@inertiajs/inertia";
-import { Head, Link } from "@inertiajs/inertia-react";
+import { Head } from "@inertiajs/inertia-react";
 
-const Show = (props: { auth: any; post: Post }) => {
-    const { post } = props;
+const Show = (props: { auth: any; post: Post; previousURL: string }) => {
+    const { post, previousURL } = props;
+    const appURL = import.meta.env.VITE_APP_URL;
 
     return (
         <Authenticated auth={props.auth} header={null}>
@@ -52,12 +53,25 @@ const Show = (props: { auth: any; post: Post }) => {
                     </div>
 
                     <div className="flex justify-between">
-                        <button
-                            onClick={(e) => Inertia.get(route("games.index"))}
-                            className="bg-gray-1000 text-white hover:text-white hover:bg-red-900 shadow hover:shadow-2xl hover:scale-105 px-5 py-1 rounded duration-200"
-                        >
-                            Back
-                        </button>
+                        {previousURL ==
+                        import.meta.env.VITE_APP_URL + "/games" ? (
+                            <button
+                                onClick={(e) =>
+                                    Inertia.get(route("games.index"))
+                                }
+                                className="bg-gray-1000 text-white hover:text-white hover:bg-red-900 shadow hover:shadow-2xl hover:scale-105 px-5 py-1 rounded duration-200"
+                            >
+                                Back
+                            </button>
+                        ) : (
+                            <button
+                                onClick={(e) => Inertia.get(previousURL)}
+                                className="bg-gray-1000 text-white hover:text-white hover:bg-red-900 shadow hover:shadow-2xl hover:scale-105 px-5 py-1 rounded duration-200"
+                            >
+                                Back
+                            </button>
+                        )}
+
                         <button
                             onClick={(e) =>
                                 Inertia.get(`/posts/${post.id}/edit`)

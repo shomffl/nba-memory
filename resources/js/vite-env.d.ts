@@ -1,6 +1,12 @@
 interface ImportMeta {
     readonly glob: any;
+    readonly env: ImportMetaEnv;
 }
+
+interface ImportMetaEnv {
+    readonly VITE_APP_URL: string;
+}
+
 declare var route: any;
 
 type Team = {
