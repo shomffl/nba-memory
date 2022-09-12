@@ -7,6 +7,7 @@ const Show = (props: { auth: any; post: Post; previousURL: string }) => {
     const { post, previousURL } = props;
     const gamesIndexURL = import.meta.env.VITE_APP_URL + "/games";
     const sameURL = gamesIndexURL == previousURL;
+    console.log(post);
 
     return (
         <Authenticated auth={props.auth} header={null}>
@@ -41,14 +42,14 @@ const Show = (props: { auth: any; post: Post; previousURL: string }) => {
 
                     <div className="pb-10">
                         <h2>Title</h2>
-                        <h1 className="bg-white text-3xl rounded px-5 py-2 shadow max-w-max">
+                        <h1 className="bg-white text-3xl rounded px-5 py-2 shadow ">
                             {post.title}
                         </h1>
                     </div>
 
                     <div className="pb-16">
                         <h2>Detail</h2>
-                        <p className="bg-white rounded px-5 py-2 shadow max-w-max">
+                        <p className="bg-white rounded px-5 py-2 shadow whitespace-pre-wrap">
                             {post.detail}
                         </p>
                     </div>
