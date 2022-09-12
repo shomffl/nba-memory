@@ -6,7 +6,6 @@ import { Head } from "@inertiajs/inertia-react";
 const Show = (props: { auth: any; post: Post; previousURL: string }) => {
     const { post, previousURL } = props;
     const postsIndexURL = import.meta.env.VITE_APP_URL + "/posts";
-    const sameURL = postsIndexURL == previousURL;
 
     return (
         <Authenticated auth={props.auth} header={null}>
@@ -54,7 +53,7 @@ const Show = (props: { auth: any; post: Post; previousURL: string }) => {
                     </div>
 
                     <div className="flex justify-between">
-                        {sameURL ? (
+                        {previousURL.startsWith(postsIndexURL) ? (
                             <button
                                 onClick={(e) =>
                                     Inertia.get(route("posts.index"))
