@@ -5,9 +5,8 @@ import { Head } from "@inertiajs/inertia-react";
 
 const Show = (props: { auth: any; post: Post; previousURL: string }) => {
     const { post, previousURL } = props;
-    const gamesIndexURL = import.meta.env.VITE_APP_URL + "/games";
-    const sameURL = gamesIndexURL == previousURL;
-    console.log(post);
+    const postsIndexURL = import.meta.env.VITE_APP_URL + "/posts";
+    const sameURL = postsIndexURL == previousURL;
 
     return (
         <Authenticated auth={props.auth} header={null}>
@@ -58,7 +57,7 @@ const Show = (props: { auth: any; post: Post; previousURL: string }) => {
                         {sameURL ? (
                             <button
                                 onClick={(e) =>
-                                    Inertia.get(route("games.index"))
+                                    Inertia.get(route("posts.index"))
                                 }
                                 className="bg-gray-1000 text-white hover:text-white hover:bg-red-900 shadow hover:shadow-2xl hover:scale-105 active:scale-100 px-5 py-1 rounded duration-200"
                             >
@@ -66,7 +65,9 @@ const Show = (props: { auth: any; post: Post; previousURL: string }) => {
                             </button>
                         ) : (
                             <button
-                                onClick={(e) => Inertia.get(previousURL)}
+                                onClick={(e) =>
+                                    Inertia.get(route("games.index"))
+                                }
                                 className="bg-gray-1000 text-white hover:text-white hover:bg-red-900 shadow hover:shadow-2xl hover:scale-105 active:scale-100 px-5 py-1 rounded duration-200"
                             >
                                 Back
