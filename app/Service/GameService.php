@@ -4,7 +4,7 @@ namespace App\Service;
 
 class GameService {
 
-    public function getGameSchedules($games){
+    public static function getGameSchedules($games){
         $schedules_list = [];
         foreach($games as $game)
         {
@@ -19,7 +19,7 @@ class GameService {
         return $schedules_list;
     }
 
-    public function getAllSchedules($games, $posts){
+    public static function getAllSchedules($games, $posts){
         $schedules_list = [];
         foreach($games as $game)
         {

@@ -22,20 +22,18 @@ class GameController extends Controller
     {
         $games = Game::with("homeTeam","awayTeam","series")->get();
         $posts = Post::with("game.homeTeam","game.awayTeam")->where("user_id", auth()->id())->get();
-        $schedules = new GameService;
         $games_by_date = Game::with("homeTeam","awayTeam")->orderBy("matched_at")->get()->groupBy("matched_at");
         $posts_by_date = Post::with("game.homeTeam","game.awayTeam")->where("user_id", auth()->id())->get()->groupBy("game.matched_at");
 
-        return Inertia::render("Game/Index",["schedules" => $schedules->getAllSchedules($games, $posts), "gamesByDate" => $games_by_date, "postsByDate" => $posts_by_date]);
+        return Inertia::render("Game/Index",["schedules" => GameService::getAllSchedules($games, $posts), "gamesByDate" => $games_by_date, "postsByDate" => $posts_by_date]);
     }
 
     public function indexAdmin()
     {
         $games = Game::with("homeTeam","awayTeam","series")->get();
-        $schedules = new GameService;
         $games_by_date = Game::with("homeTeam","awayTeam")->orderBy("matched_at")->get()->groupBy("matched_at");
 
-        return Inertia::render("Admin/Game/Index",["schedules" => $schedules->getGameSchedules($games), "gamesByDate" => $games_by_date]);
+        return Inertia::render("Admin/Game/Index",["schedules" => GameService::getGameSchedules($games), "gamesByDate" => $games_by_date]);
     }
 
     /**
