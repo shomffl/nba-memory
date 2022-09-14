@@ -1,7 +1,7 @@
 import React from "react";
 import Authenticated from "@/Layouts/Authenticated";
 import { Inertia } from "@inertiajs/inertia";
-import { Head } from "@inertiajs/inertia-react";
+import { Head, Link } from "@inertiajs/inertia-react";
 
 const Show = (props: { auth: any; post: Post; previousURL: string }) => {
     const { post, previousURL } = props;
@@ -54,33 +54,27 @@ const Show = (props: { auth: any; post: Post; previousURL: string }) => {
 
                     <div className="flex justify-between">
                         {previousURL.startsWith(postsIndexURL) ? (
-                            <button
-                                onClick={(e) =>
-                                    Inertia.get(route("posts.index"))
-                                }
+                            <Link
+                                href={route("posts.index")}
                                 className="bg-gray-1000 text-white hover:text-white hover:bg-red-900 shadow hover:shadow-2xl hover:scale-105 active:scale-100 px-5 py-1 rounded duration-200"
                             >
                                 Back
-                            </button>
+                            </Link>
                         ) : (
-                            <button
-                                onClick={(e) =>
-                                    Inertia.get(route("games.index"))
-                                }
+                            <Link
+                                href={route("games.index")}
                                 className="bg-gray-1000 text-white hover:text-white hover:bg-red-900 shadow hover:shadow-2xl hover:scale-105 active:scale-100 px-5 py-1 rounded duration-200"
                             >
                                 Back
-                            </button>
+                            </Link>
                         )}
 
-                        <button
-                            onClick={(e) =>
-                                Inertia.get(`/posts/${post.id}/edit`)
-                            }
+                        <Link
+                            href={route("posts.edit", post.id)}
                             className="bg-gray-1000 text-white hover:text-white hover:bg-blue-1000 shadow hover:shadow-2xl hover:scale-105 active:scale-100 px-5 py-1 rounded duration-200"
                         >
                             Edit
-                        </button>
+                        </Link>
                     </div>
                 </div>
             </div>
