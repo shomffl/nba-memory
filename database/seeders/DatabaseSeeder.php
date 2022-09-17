@@ -26,8 +26,8 @@ class DatabaseSeeder extends Seeder
             TeamsTableSeeder::class,
             SeriesTableSeeder::class,
             RostersTableSeeder::class,
-            GamesTableSeeder::class,
             Games2021TableSeeder::class,
+            Games2022TableSeeder::class,
             AdminsTableSeeder::class,
             PostsTableSeeder::class
         ]);
