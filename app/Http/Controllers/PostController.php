@@ -67,7 +67,7 @@ class PostController extends Controller
     public function show(Post $post)
     {
         if(!auth()->user()->can("view", $post)){
-            return Inertia::render("Error/Forbidden");
+            return Inertia::render("Error/403");
         }
         return Inertia::render("Post/Show", ["post" => $post->load("game.homeTeam", "game.awayTeam"), "previousURL" => \url()->previous()]);
     }
@@ -81,7 +81,7 @@ class PostController extends Controller
     public function edit(Post $post)
     {
         if(!auth()->user()->can("update", $post)){
-            return Inertia::render("Error/Forbidden");
+            return Inertia::render("Error/403");
         }
         return Inertia::render("Post/Edit", ["post" => Post::with("game.homeTeam", "game.awayTeam")->find($post->id)]);
     }
