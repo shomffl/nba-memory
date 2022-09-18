@@ -109,6 +109,7 @@ class PostController extends Controller
      */
     public function destroy(Post $post)
     {
+        $this->authorize("delete", $post);
         $post->delete();
         return redirect("/games");
     }
