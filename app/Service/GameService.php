@@ -2,9 +2,14 @@
 
 namespace App\Service;
 
+use App\Models\Game;
+use App\Models\Post;
+
 class GameService {
 
-    public static function getGameSchedules($games){
+    public static function getGameCalendarSchedules(){
+        $games = Game::with("homeTeam","awayTeam","series")->get();
+
         $schedules_list = [];
         foreach($games as $game)
         {
@@ -19,7 +24,10 @@ class GameService {
         return $schedules_list;
     }
 
-    public static function getAllSchedules($games, $posts){
+    public static function getAllCalendarSchedules(){
+        $games = Game::with("homeTeam","awayTeam","series")->get();
+        $posts = Post::with("game.homeTeam","game.awayTeam")->where("user_id", auth()->id())->get();
+
         $schedules_list = [];
         foreach($games as $game)
         {
