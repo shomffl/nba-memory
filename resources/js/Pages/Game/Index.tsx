@@ -6,6 +6,9 @@ import { EventClickArg } from "@fullcalendar/react";
 import Calendar from "./Components/Calendar";
 import ImpressionBox from "./Components/ImpressionsBox";
 import GamesBox from "./Components/GamesBox";
+import SettingsIcon from "@mui/icons-material/Settings";
+import { IconButton } from "@mui/material";
+import Modal from "@mui/material/Modal";
 
 const Index = (props: any) => {
     const { schedules, gamesByDate, postsByDate } = props;
@@ -17,6 +20,10 @@ const Index = (props: any) => {
         [],
         "IndexTodayPosts"
     );
+    const [openSettingModal, setOpenSettingModal] = useState(false);
+
+    const handleOpen = () => setOpenSettingModal(true);
+    const handleClose = () => setOpenSettingModal(false);
 
     /**
      * カレンダーの日付クリック時に実行される関数
@@ -81,8 +88,15 @@ const Index = (props: any) => {
                     />
                 </div>
                 <div className="flex flex-col w-4/12">
-                    <div className="flex justify-center items-center font-bold h-12 ml-5 mb-5 bg-gray-100 rounded shadow-lg">
-                        <h1>{todayGames[0]?.matched_at || "no match"}</h1>
+                    <div className="flex">
+                        <div className="flex justify-center items-center w-11/12 font-bold h-12 ml-5 mb-5 bg-gray-100 rounded shadow-lg">
+                            <h1>{todayGames[0]?.matched_at || "no match"}</h1>
+                        </div>
+                        <div className="flex justify-center items-center w-1/12 h-12 ml-3 mb-5 bg-gray-100 rounded shadow-lg">
+                            <IconButton onClick={(e) => handleOpen()}>
+                                <SettingsIcon />
+                            </IconButton>
+                        </div>
                     </div>
 
                     <div className="overflow-auto h-[40vh] ml-5 mb-10 bg-gray-100 rounded shadow-lg">
