@@ -23,7 +23,7 @@ class GameController extends Controller
         $games_by_date = Game::with("homeTeam","awayTeam")->orderBy("matched_at")->get()->groupBy("matched_at");
         $posts_by_date = Post::with("game.homeTeam","game.awayTeam")->where("user_id", auth()->id())->get()->groupBy("game.matched_at");
 
-        return Inertia::render("Game/Index",["schedules" => GameService::getAllCalendarSchedules(), "gamesByDate" => $games_by_date, "postsByDate" => $posts_by_date]);
+        return Inertia::render("Game/Index",["schedules" => GameService::getAllCalendarSchedules(), "gamesByDate" => $games_by_date, "postsByDate" => $posts_by_date, "teams" => Team::all()]);
     }
 
     public function indexAdmin()

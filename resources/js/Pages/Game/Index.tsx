@@ -11,7 +11,7 @@ import { IconButton } from "@mui/material";
 import Modal from "@mui/material/Modal";
 
 const Index = (props: any) => {
-    const { schedules, gamesByDate, postsByDate } = props;
+    const { schedules, gamesByDate, postsByDate, teams } = props;
     const [todayGames, setTodayGames] = useRemember<Array<Game>>(
         [],
         "IndexTodayGames"
@@ -98,6 +98,12 @@ const Index = (props: any) => {
                             </IconButton>
                         </div>
                     </div>
+
+                    <Modal open={openSettingModal} onClose={handleClose}>
+                        <div className="bg-white rounded-lg m-48 p-40">
+                            test
+                        </div>
+                    </Modal>
 
                     <div className="overflow-auto h-[40vh] ml-5 mb-10 bg-gray-100 rounded shadow-lg">
                         <div className="m-3">
