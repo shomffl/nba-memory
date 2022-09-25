@@ -8,7 +8,7 @@ import ImpressionBox from "./Components/ImpressionsBox";
 import GamesBox from "./Components/GamesBox";
 import SettingsIcon from "@mui/icons-material/Settings";
 import { IconButton } from "@mui/material";
-import Modal from "@mui/material/Modal";
+import SettingModal from "./Components/SettingModal";
 
 const Index = (props: any) => {
     const { schedules, gamesByDate, postsByDate, teams } = props;
@@ -21,6 +21,8 @@ const Index = (props: any) => {
         "IndexTodayPosts"
     );
     const [openSettingModal, setOpenSettingModal] = useState(false);
+
+    const [viewTeamId, setViewTeamId] = useState<Array<any>>([]);
 
     const handleOpen = () => setOpenSettingModal(true);
     const handleClose = () => setOpenSettingModal(false);
@@ -99,11 +101,13 @@ const Index = (props: any) => {
                         </div>
                     </div>
 
-                    <Modal open={openSettingModal} onClose={handleClose}>
-                        <div className="bg-white rounded-lg m-48 p-40">
-                            test
-                        </div>
-                    </Modal>
+                    <SettingModal
+                        openSettingModal={openSettingModal}
+                        handleClose={handleClose}
+                        viewTeamId={viewTeamId}
+                        setViewTeamId={setViewTeamId}
+                        teams={teams}
+                    />
 
                     <div className="overflow-auto h-[40vh] ml-5 mb-10 bg-gray-100 rounded shadow-lg">
                         <div className="m-3">
