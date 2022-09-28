@@ -21,8 +21,11 @@ const SettingModal = memo((props: any) => {
         setViewTeamId(data);
     };
 
-    console.log(viewTeamId);
-    console.log(teams);
+    const resetTeamIdList = () => {
+        setViewTeamId([]);
+        handleClose();
+    };
+
     return (
         <Modal open={openSettingModal} onClose={handleClose}>
             <div className="bg-white rounded-lg m-48 p-10">
@@ -67,9 +70,15 @@ const SettingModal = memo((props: any) => {
                             </div>
                         ))}
                     </div>
-                    <div>
-                        <button className="bg-blue-1000  text-lg text-white hover:text-white shadow hover:shadow-2xl hover:scale-105 active:scale-100 px-7 py-2 rounded duration-200">
+                    <div className="flex flex-col">
+                        <button className="bg-blue-1000 text-lg text-white hover:text-white shadow hover:shadow-2xl hover:scale-105 active:scale-100 px-5 py-2 mb-3 rounded duration-200">
                             save
+                        </button>
+                        <button
+                            onClick={resetTeamIdList}
+                            className="bg-red-800 text-lg text-white hover:text-white shadow hover:shadow-2xl hover:scale-105 active:scale-100 px-5 py-2 rounded duration-200"
+                        >
+                            cancel
                         </button>
                     </div>
                 </div>
