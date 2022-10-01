@@ -30,11 +30,6 @@ Route::group(["middleware" => ["auth"]], function() {
 require __DIR__.'/auth.php';
 
 
-Route::get('dashboard', function () {
-    return Inertia::render('Dashboard');
-})->name('dashboard');
-
-
 Route::group(["middleware" => ["auth:admin", 'verified']], function(){
     Route::get("admin/games",[GameController::class, "indexAdmin"])->name("admin.games.index");
     Route::get("admin/games/create", [GameController::class, "create"])->name("admin.games.create");
