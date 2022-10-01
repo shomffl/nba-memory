@@ -1,4 +1,5 @@
 import React, { memo } from "react";
+import { Inertia } from "@inertiajs/inertia";
 import Modal from "@mui/material/Modal";
 import { IconButton } from "@mui/material";
 import ClearIcon from "@mui/icons-material/Clear";

@@ -91,23 +91,23 @@ const Index = (props: any) => {
                 </div>
                 <div className="flex flex-col w-4/12">
                     <div className="flex">
-                        <div className="flex justify-center items-center w-11/12 font-bold h-12 ml-5 mb-5 bg-gray-100 rounded shadow-lg">
+                        <div className="flex justify-center items-center w-full font-bold h-12 ml-5 mb-5 bg-gray-100 rounded shadow-lg">
                             <h1>{todayGames[0]?.matched_at || "no match"}</h1>
                         </div>
-                        <div className="flex justify-center items-center w-1/12 h-12 ml-3 mb-5 bg-gray-100 rounded shadow-lg">
+                        {/* <div className="flex justify-center items-center w-1/12 h-12 ml-3 mb-5 bg-gray-100 rounded shadow-lg">
                             <IconButton onClick={(e) => handleOpen()}>
                                 <SettingsIcon />
                             </IconButton>
-                        </div>
+                        </div> */}
                     </div>
 
-                    <SettingModal
+                    {/* <SettingModal
                         openSettingModal={openSettingModal}
                         handleClose={handleClose}
                         viewTeamId={viewTeamId}
                         setViewTeamId={setViewTeamId}
                         teams={teams}
-                    />
+                    /> */}
 
                     <div className="overflow-auto h-[40vh] ml-5 mb-10 bg-gray-100 rounded shadow-lg">
                         <div className="m-3">
