@@ -43,7 +43,3 @@ Route::group(["middleware" => ["auth:admin", 'verified']], function(){
 
 
 require __DIR__.'/admin.php';
-
-Route::get("/{any}", function () {
-    return Inertia::render("Error/404");
-});
