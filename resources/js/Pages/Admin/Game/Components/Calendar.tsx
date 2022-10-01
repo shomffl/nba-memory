@@ -2,7 +2,6 @@ import "@fullcalendar/react/dist/vdom";
 import FullCalendar from "@fullcalendar/react";
 import dayGridPlugin from "@fullcalendar/daygrid";
 import interactionPlugin from "@fullcalendar/interaction";
-import allLocales from "@fullcalendar/core/locales-all";
 import { CalendarStyleWrapper } from "../../../../Components/CalendarStyleWrapper";
 
 const Calendar = (props: {
@@ -17,7 +16,6 @@ const Calendar = (props: {
                     plugins={[dayGridPlugin, interactionPlugin]}
                     initialView="dayGridMonth"
                     locale="us"
-                    locales={allLocales}
                     titleFormat={{
                         year: "2-digit",
                         month: "2-digit",
