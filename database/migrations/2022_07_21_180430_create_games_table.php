@@ -19,8 +19,6 @@ return new class extends Migration
             $table->foreignId("away_team_id")->constrained("teams");
             $table->integer("home_team_point")->nullable();
             $table->integer("away_team_point")->nullable();
-            $table->foreignId("home_roster_id")->constrained("rosters")->nullable();
-            $table->foreignId("away_roster_id")->constrained("rosters")->nullable();
             $table->date("matched_at");
             $table->foreignId("series_id")->constrained("series")->nullable();
             $table->foreignId("season_id")->constrained("seasons");

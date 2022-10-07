@@ -25,8 +25,6 @@ class Games2022TableSeeder extends Seeder
                 "away_team_id" => $value->away_team_id,
                 "home_team_point" => $value->home_team_point,
                 "away_team_point" => $value->away_team_point,
-                "home_roster_id" => 1,
-                "away_roster_id" => 2,
                 "matched_at" => $value->matched_at,
                 "series_id" => 1,
                 "season_id" => 1,
