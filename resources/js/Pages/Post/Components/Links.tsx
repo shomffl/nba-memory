@@ -35,7 +35,6 @@ const Links = (props: {
      */
     const removeLink = (id: number) => {
         const linkData = data.links.filter((e: any) => !(e.id == id));
-        console.log("testlinkData", linkData);
         setData("links", linkData);
     };
 

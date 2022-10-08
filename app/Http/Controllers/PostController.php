@@ -93,7 +93,7 @@ class PostController extends Controller
         if(!auth()->user()->can("update", $post)){
             return Inertia::render("Error/403");
         }
-        return Inertia::render("Post/Edit", ["post" => Post::with("game.homeTeam", "game.awayTeam")->find($post->id)]);
+        return Inertia::render("Post/Edit", ["post" =>$post->load("game.homeTeam", "game.awayTeam", "links")]);
     }
 
     /**

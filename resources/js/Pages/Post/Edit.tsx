@@ -3,18 +3,30 @@ import { Head, useForm, Link } from "@inertiajs/inertia-react";
 import Authenticated from "@/Layouts/Authenticated";
 import { Inertia } from "@inertiajs/inertia";
 
-const Edit = (props: any) => {
+const Edit = (props: { auth: any; post: Post; errors: any }) => {
     const { post } = props;
     const { data, setData, put } = useForm<SendPost>("EditCreate", {
         game_id: post.game_id,
         title: post.title,
         detail: post.detail,
+        links: post.links,
     });
 
     const handleEditPost = (e: any) => {
         e.preventDefault();
         put(route("posts.update", post.id), { preserveScroll: true });
     };
+
+    const changeLinkTitle = (id: any, title: any) => {
+        const test = data.links.filter((e: any) => !(e.id == id));
+        const testtest = [
+            ...test,
+            { id: id, title: title, url: data.links[id - 1].url },
+        ];
+        setData("links", testtest);
+    };
+
+    console.log(data.links);
 
     return (
         <Authenticated auth={props.auth} header={null}>
@@ -78,6 +90,46 @@ const Edit = (props: any) => {
                                 {props.errors.detail}
                             </label>
                         </div>
+
+                        {/* <div className="pb-16">
+                            <h2>Link</h2>
+                            <div className="flex flex-col gap-3">
+                                {post.links.map((link) => (
+                                    <div key={link.id} className="flex">
+                                        <div className="w-4/12">
+                                            <input
+                                                type="text"
+                                                value={
+                                                    data.links[link.id - 1]
+                                                        .title
+                                                }
+                                                className="w-full rounded border-gray-1000 focus:border-gray-1000 focus:ring-1 focus:ring-gray-1000 text-lg placeholder-black placeholder-opacity-30"
+                                                onChange={(e) =>
+                                                    changeLinkTitle(
+                                                        link.id,
+                                                        e.target.value
+                                                    )
+                                                }
+                                            />
+                                        </div>
+                                        <div className="w-8/12">
+                                            <input
+                                                type="text"
+                                                value={link.url}
+                                                className="w-full rounded border-gray-1000 focus:border-gray-1000 focus:ring-1 focus:ring-gray-1000 text-lg placeholder-black placeholder-opacity-30"
+                                                onChange={(e) =>
+                                                    changeLinkTitle(
+                                                        link.id,
+                                                        e.target.value
+                                                    )
+                                                }
+                                            />
+                                        </div>
+                                    </div>
+                                ))}
+                            </div>
+                        </div> */}
+
                         <div className="flex justify-between">
                             <Link
                                 href={route("posts.show", post.id)}
