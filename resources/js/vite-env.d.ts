@@ -33,11 +33,13 @@ type Post = {
     detail: string;
     game_id: number;
     game: Game;
+    links: Array<Link>;
 };
 
 type Link = {
     id: number;
-    name: string;
+    title: string;
+    url: string;
 };
 
 type SendPost = {

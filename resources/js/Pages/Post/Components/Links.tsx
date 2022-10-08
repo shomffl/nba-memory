@@ -24,7 +24,8 @@ const Links = (props: {
         setData("links", links);
         setLink({
             id: 0,
-            name: "",
+            title: "",
+            url: "",
         });
     };
 
@@ -40,11 +41,19 @@ const Links = (props: {
 
     return (
         <div>
-            <h2>Link</h2>
+            <h2 className="mb-2">Link</h2>
+            <div className="flex">
+                <p className="w-4/12">title</p>
+                <p className="w-8/12">url</p>
+            </div>
+
             {data.links.map((link: any) => (
-                <div key={link.id} className="flex gap-2 py-4">
-                    <div className="w-full bg-white rounded py-2 px-3 shadow">
-                        {link.name}
+                <div key={link.id} className="flex gap-2 pt-2 pb-4">
+                    <div className="w-4/12 bg-white rounded py-2 px-3 shadow">
+                        {link.title}
+                    </div>
+                    <div className="w-8/12 bg-white rounded py-2 px-3 shadow">
+                        {link.url}
                     </div>
                     <IconButton onClick={(e) => removeLink(link.id)}>
                         <DeleteIcon />
@@ -52,23 +61,42 @@ const Links = (props: {
                 </div>
             ))}
             <div className="flex gap-2">
-                <input
-                    className="w-full rounded border-gray-1000 focus:border-gray-1000 focus:ring-1 focus:ring-gray-1000 text-lg placeholder-black placeholder-opacity-30"
-                    type="text"
-                    value={link.name}
-                    placeholder="https://youtube.com"
-                    onChange={(e) =>
-                        setLink({
-                            id: data.links.length + 1,
-                            name: e.target.value,
-                        })
-                    }
-                />
+                <div className="w-4/12">
+                    <input
+                        type="text"
+                        value={link.title}
+                        className="w-full rounded border-gray-1000 focus:border-gray-1000 focus:ring-1 focus:ring-gray-1000 text-lg placeholder-black placeholder-opacity-30"
+                        placeholder="mavs highlight"
+                        onChange={(e) =>
+                            setLink({
+                                id: data.links.length + 1,
+                                title: e.target.value,
+                                url: link.url,
+                            })
+                        }
+                    />
+                </div>
+                <div className="w-8/12">
+                    <input
+                        className="w-full rounded border-gray-1000 focus:border-gray-1000 focus:ring-1 focus:ring-gray-1000 text-lg placeholder-black placeholder-opacity-30"
+                        type="text"
+                        value={link.url}
+                        placeholder="https://youtube.com"
+                        onChange={(e) =>
+                            setLink({
+                                id: data.links.length + 1,
+                                title: link.title,
+                                url: e.target.value,
+                            })
+                        }
+                    />
+                </div>
+
                 <IconButton
                     onClick={(e) => {
                         addLink();
                     }}
-                    disabled={link.name == ""}
+                    disabled={(link.title && link.url) == ""}
                 >
                     <CheckCircleOutlineIcon />
                 </IconButton>

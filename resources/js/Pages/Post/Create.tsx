@@ -9,7 +9,8 @@ const Create = (props: any) => {
     const { games, gamesDate }: any = props;
     const [link, setLink] = useState<Link>({
         id: 0,
-        name: "",
+        title: "",
+        url: "",
     });
 
     const { data, setData, post } = useForm<SendPost>("PostCreate", {

@@ -11,6 +11,7 @@ class Link extends Model
 
     protected $fillable = [
         "post_id",
-        "name"
+        "title",
+        "url"
     ];
 }

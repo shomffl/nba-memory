@@ -59,7 +59,8 @@ class PostController extends Controller
         foreach($request["links"] as $link)
         {
             Link::Create([
-                "name" => $link["name"],
+                "title" => $link["title"],
+                "url" => $link["url"],
                 "post_id" => $post->id
             ]);
         }
