@@ -3,8 +3,7 @@ import Authenticated from "../../Layouts/Authenticated";
 import { Inertia } from "@inertiajs/inertia";
 import { Head, useForm, Link } from "@inertiajs/inertia-react";
 import GameSelect from "./Components/GameSelect";
-import { IconButton } from "@mui/material";
-import CheckCircleOutlineIcon from "@mui/icons-material/CheckCircleOutline";
+import Links from "./Components/Links";
 
 const Create = (props: any) => {
     const { games, gamesDate }: any = props;
@@ -20,21 +19,9 @@ const Create = (props: any) => {
         links: [],
     });
 
-    console.log(data);
-
     const handleSubmit = (e: any) => {
         e.preventDefault();
         post(route("posts.store"));
-    };
-
-    const addLink = () => {
-        const links = [...data.links, link];
-        console.log(links);
-        setData("links", links);
-        setLink({
-            id: 0,
-            name: "",
-        });
     };
 
     return (
@@ -85,31 +72,12 @@ const Create = (props: any) => {
                     </div>
 
                     <div className="pb-10">
-                        <h2>Link</h2>
-                        {data.links.map((link: any) => (
-                            <div key={link.id}>{link.name}</div>
-                        ))}
-                        <div className="flex gap-2">
-                            <input
-                                className="w-full rounded border-gray-1000 focus:border-gray-1000 focus:ring-1 focus:ring-gray-1000 text-lg placeholder-black placeholder-opacity-30"
-                                type="text"
-                                value={link.name}
-                                placeholder="https://youtube.com"
-                                onChange={(e) =>
-                                    setLink({
-                                        id: data.links.length + 1,
-                                        name: e.target.value,
-                                    })
-                                }
-                            />
-                            <IconButton
-                                onClick={(e) => {
-                                    addLink();
-                                }}
-                            >
-                                <CheckCircleOutlineIcon />
-                            </IconButton>
-                        </div>
+                        <Links
+                            data={data}
+                            setData={setData}
+                            link={link}
+                            setLink={setLink}
+                        />
                     </div>
 
                     <div className="flex justify-between">
