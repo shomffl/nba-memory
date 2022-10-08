@@ -35,6 +35,11 @@ type Post = {
     game: Game;
 };
 
+type Link = {
+    id: number;
+    name: string;
+};
+
 type SendPost = {
     game_id: string | any;
     title: string;
@@ -61,9 +66,4 @@ type PostSortByMatched = {
     away_team_point: number;
     posts: Array<Post>;
     matched_at: string;
-};
-
-type Link = {
-    id: number;
-    name: string;
 };
