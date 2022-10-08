@@ -52,6 +52,21 @@ const Show = (props: { auth: any; post: Post; previousURL: string }) => {
                         </p>
                     </div>
 
+                    <div className="pb-16">
+                        <h2>Link</h2>
+                        <div className="flex flex-col gap-3">
+                            {post.links.map((link) => (
+                                <a
+                                    href={link.url}
+                                    key={link.id}
+                                    className="bg-white text-blue-700 font-bold underline rounded px-5 py-2 shadow"
+                                >
+                                    {link.title}
+                                </a>
+                            ))}
+                        </div>
+                    </div>
+
                     <div className="flex justify-between">
                         {previousURL.startsWith(postsIndexURL) ? (
                             <Link
