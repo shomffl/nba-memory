@@ -78,7 +78,7 @@ class PostController extends Controller
         if(!auth()->user()->can("view", $post)){
             return Inertia::render("Error/403");
         }
-        return Inertia::render("Post/Show", ["post" => $post->load("game.homeTeam", "game.awayTeam"), "previousURL" => \url()->previous()]);
+        return Inertia::render("Post/Show", ["post" => $post->load("game.homeTeam", "game.awayTeam", "links"), "previousURL" => \url()->previous()]);
     }
 
     /**

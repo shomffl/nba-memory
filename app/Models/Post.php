@@ -19,4 +19,9 @@ class Post extends Model
     {
         return $this->belongsTo(Game::class);
     }
+
+    public function links()
+    {
+        return $this->hasMany(Link::class);
+    }
 }
