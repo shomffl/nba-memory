@@ -7,7 +7,6 @@ import {
 } from "@inertiajs/inertia-react";
 import { IconButton } from "@mui/material";
 import CheckCircleOutlineIcon from "@mui/icons-material/CheckCircleOutline";
-import EditIcon from "@mui/icons-material/Edit";
 import DeleteIcon from "@mui/icons-material/Delete";
 
 const Links = (props: {
@@ -43,13 +42,10 @@ const Links = (props: {
         <div>
             <h2>Link</h2>
             {data.links.map((link: any) => (
-                <div key={link.id} className="flex py-4">
+                <div key={link.id} className="flex gap-2 py-4">
                     <div className="w-full bg-white rounded py-2 px-3 shadow">
                         {link.name}
                     </div>
-                    <IconButton>
-                        <EditIcon />
-                    </IconButton>
                     <IconButton onClick={(e) => removeLink(link.id)}>
                         <DeleteIcon />
                     </IconButton>
