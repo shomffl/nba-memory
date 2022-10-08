@@ -27,7 +27,7 @@ class Games2022TableSeeder extends Seeder
                 "away_team_point" => $value->away_team_point,
                 "matched_at" => $value->matched_at,
                 "series_id" => 1,
-                "season_id" => 1,
+                "season_id" => 2,
             ]);
         }
     }
