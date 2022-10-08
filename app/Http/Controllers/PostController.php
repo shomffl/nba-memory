@@ -10,6 +10,7 @@ use App\Models\Game;
 use App\Models\Team;
 use App\Models\Season;
 use App\Models\Series;
+use App\Models\Link;
 use App\Http\Requests\PostRequest;
 use App\Service\PostService;
 
@@ -54,6 +55,14 @@ class PostController extends Controller
         $post->fill($request->all());
         $post->user_id = auth()->id();
         $post->save();
+
+        foreach($request["links"] as $link)
+        {
+            Link::Create([
+                "name" => $link["name"],
+                "post_id" => $post->id
+            ]);
+        }
 
         return Redirect::route('games.index');
     }
