@@ -7,6 +7,8 @@ import {
 } from "@inertiajs/inertia-react";
 import { IconButton } from "@mui/material";
 import CheckCircleOutlineIcon from "@mui/icons-material/CheckCircleOutline";
+import EditIcon from "@mui/icons-material/Edit";
+import DeleteIcon from "@mui/icons-material/Delete";
 
 const Links = (props: {
     data: SendPost;
@@ -27,11 +29,31 @@ const Links = (props: {
         });
     };
 
+    /**
+     * リンクの削除ボタンが押下されたときに該当のリンクを削除し、削除データを除いたリンク群をdataに再挿入
+     * @param id linkのid
+     */
+    const removeLink = (id: number) => {
+        const linkData = data.links.filter((e: any) => !(e.id == id));
+        console.log("testlinkData", linkData);
+        setData("links", linkData);
+    };
+
     return (
         <div>
             <h2>Link</h2>
             {data.links.map((link: any) => (
-                <div key={link.id}>{link.name}</div>
+                <div key={link.id} className="flex py-4">
+                    <div className="w-full bg-white rounded py-2 px-3 shadow">
+                        {link.name}
+                    </div>
+                    <IconButton>
+                        <EditIcon />
+                    </IconButton>
+                    <IconButton onClick={(e) => removeLink(link.id)}>
+                        <DeleteIcon />
+                    </IconButton>
+                </div>
             ))}
             <div className="flex gap-2">
                 <input
