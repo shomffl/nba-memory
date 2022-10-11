@@ -106,8 +106,21 @@ class PostController extends Controller
     public function update(PostRequest $request, Post $post)
     {
         $this->authorize("update", $post);
+
+        $test = Link::destroy($post->links);
+
         $input = $request->all();
         $post->fill($input)->save();
+
+        foreach($request["links"] as $link)
+        {
+            Link::firstOrCreate([
+                "title" => $link["title"],
+                "url" => $link["url"],
+                "post_id" => $post->id
+            ]);
+        }
+
         return redirect("/posts/" . $post->id);
     }
 
