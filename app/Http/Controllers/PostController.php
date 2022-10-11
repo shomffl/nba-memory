@@ -79,7 +79,7 @@ class PostController extends Controller
         if(!auth()->user()->can("view", $post)){
             return Inertia::render("Error/403");
         }
-        return Inertia::render("Post/Show", ["post" => $post->load("game.homeTeam", "game.awayTeam", "links"), "previousURL" => \url()->previous()]);
+        return Inertia::render("Post/Show", ["post" => $post->getPost() ,"previousURL" => \url()->previous()]);
     }
 
     /**
@@ -93,7 +93,7 @@ class PostController extends Controller
         if(!auth()->user()->can("update", $post)){
             return Inertia::render("Error/403");
         }
-        return Inertia::render("Post/Edit", ["post" =>$post->load("game.homeTeam", "game.awayTeam", "links")]);
+        return Inertia::render("Post/Edit", ["post" =>$post->getPost()]);
     }
 
     /**

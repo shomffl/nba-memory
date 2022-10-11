@@ -24,4 +24,9 @@ class Post extends Model
     {
         return $this->hasMany(Link::class);
     }
+
+    public function getPost()
+    {
+        return $this->load("game.homeTeam", "game.awayTeam", "links");
+    }
 }
