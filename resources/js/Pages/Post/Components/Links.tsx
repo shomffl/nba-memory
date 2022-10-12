@@ -38,6 +38,9 @@ const Links = (props: {
         setData("links", linkData);
     };
 
+    const addLinkButtonStyle =
+        (link.title && link.url) != "" ? "animate-ping hover:animate-none" : "";
+
     return (
         <div>
             <h2 className="mb-2">Link</h2>
@@ -92,6 +95,7 @@ const Links = (props: {
                 </div>
 
                 <IconButton
+                    className={addLinkButtonStyle}
                     onClick={(e) => {
                         addLink();
                     }}
