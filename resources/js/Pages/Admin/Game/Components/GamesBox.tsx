@@ -14,9 +14,9 @@ const GamesBox = (props: {
                     key={todayGame.id}
                     className="flex items-center justify-between"
                 >
-                    <h2 className="flex justify-between items-center rounded font-bold shadow w-3/4 my-3 px-2 py-3 bg-white">
+                    <div className="flex justify-between items-center rounded font-bold shadow w-3/4 my-3 px-2 py-3 bg-white">
                         <img
-                            className="w-1/12"
+                            className="max-h-10 w-8"
                             src={todayGame.home_team.logo}
                         />
                         <div>
@@ -31,10 +31,10 @@ const GamesBox = (props: {
                             {todayGame.away_team_point})
                         </div>
                         <img
-                            className="w-1/12"
+                            className="max-h-10 w-8"
                             src={todayGame.away_team.logo}
                         />
-                    </h2>
+                    </div>
                     <div>
                         <button
                             onClick={(e) => {
