@@ -6,9 +6,6 @@ import { EventClickArg } from "@fullcalendar/react";
 import Calendar from "./Components/Calendar";
 import ImpressionBox from "./Components/ImpressionsBox";
 import GamesBox from "./Components/GamesBox";
-import SettingsIcon from "@mui/icons-material/Settings";
-import { IconButton } from "@mui/material";
-import SettingModal from "./Components/SettingModal";
 
 const Index = (props: any) => {
     const { schedules, gamesByDate, postsByDate, teams } = props;
