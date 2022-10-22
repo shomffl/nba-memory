@@ -34,6 +34,10 @@ const Calendar = (props: Props) => {
         localStorage.setItem("view_date", viewDefaultDate);
     };
 
+    const changeMode = () => {
+        Inertia.get(route("favorites.index"));
+    };
+
     return (
         <div className="bg-gray-100 shadow-lg">
             <CalendarStyleWrapper>
@@ -47,6 +51,12 @@ const Calendar = (props: Props) => {
                     plugins={[dayGridPlugin, interactionPlugin]}
                     initialView="dayGridMonth"
                     locale="us"
+                    customButtons={{
+                        changeModeButton: {
+                            text: "Favorite",
+                            click: changeMode,
+                        },
+                    }}
                     titleFormat={{
                         year: "2-digit",
                         month: "2-digit",
@@ -55,7 +65,7 @@ const Calendar = (props: Props) => {
                     headerToolbar={{
                         start: "",
                         center: "title",
-                        end: "today prev,next",
+                        end: "changeModeButton today prev,next",
                     }}
                     initialDate={defaultDate}
                     contentHeight="75vh"
