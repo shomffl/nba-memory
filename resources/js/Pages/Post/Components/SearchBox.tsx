@@ -15,7 +15,7 @@ const SearchBox = (props: {
 }) => {
     const { data, setData, seasons } = props;
     return (
-        <div className="flex gap-6">
+        <div className="flex gap-6 mb-10">
             <div>
                 <label className="pr-3">SEASON</label>
                 <select onChange={(e) => setData("season", e.target.value)}>

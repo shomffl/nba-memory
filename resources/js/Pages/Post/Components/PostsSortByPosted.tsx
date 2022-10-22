@@ -8,7 +8,7 @@ const PostsSortByPosted = (props: { postsSortByPosted: Array<Post> }) => {
             {postsSortByPosted.map((post) => (
                 <button
                     onClick={(e) => Inertia.get(`posts/${post.id}`)}
-                    className="bg-gray-100 w-full my-10 pb-5 px-10 rounded-md shadow-lg hover:scale-[1.01] duration-200 active:scale-100"
+                    className="bg-gray-100 w-full my-5 pb-5 px-10 rounded-md shadow-lg hover:scale-[1.01] duration-200 active:scale-100"
                     key={post.id}
                 >
                     <div className="flex items-center">
