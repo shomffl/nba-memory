@@ -13,17 +13,13 @@ use Illuminate\Support\Facades\Redirect;
 
 class GameController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
     public function index()
     {
         $games_by_date = Game::with("homeTeam","awayTeam")->orderBy("matched_at")->get()->groupBy("matched_at");
         $posts_by_date = Post::with("game.homeTeam","game.awayTeam")->where("user_id", auth()->id())->get()->groupBy("game.matched_at");
 
-        return Inertia::render("Game/Index",["schedules" => GameService::getAllCalendarSchedules(), "gamesByDate" => $games_by_date, "postsByDate" => $posts_by_date, "teams" => Team::all()]);
+        return Inertia::render("Game/Index",["schedules" => GameService::getAllCalendarSchedules(),
+                                             "gamesByDate" => $games_by_date, "postsByDate" => $posts_by_date, "teams" => Team::all()]);
     }
 
     public function indexAdmin()
@@ -33,23 +29,12 @@ class GameController extends Controller
         return Inertia::render("Admin/Game/Index",["schedules" => GameService::getGameCalendarSchedules(), "gamesByDate" => $games_by_date]);
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
     public function create(Series $series)
     {
         $teams = Team::with("rosters")->get();
         return Inertia::render("Admin/Game/Subscribe", ["teams" => $teams, "series" => $series->get()]);
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
     public function store(Request $request, Game $game)
     {
         $request->validate([
@@ -70,35 +55,6 @@ class GameController extends Controller
         return Redirect::route("admin.games.index");
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  \App\Models\Game  $game
-     * @return \Illuminate\Http\Response
-     */
-    public function show(Game $game)
-    {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\Models\Game  $game
-     * @return \Illuminate\Http\Response
-     */
-    public function edit(Game $game)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\Game  $game
-     * @return \Illuminate\Http\Response
-     */
     public function update(Request $request, Game $game)
     {
         $input = $request->all();
@@ -106,16 +62,5 @@ class GameController extends Controller
         $away_team_point = $input["away_team_point"];
         $game->fill(["home_team_point" => $home_team_point, "away_team_point" => $away_team_point])->save();
         return Redirect::route("admin.games.index");
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  \App\Models\Game  $game
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy(Game $game)
-    {
-        //
     }
 }

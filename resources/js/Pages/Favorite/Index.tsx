@@ -3,12 +3,12 @@ import { Inertia } from "@inertiajs/inertia";
 import Authenticated from "@/Layouts/Authenticated";
 import { Head, useRemember, InertiaLink } from "@inertiajs/inertia-react";
 import { EventClickArg } from "@fullcalendar/react";
-import Calendar from "./Components/Calendar";
-import ImpressionBox from "./Components/ImpressionsBox";
-import GamesBox from "./Components/GamesBox";
+import Calendar from "../Game/Components/Calendar";
+import ImpressionBox from "../Game/Components/ImpressionsBox";
+import GamesBox from "../Game/Components/GamesBox";
 import SettingsIcon from "@mui/icons-material/Settings";
 import { IconButton } from "@mui/material";
-import SettingModal from "./Components/SettingModal";
+import SettingModal from "../Game/Components/SettingModal";
 
 const FavoriteTeam = (props: any) => {
     const { schedules, gamesByDate, postsByDate, teams } = props;
@@ -89,7 +89,6 @@ const FavoriteTeam = (props: any) => {
                         handleDateClick={handleDateClick}
                     />
                 </div>
-
                 <div className="flex flex-col w-4/12">
                     <div className="flex">
                         <div className="flex justify-center items-center w-full font-bold h-12 ml-5 mb-5 bg-gray-100 rounded shadow-lg">

@@ -5,6 +5,7 @@ use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
 use App\Http\Controllers\GameController;
 use App\Http\Controllers\PostController;
+use App\Http\Controllers\FavoriteController;
 
 /*
 |--------------------------------------------------------------------------
@@ -25,7 +26,7 @@ Route::group(["middleware" => ["auth"]], function() {
     });
     Route::resource('games', GameController::class);
     Route::resource('posts', PostController::class);
-
+    Route::resource("favorites", FavoriteController::class);
 });
 require __DIR__.'/auth.php';
 
