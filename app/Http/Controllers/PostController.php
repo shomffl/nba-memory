@@ -25,9 +25,8 @@ class PostController extends Controller
     public function index(Request $reqeust, Season $seasons)
     {
         $season = $reqeust->all();
-        $latest_season = Season::orderBy("id", "desc")->first()->id;
 
-        $sortedPostsData = PostService::searchAndSortPosts($season, $latest_season);
+        $sortedPostsData = PostService::searchAndSortPosts($season);
 
         return Inertia::render("Post/Index",["postsSortByPosted" => $sortedPostsData[0], "postsSortByMatched" => $sortedPostsData[1], "seasons" => $seasons->orderBy("season", "DESC")->get(), "viewOption" => $sortedPostsData[2]]);
     }
