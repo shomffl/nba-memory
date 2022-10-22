@@ -17,6 +17,7 @@ return new class extends Migration
             $table->primary(["user_id", "team_id"]);
             $table->foreignId("user_id")->constrained("users");
             $table->foreignId("team_id")->constrained("teams");
+            $table->timestamps();
         });
     }
 
