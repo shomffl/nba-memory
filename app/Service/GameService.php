@@ -39,6 +39,15 @@ class GameService {
             ];
             array_push($schedules_list,$data);
         }
+
+        // カレンダーで当日の色を変えたいため、背景色のみのデータを追加
+        $today = [
+                "color" => "#D6D58E",
+                "display" => "background",
+                "date" => now()->format("Y-m-d"),
+            ];
+        array_push($schedules_list, $today);
+
         foreach($posts as $post)
         {
             $data = [
