@@ -2,568 +2,568 @@
     {
         "home_team_id": 30,
         "away_team_id": 10,
-        "home_team_point": null,
-        "away_team_point": null,
+        "home_team_point": 87,
+        "away_team_point": 96,
         "matched_at": "2022-09-30"
     },
     {
         "home_team_id": 17,
         "away_team_id": 15,
-        "home_team_point": null,
-        "away_team_point": null,
+        "home_team_point": 102,
+        "away_team_point": 107,
         "matched_at": "2022-10-02"
     },
     {
         "home_team_id": 10,
         "away_team_id": 30,
-        "home_team_point": null,
-        "away_team_point": null,
+        "home_team_point": 104,
+        "away_team_point": 95,
         "matched_at": "2022-10-02"
     },
     {
         "home_team_id": 2,
         "away_team_id": 4,
-        "home_team_point": null,
-        "away_team_point": null,
+        "home_team_point": 134,
+        "away_team_point": 93,
         "matched_at": "2022-10-03"
     },
     {
         "home_team_id": 28,
         "away_team_id": 29,
-        "home_team_point": null,
-        "away_team_point": null,
+        "home_team_point": 114,
+        "away_team_point": 82,
         "matched_at": "2022-10-03"
     },
     {
         "home_team_id": 11,
         "away_team_id": 27,
-        "home_team_point": null,
-        "away_team_point": null,
+        "home_team_point": 134,
+        "away_team_point": 96,
         "matched_at": "2022-10-03"
     },
     {
         "home_team_id": 3,
         "away_team_id": 23,
-        "home_team_point": null,
-        "away_team_point": null,
+        "home_team_point": 108,
+        "away_team_point": 127,
         "matched_at": "2022-10-04"
     },
     {
         "home_team_id": 15,
         "away_team_id": 22,
-        "home_team_point": null,
-        "away_team_point": null,
+        "home_team_point": 109,
+        "away_team_point": 97,
         "matched_at": "2022-10-04"
     },
     {
         "home_team_id": 8,
         "away_team_id": 21,
-        "home_team_point": null,
-        "away_team_point": null,
+        "home_team_point": 101,
+        "away_team_point": 112,
         "matched_at": "2022-10-04"
     },
     {
         "home_team_id": 14,
         "away_team_id": 26,
-        "home_team_point": null,
-        "away_team_point": null,
+        "home_team_point": 75,
+        "away_team_point": 105,
         "matched_at": "2022-10-04"
     },
     {
         "home_team_id": 13,
         "away_team_id": 25,
-        "home_team_point": null,
-        "away_team_point": null,
+        "home_team_point": 102,
+        "away_team_point": 97,
         "matched_at": "2022-10-04"
     },
     {
         "home_team_id": 20,
         "away_team_id": 9,
-        "home_team_point": null,
-        "away_team_point": null,
+        "home_team_point": 117,
+        "away_team_point": 96,
         "matched_at": "2022-10-05"
     },
     {
         "home_team_id": 16,
         "away_team_id": 18,
-        "home_team_point": null,
-        "away_team_point": null,
+        "home_team_point": 111,
+        "away_team_point": 121,
         "matched_at": "2022-10-05"
     },
     {
         "home_team_id": 5,
         "away_team_id": 19,
-        "home_team_point": null,
-        "away_team_point": null,
+        "home_team_point": 125,
+        "away_team_point": 129,
         "matched_at": "2022-10-05"
     },
     {
         "home_team_id": 25,
         "away_team_id": 29,
-        "home_team_point": null,
-        "away_team_point": null,
+        "home_team_point": 101,
+        "away_team_point": 118,
         "matched_at": "2022-10-05"
     },
     {
         "home_team_id": 4,
         "away_team_id": 12,
-        "home_team_point": null,
-        "away_team_point": null,
+        "home_team_point": 97,
+        "away_team_point": 122,
         "matched_at": "2022-10-06"
     },
     {
         "home_team_id": 23,
         "away_team_id": 6,
-        "home_team_point": null,
-        "away_team_point": null,
+        "home_team_point": 113,
+        "away_team_point": 112,
         "matched_at": "2022-10-06"
     },
     {
         "home_team_id": 2,
         "away_team_id": 28,
-        "home_team_point": null,
-        "away_team_point": null,
+        "home_team_point": 119,
+        "away_team_point": 125,
         "matched_at": "2022-10-06"
     },
     {
         "home_team_id": 21,
         "away_team_id": 7,
-        "home_team_point": null,
-        "away_team_point": null,
+        "home_team_point": 96,
+        "away_team_point": 98,
         "matched_at": "2022-10-06"
     },
     {
         "home_team_id": 14,
         "away_team_id": 24,
-        "home_team_point": null,
-        "away_team_point": null,
+        "home_team_point": 115,
+        "away_team_point": 119,
         "matched_at": "2022-10-06"
     },
     {
         "home_team_id": 1,
         "away_team_id": 17,
-        "home_team_point": null,
-        "away_team_point": null,
+        "home_team_point": 123,
+        "away_team_point": 113,
         "matched_at": "2022-10-07"
     },
     {
         "home_team_id": 3,
         "away_team_id": 16,
-        "home_team_point": null,
-        "away_team_point": null,
+        "home_team_point": 80,
+        "away_team_point": 109,
         "matched_at": "2022-10-07"
     },
     {
         "home_team_id": 27,
         "away_team_id": 22,
-        "home_team_point": null,
-        "away_team_point": null,
+        "home_team_point": 99,
+        "away_team_point": 102,
         "matched_at": "2022-10-07"
     },
     {
         "home_team_id": 14,
         "away_team_id": 18,
-        "home_team_point": null,
-        "away_team_point": null,
+        "home_team_point": 99,
+        "away_team_point": 114,
         "matched_at": "2022-10-07"
     },
     {
         "home_team_id": 4,
         "away_team_id": 2,
-        "home_team_point": null,
-        "away_team_point": null,
+        "home_team_point": 103,
+        "away_team_point": 112,
         "matched_at": "2022-10-08"
     },
     {
         "home_team_id": 20,
         "away_team_id": 12,
-        "home_team_point": null,
-        "away_team_point": null,
+        "home_team_point": 131,
+        "away_team_point": 114,
         "matched_at": "2022-10-08"
     },
     {
         "home_team_id": 5,
         "away_team_id": 8,
-        "home_team_point": null,
-        "away_team_point": null,
+        "home_team_point": 131,
+        "away_team_point": 113,
         "matched_at": "2022-10-08"
     },
     {
         "home_team_id": 11,
         "away_team_id": 28,
-        "home_team_point": null,
-        "away_team_point": null,
+        "home_team_point": 116,
+        "away_team_point": 100,
         "matched_at": "2022-10-08"
     },
     {
         "home_team_id": 15,
         "away_team_id": 16,
-        "home_team_point": null,
-        "away_team_point": null,
+        "home_team_point": 108,
+        "away_team_point": 111,
         "matched_at": "2022-10-08"
     },
     {
         "home_team_id": 19,
         "away_team_id": 9,
-        "home_team_point": null,
-        "away_team_point": null,
+        "home_team_point": 107,
+        "away_team_point": 101,
         "matched_at": "2022-10-08"
     },
     {
         "home_team_id": 7,
         "away_team_id": 22,
-        "home_team_point": null,
-        "away_team_point": null,
+        "home_team_point": 105,
+        "away_team_point": 110,
         "matched_at": "2022-10-08"
     },
     {
         "home_team_id": 17,
         "away_team_id": 1,
-        "home_team_point": null,
-        "away_team_point": null,
+        "home_team_point": 109,
+        "away_team_point": 118,
         "matched_at": "2022-10-09"
     },
     {
         "home_team_id": 28,
         "away_team_id": 5,
-        "home_team_point": null,
-        "away_team_point": null,
+        "home_team_point": 98,
+        "away_team_point": 115,
         "matched_at": "2022-10-10"
     },
     {
         "home_team_id": 27,
         "away_team_id": 19,
-        "home_team_point": null,
-        "away_team_point": null,
+        "home_team_point": 97,
+        "away_team_point": 111,
         "matched_at": "2022-10-10"
     },
     {
         "home_team_id": 10,
         "away_team_id": 14,
-        "home_team_point": null,
-        "away_team_point": null,
+        "home_team_point": 121,
+        "away_team_point": 124,
         "matched_at": "2022-10-10"
     },
     {
         "home_team_id": 26,
         "away_team_id": 25,
-        "home_team_point": null,
-        "away_team_point": null,
+        "home_team_point": 126,
+        "away_team_point": 94,
         "matched_at": "2022-10-10"
     },
     {
         "home_team_id": 13,
         "away_team_id": 18,
-        "home_team_point": null,
-        "away_team_point": null,
+        "home_team_point": 117,
+        "away_team_point": 119,
         "matched_at": "2022-10-10"
     },
     {
         "home_team_id": 4,
         "away_team_id": 30,
-        "home_team_point": null,
-        "away_team_point": null,
+        "home_team_point": 107,
+        "away_team_point": 116,
         "matched_at": "2022-10-11"
     },
     {
         "home_team_id": 6,
         "away_team_id": 23,
-        "home_team_point": null,
-        "away_team_point": null,
+        "home_team_point": 97,
+        "away_team_point": 113,
         "matched_at": "2022-10-11"
     },
     {
         "home_team_id": 16,
         "away_team_id": 11,
-        "home_team_point": null,
-        "away_team_point": null,
+        "home_team_point": 118,
+        "away_team_point": 110,
         "matched_at": "2022-10-11"
     },
     {
         "home_team_id": 8,
         "away_team_id": 24,
-        "home_team_point": null,
-        "away_team_point": null,
+        "home_team_point": 107,
+        "away_team_point": 105,
         "matched_at": "2022-10-11"
     },
     {
         "home_team_id": 9,
         "away_team_id": 21,
-        "home_team_point": null,
-        "away_team_point": null,
+        "home_team_point": 99,
+        "away_team_point": 115,
         "matched_at": "2022-10-12"
     },
     {
         "home_team_id": 22,
         "away_team_id": 15,
-        "home_team_point": null,
-        "away_team_point": null,
+        "home_team_point": 109,
+        "away_team_point": 105,
         "matched_at": "2022-10-12"
     },
     {
         "home_team_id": 5,
         "away_team_id": 17,
-        "home_team_point": null,
-        "away_team_point": null,
+        "home_team_point": 127,
+        "away_team_point": 104,
         "matched_at": "2022-10-12"
     },
     {
         "home_team_id": 29,
         "away_team_id": 27,
-        "home_team_point": null,
-        "away_team_point": null,
+        "home_team_point": 104,
+        "away_team_point": 111,
         "matched_at": "2022-10-12"
     },
     {
         "home_team_id": 10,
         "away_team_id": 25,
-        "home_team_point": null,
-        "away_team_point": null,
+        "home_team_point": 131,
+        "away_team_point": 98,
         "matched_at": "2022-10-12"
     },
     {
         "home_team_id": 6,
         "away_team_id": 1,
-        "home_team_point": null,
-        "away_team_point": null,
+        "home_team_point": 105,
+        "away_team_point": 99,
         "matched_at": "2022-10-13"
     },
     {
         "home_team_id": 12,
         "away_team_id": 20,
-        "home_team_point": null,
-        "away_team_point": null,
+        "home_team_point": 109,
+        "away_team_point": 100,
         "matched_at": "2022-10-13"
     },
     {
         "home_team_id": 23,
         "away_team_id": 4,
-        "home_team_point": null,
-        "away_team_point": null,
+        "home_team_point": 99,
+        "away_team_point": 94,
         "matched_at": "2022-10-13"
     },
     {
         "home_team_id": 16,
         "away_team_id": 19,
-        "home_team_point": null,
-        "away_team_point": null,
+        "home_team_point": 120,
+        "away_team_point": 103,
         "matched_at": "2022-10-13"
     },
     {
         "home_team_id": 17,
         "away_team_id": 3,
-        "home_team_point": null,
-        "away_team_point": null,
+        "home_team_point": 97,
+        "away_team_point": 107,
         "matched_at": "2022-10-13"
     },
     {
         "home_team_id": 14,
         "away_team_id": 18,
-        "home_team_point": null,
-        "away_team_point": null,
+        "home_team_point": 113,
+        "away_team_point": 118,
         "matched_at": "2022-10-13"
     },
     {
         "home_team_id": 24,
         "away_team_id": 26,
-        "home_team_point": null,
-        "away_team_point": null,
+        "home_team_point": 104,
+        "away_team_point": 105,
         "matched_at": "2022-10-13"
     },
     {
         "home_team_id": 13,
         "away_team_id": 8,
-        "home_team_point": null,
-        "away_team_point": null,
+        "home_team_point": 115,
+        "away_team_point": 126,
         "matched_at": "2022-10-13"
     },
     {
         "home_team_id": 9,
         "away_team_id": 15,
-        "home_team_point": null,
-        "away_team_point": null,
+        "home_team_point": 111,
+        "away_team_point": 126,
         "matched_at": "2022-10-14"
     },
     {
         "home_team_id": 27,
         "away_team_id": 21,
-        "home_team_point": null,
-        "away_team_point": null,
+        "home_team_point": 112,
+        "away_team_point": 118,
         "matched_at": "2022-10-14"
     },
     {
         "home_team_id": 12,
         "away_team_id": 11,
-        "home_team_point": null,
-        "away_team_point": null,
+        "home_team_point": 114,
+        "away_team_point": 122,
         "matched_at": "2022-10-15"
     },
     {
         "home_team_id": 22,
         "away_team_id": 6,
-        "home_team_point": null,
-        "away_team_point": null,
+        "home_team_point": 114,
+        "away_team_point": 108,
         "matched_at": "2022-10-15"
     },
     {
         "home_team_id": 28,
         "away_team_id": 2,
-        "home_team_point": null,
-        "away_team_point": null,
+        "home_team_point": 137,
+        "away_team_point": 134,
         "matched_at": "2022-10-15"
     },
     {
         "home_team_id": 20,
         "away_team_id": 30,
-        "home_team_point": null,
-        "away_team_point": null,
+        "home_team_point": 105,
+        "away_team_point": 89,
         "matched_at": "2022-10-15"
     },
     {
         "home_team_id": 18,
         "away_team_id": 3,
-        "home_team_point": null,
-        "away_team_point": null,
+        "home_team_point": 102,
+        "away_team_point": 112,
         "matched_at": "2022-10-15"
     },
     {
         "home_team_id": 19,
         "away_team_id": 1,
-        "home_team_point": null,
-        "away_team_point": null,
+        "home_team_point": 120,
+        "away_team_point": 111,
         "matched_at": "2022-10-15"
     },
     {
         "home_team_id": 29,
         "away_team_id": 7,
-        "home_team_point": null,
-        "away_team_point": null,
+        "home_team_point": 101,
+        "away_team_point": 115,
         "matched_at": "2022-10-15"
     },
     {
         "home_team_id": 10,
         "away_team_id": 8,
-        "home_team_point": null,
-        "away_team_point": null,
+        "home_team_point": 112,
+        "away_team_point": 119,
         "matched_at": "2022-10-15"
     },
     {
         "home_team_id": 26,
         "away_team_id": 14,
-        "home_team_point": null,
-        "away_team_point": null,
+        "home_team_point": 133,
+        "away_team_point": 86,
         "matched_at": "2022-10-15"
     },
     {
         "home_team_id": 2,
         "away_team_id": 23,
-        "home_team_point": null,
-        "away_team_point": null,
+        "home_team_point": 126,
+        "away_team_point": 117,
         "matched_at": "2022-10-19"
     },
     {
         "home_team_id": 10,
         "away_team_id": 14,
-        "home_team_point": null,
-        "away_team_point": null,
+        "home_team_point": 123,
+        "away_team_point": 109,
         "matched_at": "2022-10-19"
     },
     {
         "home_team_id": 9,
         "away_team_id": 22,
-        "home_team_point": null,
-        "away_team_point": null,
+        "home_team_point": 113,
+        "away_team_point": 109,
         "matched_at": "2022-10-20"
     },
     {
         "home_team_id": 12,
         "away_team_id": 30,
-        "home_team_point": null,
-        "away_team_point": null,
+        "home_team_point": 107,
+        "away_team_point": 114,
         "matched_at": "2022-10-20"
     },
     {
         "home_team_id": 1,
         "away_team_id": 11,
-        "home_team_point": null,
-        "away_team_point": null,
+        "home_team_point": 117,
+        "away_team_point": 107,
         "matched_at": "2022-10-20"
     },
     {
         "home_team_id": 3,
         "away_team_id": 19,
-        "home_team_point": null,
-        "away_team_point": null,
+        "home_team_point": 108,
+        "away_team_point": 130,
         "matched_at": "2022-10-20"
     },
     {
         "home_team_id": 16,
         "away_team_id": 5,
-        "home_team_point": null,
-        "away_team_point": null,
+        "home_team_point": 108,
+        "away_team_point": 116,
         "matched_at": "2022-10-20"
     },
     {
         "home_team_id": 28,
         "away_team_id": 6,
-        "home_team_point": null,
-        "away_team_point": null,
+        "home_team_point": 108,
+        "away_team_point": 105,
         "matched_at": "2022-10-20"
     },
     {
         "home_team_id": 15,
         "away_team_id": 20,
-        "home_team_point": null,
-        "away_team_point": null,
+        "home_team_point": 115,
+        "away_team_point": 112,
         "matched_at": "2022-10-20"
     },
     {
         "home_team_id": 18,
         "away_team_id": 21,
-        "home_team_point": null,
-        "away_team_point": null,
+        "home_team_point": 115,
+        "away_team_point": 108,
         "matched_at": "2022-10-20"
     },
     {
         "home_team_id": 27,
         "away_team_id": 4,
-        "home_team_point": null,
-        "away_team_point": null,
+        "home_team_point": 102,
+        "away_team_point": 129,
         "matched_at": "2022-10-20"
     },
     {
         "home_team_id": 29,
         "away_team_id": 8,
-        "home_team_point": null,
-        "away_team_point": null,
+        "home_team_point": 123,
+        "away_team_point": 102,
         "matched_at": "2022-10-20"
     },
     {
         "home_team_id": 24,
         "away_team_id": 7,
-        "home_team_point": null,
-        "away_team_point": null,
+        "home_team_point": 107,
+        "away_team_point": 105,
         "matched_at": "2022-10-20"
     },
     {
         "home_team_id": 26,
         "away_team_id": 25,
-        "home_team_point": null,
-        "away_team_point": null,
+        "home_team_point": 108,
+        "away_team_point": 115,
         "matched_at": "2022-10-20"
     },
     {
         "home_team_id": 23,
         "away_team_id": 17,
-        "home_team_point": null,
-        "away_team_point": null,
+        "home_team_point": 88,
+        "away_team_point": 90,
         "matched_at": "2022-10-21"
     },
     {
         "home_team_id": 14,
         "away_team_id": 13,
-        "home_team_point": null,
-        "away_team_point": null,
+        "home_team_point": 97,
+        "away_team_point": 103,
         "matched_at": "2022-10-21"
     },
     {

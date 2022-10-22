@@ -18,7 +18,7 @@ const PostsSortByMatched = (props: {
                         <div className="flex items-center p-4">
                             <img
                                 src={post.home_team.logo}
-                                className="w-8 mx-1"
+                                className="max-h-7 w-6 mx-1"
                             />
                             <p>
                                 {post.home_team.name}&nbsp; (
@@ -30,7 +30,7 @@ const PostsSortByMatched = (props: {
                             </p>
                             <img
                                 src={post.away_team.logo}
-                                className="w-8 mx-1"
+                                className="max-h-7 w-6 mx-1"
                             />
                         </div>
                     </div>

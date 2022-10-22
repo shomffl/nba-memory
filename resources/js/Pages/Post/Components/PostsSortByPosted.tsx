@@ -16,7 +16,7 @@ const PostsSortByPosted = (props: { postsSortByPosted: Array<Post> }) => {
                         <div className="flex items-center p-4">
                             <img
                                 src={post.game.home_team.logo}
-                                className="w-8 mx-1"
+                                className="max-h-7 w-6 mx-1"
                             />
                             <p>
                                 {post.game.home_team.name}&nbsp; (
@@ -28,7 +28,7 @@ const PostsSortByPosted = (props: { postsSortByPosted: Array<Post> }) => {
                             </p>
                             <img
                                 src={post.game.away_team.logo}
-                                className="w-8 mx-1"
+                                className="max-h-7 w-6 mx-1"
                             />
                         </div>
                     </div>
