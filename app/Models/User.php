@@ -41,4 +41,9 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+    public function favoriteTeams()
+    {
+        return $this->belongsToMany(Team::class, "favorites", "user_id", "team_id");
+    }
 }
