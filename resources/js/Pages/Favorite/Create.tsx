@@ -2,11 +2,12 @@ import React from "react";
 import Authenticated from "@/Layouts/Authenticated";
 import { Head, Link, useForm } from "@inertiajs/inertia-react";
 import { IconButton } from "@mui/material";
-import DoubleArrowIcon from "@mui/icons-material/DoubleArrow";
+import KeyboardDoubleArrowRightIcon from "@mui/icons-material/KeyboardDoubleArrowRight";
+import KeyboardDoubleArrowLeftIcon from "@mui/icons-material/KeyboardDoubleArrowLeft";
 
 const Create = (props: any) => {
     const { teams, favoriteTeamIds } = props;
-    const { data, setData } = useForm<any>({
+    const { data, setData, post } = useForm<any>({
         selectedTeamIds: favoriteTeamIds,
     });
 
@@ -49,19 +50,34 @@ const Create = (props: any) => {
     return (
         <Authenticated auth={props.auth} header={null}>
             <Head title="PULL ORIGIN"></Head>
-            <div className="flex flex-col gap-5 mt-10 px-10">
+            <div className="flex flex-col gap-10 mt-10 px-10">
                 <div className="flex items-center justify-between">
-                    <h1 className="border-b-2 w-max border-gray-1000">
+                    <button className="flex items-end border-b-2 border-red-900 pr-4 hover:scale-105 active:scale-100 duration-200">
+                        <KeyboardDoubleArrowLeftIcon />
+                        <h2>Back</h2>
+                    </button>
+                    <h1 className="border-b-2 text-4xl w-max ">
                         Favroite Team
                     </h1>
 
-                    <button className="flex items-end bg-gray-1000 text-white px-10 py-2 border-b-4 border-[#506266] rounded-sm active:scale-95 active:border-opacity-10 duration-100">
-                        <h2>Save</h2>
-                        <DoubleArrowIcon />
-                    </button>
+                    {data.selectedTeamIds.length != 0 ? (
+                        <button
+                            onClick={(e) => post(route("favorites.store"))}
+                            disabled={data.selectedTeamIds.length == 0}
+                            className="flex items-end border-b-2 border-gray-1000 pl-4 hover:scale-105 active:scale-100 duration-200 animate-bounce hover:animate-none"
+                        >
+                            <h2>Save</h2>
+                            <KeyboardDoubleArrowRightIcon />
+                        </button>
+                    ) : (
+                        <div className="flex items-end border-b-2 border-gray-1000 text-gray-400 border-opacity-50 pl-4">
+                            <h2>Save</h2>
+                            <KeyboardDoubleArrowRightIcon />
+                        </div>
+                    )}
                 </div>
 
-                <div className="grid grid-cols-5 gap-8 border-2 border-gray-300 py-7 rounded-2xl drop-shadow">
+                <div className="grid grid-cols-5 gap-8 border-2 border-gray-300 py-7 rounded-2xl drop-shadow ">
                     {data.selectedTeamIds.map((id: any) => (
                         <div key={id}>
                             <button
@@ -79,7 +95,7 @@ const Create = (props: any) => {
                     {blankSpot()}
                 </div>
 
-                <div className="grid grid-cols-5 gap-8 my-5">
+                <div className="grid grid-cols-5 gap-5 my-5">
                     {teams.map((team: any) => (
                         <div key={team.id}>
                             {isIncludedIdInFavorites(team.id) ? (

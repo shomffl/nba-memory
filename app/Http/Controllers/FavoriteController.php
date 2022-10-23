@@ -34,4 +34,15 @@ class FavoriteController extends Controller
         return Inertia::render("Favorite/Create", ["teams" => Team::all(), "favoriteTeamIds" => $team_ids]);
     }
 
+    public function store(Request $request)
+    {
+        // 過去のお気に入りチームを全て削除
+        auth()->user()->favoriteTeams()->detach();
+
+        // 送信されたお気に入りチームを全て登録＾
+        auth()->user()->favoriteTeams()->attach($request->all()["selectedTeamIds"]);
+
+        return redirect(route("favorites.index"));
+    }
+
 }
