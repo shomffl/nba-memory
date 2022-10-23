@@ -83,7 +83,7 @@ class GameService {
         foreach($games->get() as $game)
         {
            $data = [
-                "color" => "#127369",
+                "color" => "#377871",
                 "display" => "background",
                 "date" => $game->matched_at,
                 "match" => $game->homeTeam->name . " vs " . $game->awayTeam->name,
