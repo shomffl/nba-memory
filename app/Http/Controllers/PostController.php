@@ -24,6 +24,9 @@ class PostController extends Controller
      */
     public function index(Request $reqeust, Season $seasons)
     {
+        // 投稿詳細ページの戻るボタンを押した際の遷移先を設定
+        session(["show/" . auth()->id() => 1]);
+
         $season = $reqeust->all();
 
         $sortedPostsData = PostService::searchAndSortPosts($season);
@@ -84,7 +87,7 @@ class PostController extends Controller
         if(!auth()->user()->can("view", $post)){
             return Inertia::render("Error/403");
         }
-        return Inertia::render("Post/Show", ["post" => $post->getPost() ,"previousURL" => \url()->previous()]);
+        return Inertia::render("Post/Show", ["post" => $post->getPost() ,"previousPage" => session("show/" . auth()->id())]);
     }
 
     /**

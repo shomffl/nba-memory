@@ -20,8 +20,6 @@ const Index = (props: {
         orderby: "",
     });
 
-    console.log(postsSortByMatched);
-
     return (
         <Authenticated auth={props.auth} header={null}>
             <div className="px-28 py-20">

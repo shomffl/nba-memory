@@ -3,9 +3,8 @@ import Authenticated from "@/Layouts/Authenticated";
 import { Inertia } from "@inertiajs/inertia";
 import { Head, Link } from "@inertiajs/inertia-react";
 
-const Show = (props: { auth: any; post: Post; previousURL: string }) => {
-    const { post, previousURL } = props;
-    const postsIndexURL = import.meta.env.VITE_APP_URL + "/posts";
+const Show = (props: { auth: any; post: Post; previousPage: number }) => {
+    const { post, previousPage } = props;
 
     return (
         <Authenticated auth={props.auth} header={null}>
@@ -69,7 +68,7 @@ const Show = (props: { auth: any; post: Post; previousURL: string }) => {
                     </div>
 
                     <div className="flex justify-between">
-                        {previousURL.startsWith(postsIndexURL) ? (
+                        {previousPage == 1 ? (
                             <Link
                                 href={route("posts.index")}
                                 className="bg-gray-1000 text-white hover:text-white hover:bg-red-900 shadow hover:shadow-2xl hover:scale-105 active:scale-100 px-5 py-1 rounded duration-200"

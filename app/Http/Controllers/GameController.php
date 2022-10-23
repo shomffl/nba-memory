@@ -18,6 +18,9 @@ class GameController extends Controller
         // sessionにroute情報を保存。All Teamページに遷移した際に1を保存。
         session(["calendar/" . auth()->id() =>  1]);
 
+        // 投稿詳細ページの戻るボタンを押した際の遷移先を設定
+        session(["show/" . auth()->id() => 2]);
+
         $games_by_date = Game::with("homeTeam","awayTeam")->orderBy("matched_at")->get()->groupBy("matched_at");
         $posts_by_date = Post::with("game.homeTeam","game.awayTeam")->where("user_id", auth()->id())->get()->groupBy("game.matched_at");
 

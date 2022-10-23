@@ -18,6 +18,9 @@ class FavoriteController extends Controller
         // sessionにroute情報を保存。Favoriteページに遷移した際に2を保存。
         session(["calendar/" . auth()->id() => 2]);
 
+        // 投稿詳細ページの戻るボタンを押した際の遷移先を設定
+        session(["show/" . auth()->id() => 2]);
+
         // お気に入りチームを選択していなかった場合は、登録ページへ遷移
         if(auth()->user()->favoriteTeams->count() == 0){
             return redirect(route("favorites.create"));
