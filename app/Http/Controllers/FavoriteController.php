@@ -15,13 +15,27 @@ class FavoriteController extends Controller
 {
     public function index()
     {
+        // お気に入りチームを選択していなかった場合は、登録ページへ遷移
         if(auth()->user()->favoriteTeams->count() == 0){
             return redirect(route("favorites.create"));
         }
-        $games_by_date = Game::with("homeTeam","awayTeam")->orderBy("matched_at")->get()->groupBy("matched_at");
-        $posts_by_date = Post::with("game.homeTeam","game.awayTeam")->where("user_id", auth()->id())->get()->groupBy("game.matched_at");
 
-        return Inertia::render("Favorite/Index",["schedules" => GameService::getAllCalendarSchedules(), "gamesByDate" => $games_by_date, "postsByDate" => $posts_by_date, "teams" => Team::all()]);
+        $games_by_date = Game::with("homeTeam","awayTeam");
+        $posts_by_date = Post::with("game.homeTeam","game.awayTeam");
+
+        foreach(auth()->user()->favoriteTeams as $team)
+        {
+            // お気に入りチームの試合のみを取得
+            $games_by_date->orWhere("home_team_id", $team->id)->orWhere("away_team_id", $team->id);
+
+            // お気に入りチームの試合感想のみを取得
+            $posts_by_date->orWhereHas("game", function($query) use($team) {
+                $query->where("home_team_id", $team->id)->orWhere("away_team_id",$team->id);
+            });
+        }
+
+        return Inertia::render("Favorite/Index",["schedules" => GameService::getFavoriteTeamSchedules(), "gamesByDate" => $games_by_date->get()->groupBy("matched_at"),
+                                                 "postsByDate" => $posts_by_date->where("user_id", auth()->id())->get()->groupBy("game.matched_at"), "teams" => Team::all()]);
     }
 
     public function create()
