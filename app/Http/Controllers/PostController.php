@@ -65,7 +65,7 @@ class PostController extends Controller
         }
 
         // All Teamページからの投稿の場合は、All Teamカレンダーに遷移
-        if(session(auth()->id())["route"] == 1){
+        if(session("calendar/" . auth()->id()) == 1){
             return redirect(route('games.index'));
         }
 
@@ -141,7 +141,7 @@ class PostController extends Controller
         $post->delete();
 
         // All Teamページからの投稿の場合は、All Teamカレンダーに遷移
-        if(session(auth()->id())["route"] == 1){
+        if(session("calendar/" . auth()->id()) == 1){
             return redirect(route('games.index'));
         }
 
