@@ -6,6 +6,16 @@ import { Head, Link } from "@inertiajs/inertia-react";
 const Show = (props: { auth: any; post: Post; previousPage: number }) => {
     const { post, previousPage } = props;
 
+    // previousUrlの値によって戻るボタンの遷移先URLを変更
+    const changePreviousUrl = () => {
+        if (previousPage == 1) {
+            return "posts.index";
+        } else if (previousPage == 2) {
+            return "games.index";
+        }
+        return "favorites.index";
+    };
+
     return (
         <Authenticated auth={props.auth} header={null}>
             <Head title="PULL ORIGIN" />
@@ -68,21 +78,12 @@ const Show = (props: { auth: any; post: Post; previousPage: number }) => {
                     </div>
 
                     <div className="flex justify-between">
-                        {previousPage == 1 ? (
-                            <Link
-                                href={route("posts.index")}
-                                className="bg-gray-1000 text-white hover:text-white hover:bg-red-900 shadow hover:shadow-2xl hover:scale-105 active:scale-100 px-5 py-1 rounded duration-200"
-                            >
-                                Back
-                            </Link>
-                        ) : (
-                            <Link
-                                href={route("games.index")}
-                                className="bg-gray-1000 text-white hover:text-white hover:bg-red-900 shadow hover:shadow-2xl hover:scale-105 active:scale-100 px-5 py-1 rounded duration-200"
-                            >
-                                Back
-                            </Link>
-                        )}
+                        <Link
+                            href={route(changePreviousUrl())}
+                            className="bg-gray-1000 text-white hover:text-white hover:bg-red-900 shadow hover:shadow-2xl hover:scale-105 active:scale-100 px-5 py-1 rounded duration-200"
+                        >
+                            Back
+                        </Link>
 
                         <Link
                             href={route("posts.edit", post.id)}

@@ -19,7 +19,7 @@ class FavoriteController extends Controller
         session(["calendar/" . auth()->id() => 2]);
 
         // 投稿詳細ページの戻るボタンを押した際の遷移先を設定
-        session(["show/" . auth()->id() => 2]);
+        session(["show/" . auth()->id() => 3]);
 
         // お気に入りチームを選択していなかった場合は、登録ページへ遷移
         if(auth()->user()->favoriteTeams->count() == 0){
