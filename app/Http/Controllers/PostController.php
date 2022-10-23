@@ -126,7 +126,7 @@ class PostController extends Controller
             ]);
         }
 
-        return redirect("/posts/" . $post->id);
+        return redirect(route("posts.show", $post->id));
     }
 
     /**
@@ -139,6 +139,13 @@ class PostController extends Controller
     {
         $this->authorize("delete", $post);
         $post->delete();
-        return redirect("/games");
+
+        // All Teamページからの投稿の場合は、All Teamカレンダーに遷移
+        if(session(auth()->id())["route"] == 1){
+            return redirect(route('games.index'));
+        }
+
+        // Favoriteページからの投稿の場合は、Favoriteカレンダーに遷移
+        return redirect(route("favorites.index"));
     }
 }
