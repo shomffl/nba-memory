@@ -83,7 +83,7 @@ class GameService {
         foreach($games->get() as $game)
         {
            $data = [
-                "color" => "#889C9B",
+                "color" => "#127369",
                 "display" => "background",
                 "date" => $game->matched_at,
                 "match" => $game->homeTeam->name . " vs " . $game->awayTeam->name,
@@ -93,7 +93,7 @@ class GameService {
 
         // カレンダーで当日の色を変えたいため、背景色のみのデータを追加
         $today = [
-                "color" => "#D6D58E",
+                "color" => "#DAFDBA",
                 "display" => "background",
                 "date" => now()->format("Y-m-d"),
             ];
