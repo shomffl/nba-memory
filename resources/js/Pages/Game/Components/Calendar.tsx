@@ -5,6 +5,7 @@ import FullCalendar, { EventClickArg } from "@fullcalendar/react";
 import dayGridPlugin from "@fullcalendar/daygrid";
 import interactionPlugin, { DateClickArg } from "@fullcalendar/interaction";
 import { CalendarStyleWrapper } from "../../../Components/CalendarStyleWrapper";
+import { usePage } from "@inertiajs/inertia-react";
 
 type Props = {
     schedules: Schedule[];
@@ -13,6 +14,7 @@ type Props = {
 };
 
 const Calendar = (props: Props) => {
+    const { url } = usePage();
     const { schedules, handleEventClick, handleDateClick } = props;
 
     const defaultDate: any = localStorage.getItem("view_date");
@@ -35,7 +37,10 @@ const Calendar = (props: Props) => {
     };
 
     const changeMode = () => {
-        Inertia.get(route("favorites.index"));
+        if (url == "/games") {
+            return Inertia.get(route("favorites.index"));
+        }
+        return Inertia.get(route("games.index"));
     };
 
     return (
@@ -53,7 +58,7 @@ const Calendar = (props: Props) => {
                     locale="us"
                     customButtons={{
                         changeModeButton: {
-                            text: "Favorite",
+                            text: url == "/games" ? "Favorite" : "All Team",
                             click: changeMode,
                         },
                     }}
