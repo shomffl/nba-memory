@@ -37,6 +37,10 @@ class AuthenticatedSessionController extends Controller
 
         $request->session()->regenerate();
 
+        if(auth()->user()->favoriteTeams->count()){
+            return redirect(route("favorites.index"));
+        };
+
         return redirect()->intended(RouteServiceProvider::HOME);
     }
 
