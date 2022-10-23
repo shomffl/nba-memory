@@ -6,7 +6,7 @@ import KeyboardDoubleArrowRightIcon from "@mui/icons-material/KeyboardDoubleArro
 import KeyboardDoubleArrowLeftIcon from "@mui/icons-material/KeyboardDoubleArrowLeft";
 
 const Create = (props: any) => {
-    const { teams, favoriteTeamIds } = props;
+    const { teams, favoriteTeamIds, previousURL } = props;
     const { data, setData, post } = useForm<any>({
         selectedTeamIds: favoriteTeamIds,
     });
@@ -14,7 +14,6 @@ const Create = (props: any) => {
     const isIncludedIdInFavorites = (id: any) => {
         return data.selectedTeamIds.includes(id);
     };
-    console.log(props);
 
     const blankSpot = () => {
         const domList = [];
@@ -47,15 +46,20 @@ const Create = (props: any) => {
         setData("selectedTeamIds", modefindDate);
     };
 
+    console.log(props);
     return (
         <Authenticated auth={props.auth} header={null}>
             <Head title="PULL ORIGIN"></Head>
             <div className="flex flex-col gap-10 mt-10 px-10">
                 <div className="flex items-center justify-between">
-                    <button className="flex items-end border-b-2 border-red-900 pr-4 hover:scale-105 active:scale-100 duration-200">
+                    <Link
+                        href={previousURL}
+                        as="button"
+                        className="flex items-end border-b-2 border-red-900 pr-4 hover:scale-105 active:scale-100 duration-200"
+                    >
                         <KeyboardDoubleArrowLeftIcon />
                         <h2>Back</h2>
-                    </button>
+                    </Link>
                     <h1 className="border-b-2 text-4xl w-max ">
                         Favroite Team
                     </h1>

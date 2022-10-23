@@ -45,7 +45,7 @@ class FavoriteController extends Controller
         {
             array_push($team_ids, $team->id);
         }
-        return Inertia::render("Favorite/Create", ["teams" => Team::all(), "favoriteTeamIds" => $team_ids]);
+        return Inertia::render("Favorite/Create", ["teams" => Team::all(), "favoriteTeamIds" => $team_ids, "previousURL" => \url()->previous()]);
     }
 
     public function store(Request $request)
