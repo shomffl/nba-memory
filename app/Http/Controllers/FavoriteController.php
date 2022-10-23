@@ -15,6 +15,9 @@ class FavoriteController extends Controller
 {
     public function index()
     {
+        // sessionにroute情報を保存。Favoriteページに遷移した際に2を保存。
+        session([auth()->id() => ["route" => 2]]);
+
         // お気に入りチームを選択していなかった場合は、登録ページへ遷移
         if(auth()->user()->favoriteTeams->count() == 0){
             return redirect(route("favorites.create"));

@@ -64,7 +64,13 @@ class PostController extends Controller
             ]);
         }
 
-        return Redirect::route('games.index');
+        // All Teamページからの投稿の場合は、All Teamカレンダーに遷移
+        if(session(auth()->id())["route"] == 1){
+            return redirect(route('games.index'));
+        }
+
+        // Favoriteページからの投稿の場合は、Favoriteカレンダーに遷移
+        return redirect(route("favorites.index"));
     }
 
     /**
