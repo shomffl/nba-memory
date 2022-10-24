@@ -2,6 +2,8 @@ import React from "react";
 import Authenticated from "@/Layouts/Authenticated";
 import { Head, Link } from "@inertiajs/inertia-react";
 import { Games } from "@mui/icons-material";
+import BackButton from "@/Components/Buttons/BackButton";
+import { Inertia } from "@inertiajs/inertia";
 
 const Show = (props: {
     auth: any;
@@ -74,19 +76,9 @@ const Show = (props: {
 
                     <div className="flex justify-between">
                         {session.calendar == 1 ? (
-                            <Link
-                                href={route("games.index")}
-                                className="bg-gray-1000 text-white hover:text-white hover:bg-red-900 shadow hover:shadow-2xl hover:scale-105 active:scale-100 px-5 py-1 rounded duration-200"
-                            >
-                                Back
-                            </Link>
+                            <BackButton link={route("games.index")} />
                         ) : (
-                            <Link
-                                href={route("favorites.index")}
-                                className="bg-gray-1000 text-white hover:text-white hover:bg-red-900 shadow hover:shadow-2xl hover:scale-105 active:scale-100 px-5 py-1 rounded duration-200"
-                            >
-                                Back
-                            </Link>
+                            <BackButton link={route("favorites.index")} />
                         )}
 
                         <Link

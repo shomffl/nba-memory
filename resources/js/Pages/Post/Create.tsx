@@ -1,9 +1,10 @@
 import React, { useState } from "react";
 import Authenticated from "../../Layouts/Authenticated";
 import { Inertia } from "@inertiajs/inertia";
-import { Head, useForm } from "@inertiajs/inertia-react";
+import { Head, Link, useForm } from "@inertiajs/inertia-react";
 import GameSelect from "./Components/GameSelect";
 import Links from "./Components/Links";
+import BackButton from "@/Components/Buttons/BackButton";
 
 const Create = (props: any) => {
     const { session, games, gamesDate }: any = props;
@@ -83,23 +84,9 @@ const Create = (props: any) => {
 
                     <div className="flex justify-between">
                         {session.calendar == 1 ? (
-                            <button
-                                onClick={(e) =>
-                                    Inertia.get(route("games.index"))
-                                }
-                                className="bg-gray-1000 text-white hover:text-white hover:bg-red-900 shadow hover:shadow-2xl hover:scale-105 active:scale-100 px-5 py-1 rounded duration-200"
-                            >
-                                Back
-                            </button>
+                            <BackButton link={route("games.index")} />
                         ) : (
-                            <button
-                                onClick={(e) =>
-                                    Inertia.get(route("favorites.index"))
-                                }
-                                className="bg-gray-1000 text-white hover:text-white hover:bg-red-900 shadow hover:shadow-2xl hover:scale-105 active:scale-100 px-5 py-1 rounded duration-200"
-                            >
-                                Back
-                            </button>
+                            <BackButton link={route("favorites.index")} />
                         )}
 
                         <button
