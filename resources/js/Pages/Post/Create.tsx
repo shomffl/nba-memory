@@ -6,7 +6,7 @@ import GameSelect from "./Components/GameSelect";
 import Links from "./Components/Links";
 
 const Create = (props: any) => {
-    const { games, gamesDate }: any = props;
+    const { session, games, gamesDate }: any = props;
     const [link, setLink] = useState<Link>({
         id: 0,
         title: "",
@@ -82,12 +82,26 @@ const Create = (props: any) => {
                     </div>
 
                     <div className="flex justify-between">
-                        <button
-                            onClick={(e) => Inertia.get(route("games.index"))}
-                            className="bg-gray-1000 text-white hover:text-white hover:bg-red-900 shadow hover:shadow-2xl hover:scale-105 active:scale-100 px-5 py-1 rounded duration-200"
-                        >
-                            Back
-                        </button>
+                        {session.calendar == 1 ? (
+                            <button
+                                onClick={(e) =>
+                                    Inertia.get(route("games.index"))
+                                }
+                                className="bg-gray-1000 text-white hover:text-white hover:bg-red-900 shadow hover:shadow-2xl hover:scale-105 active:scale-100 px-5 py-1 rounded duration-200"
+                            >
+                                Back
+                            </button>
+                        ) : (
+                            <button
+                                onClick={(e) =>
+                                    Inertia.get(route("favorites.index"))
+                                }
+                                className="bg-gray-1000 text-white hover:text-white hover:bg-red-900 shadow hover:shadow-2xl hover:scale-105 active:scale-100 px-5 py-1 rounded duration-200"
+                            >
+                                Back
+                            </button>
+                        )}
+
                         <button
                             onClick={handleSubmit}
                             className="bg-gray-1000 text-white hover:text-white hover:bg-blue-1000 shadow hover:shadow-2xl hover:scale-105 active:scale-100 px-5 py-1 rounded duration-200"
