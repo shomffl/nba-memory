@@ -43,6 +43,22 @@ class HandleInertiaRequests extends Middleware
                     'location' => $request->url(),
                 ]);
             },
+            'session' => [
+                /**
+                 * calendar
+                 * 1 => All Teamページ
+                 * 2 => Favoriteページ
+                 */
+                'calendar' => session("calendar/" . auth()->id()),
+
+                /**
+                 * show
+                 * 1 => 投稿一覧ページ
+                 * 2 => All Teamページ
+                 * 3 => Favoriteページ
+                 */
+                'show' => session("show/" . auth()->id()),
+            ],
         ]);
     }
 }

@@ -72,7 +72,7 @@ const FavoriteTeam = (props: any) => {
     }, []);
 
     return (
-        <Authenticated auth={props.auth} header={null}>
+        <Authenticated auth={props.auth} session={props.session} header={null}>
             <Head title="PULL ORIGIN"></Head>
             <div className="flex px-10 py-5">
                 <div className="w-8/12">

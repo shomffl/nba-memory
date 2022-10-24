@@ -1,13 +1,13 @@
 import React, { useState } from "react";
 import Authenticated from "@/Layouts/Authenticated";
-import { Inertia } from "@inertiajs/inertia";
-import { useForm, Link } from "@inertiajs/inertia-react";
+import { useForm } from "@inertiajs/inertia-react";
 import PostsSortByPosted from "./Components/PostsSortByPosted";
 import PostsSortByMatched from "./Components/PostsSortByMatched";
 import SearchBox from "./Components/SearchBox";
 
 const Index = (props: {
     auth: any;
+    session: any;
     postsSortByPosted: Array<Post>;
     postsSortByMatched: Array<PostSortByMatched>;
     seasons: Array<Season>;
@@ -21,7 +21,7 @@ const Index = (props: {
     });
 
     return (
-        <Authenticated auth={props.auth} header={null}>
+        <Authenticated auth={props.auth} session={props.session} header={null}>
             <div className="px-28 py-20">
                 <div>
                     <SearchBox

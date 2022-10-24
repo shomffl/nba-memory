@@ -1,10 +1,9 @@
 import React, { useState } from "react";
 import { Head, useForm, Link } from "@inertiajs/inertia-react";
 import Authenticated from "@/Layouts/Authenticated";
-import { Inertia } from "@inertiajs/inertia";
 import Links from "./Components/Links";
 
-const Edit = (props: { auth: any; post: Post; errors: any }) => {
+const Edit = (props: { auth: any; session: any; post: Post; errors: any }) => {
     const { post } = props;
     const { data, setData, put } = useForm<SendPost>("EditCreate", {
         game_id: post.game_id,
@@ -24,7 +23,7 @@ const Edit = (props: { auth: any; post: Post; errors: any }) => {
     };
 
     return (
-        <Authenticated auth={props.auth} header={null}>
+        <Authenticated auth={props.auth} session={props.session} header={null}>
             <Head title="PULL ORIGIN" />
 
             <form onSubmit={handleEditPost}>

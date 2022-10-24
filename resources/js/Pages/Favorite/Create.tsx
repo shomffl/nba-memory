@@ -1,7 +1,6 @@
 import React from "react";
 import Authenticated from "@/Layouts/Authenticated";
 import { Head, Link, useForm } from "@inertiajs/inertia-react";
-import { IconButton } from "@mui/material";
 import KeyboardDoubleArrowRightIcon from "@mui/icons-material/KeyboardDoubleArrowRight";
 import KeyboardDoubleArrowLeftIcon from "@mui/icons-material/KeyboardDoubleArrowLeft";
 
@@ -46,9 +45,8 @@ const Create = (props: any) => {
         setData("selectedTeamIds", modefindDate);
     };
 
-    console.log(props);
     return (
-        <Authenticated auth={props.auth} header={null}>
+        <Authenticated auth={props.auth} session={props.session} header={null}>
             <Head title="PULL ORIGIN"></Head>
             <div className="flex flex-col gap-10 mt-10 px-10">
                 <div className="flex items-center justify-between">

@@ -7,13 +7,20 @@ import { Link } from "@inertiajs/inertia-react";
 
 interface Props {
     auth: any;
+    session: any;
     header: React.ReactNode;
     children: React.ReactNode;
 }
 
-export default function Authenticated({ auth, header, children }: Props) {
+export default function Authenticated({
+    auth,
+    session,
+    header,
+    children,
+}: Props) {
     const [showingNavigationDropdown, setShowingNavigationDropdown] =
         useState(false);
+
     return (
         <div className="min-h-screen bg-white">
             <nav className="bg-gray-100 border-b border-gray-100 shadow">
@@ -27,12 +34,27 @@ export default function Authenticated({ auth, header, children }: Props) {
                             </div>
 
                             <div className="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
-                                <NavLink
-                                    href={route("games.index")}
-                                    active={route().current("games.index")}
-                                >
-                                    Calendar
-                                </NavLink>
+                                {session.calendar == 1 ? (
+                                    <NavLink
+                                        href={route("games.index")}
+                                        active={
+                                            route().current("games.index") ||
+                                            route().current("favorites.index")
+                                        }
+                                    >
+                                        Calendar
+                                    </NavLink>
+                                ) : (
+                                    <NavLink
+                                        href={route("favorites.index")}
+                                        active={
+                                            route().current("games.index") ||
+                                            route().current("favorites.index")
+                                        }
+                                    >
+                                        Calendar
+                                    </NavLink>
+                                )}
                             </div>
                             <div className="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
                                 <NavLink

@@ -1,9 +1,13 @@
 import React from "react";
 import Authenticated from "@/Layouts/Authenticated";
-import { Inertia } from "@inertiajs/inertia";
 import { Head, Link } from "@inertiajs/inertia-react";
 
-const Show = (props: { auth: any; post: Post; previousPage: number }) => {
+const Show = (props: {
+    auth: any;
+    session: any;
+    post: Post;
+    previousPage: number;
+}) => {
     const { post, previousPage } = props;
 
     // previousUrlの値によって戻るボタンの遷移先URLを変更
@@ -17,7 +21,7 @@ const Show = (props: { auth: any; post: Post; previousPage: number }) => {
     };
 
     return (
-        <Authenticated auth={props.auth} header={null}>
+        <Authenticated auth={props.auth} session={props.session} header={null}>
             <Head title="PULL ORIGIN" />
 
             <div className="px-28 py-20">

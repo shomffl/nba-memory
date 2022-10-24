@@ -1,7 +1,7 @@
-import React, { useState, useEffect, useCallback } from "react";
+import React, { useEffect, useCallback } from "react";
 import { Inertia } from "@inertiajs/inertia";
 import Authenticated from "@/Layouts/Authenticated";
-import { Head, useRemember, InertiaLink } from "@inertiajs/inertia-react";
+import { Head, useRemember } from "@inertiajs/inertia-react";
 import { EventClickArg } from "@fullcalendar/react";
 import Calendar from "./Components/Calendar";
 import ImpressionBox from "./Components/ImpressionsBox";
@@ -70,7 +70,7 @@ const Index = (props: any) => {
     }, []);
 
     return (
-        <Authenticated auth={props.auth} header={null}>
+        <Authenticated auth={props.auth} session={props.session} header={null}>
             <Head title="PULL ORIGIN"></Head>
             <div className="flex px-10 py-5">
                 <div className="w-8/12">

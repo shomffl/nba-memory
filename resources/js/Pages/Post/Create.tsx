@@ -1,7 +1,7 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import Authenticated from "../../Layouts/Authenticated";
 import { Inertia } from "@inertiajs/inertia";
-import { Head, useForm, Link } from "@inertiajs/inertia-react";
+import { Head, useForm } from "@inertiajs/inertia-react";
 import GameSelect from "./Components/GameSelect";
 import Links from "./Components/Links";
 
@@ -26,7 +26,7 @@ const Create = (props: any) => {
     };
 
     return (
-        <Authenticated auth={props.auth} header={null}>
+        <Authenticated auth={props.auth} session={props.session} header={null}>
             <Head title="PULL ORIGIN" />
             <div className="px-28 py-20">
                 <div className="bg-gray-100 rounded py-20 px-20 shadow-xl">
