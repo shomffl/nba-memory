@@ -17,12 +17,6 @@ const Index = (props: any) => {
         [],
         "IndexTodayPosts"
     );
-    const [openSettingModal, setOpenSettingModal] = useState(false);
-
-    const [viewTeamId, setViewTeamId] = useState<Array<any>>([]);
-
-    const handleOpen = () => setOpenSettingModal(true);
-    const handleClose = () => setOpenSettingModal(false);
 
     /**
      * カレンダーの日付クリック時に実行される関数
@@ -91,20 +85,7 @@ const Index = (props: any) => {
                         <div className="flex justify-center items-center w-full font-bold h-12 ml-5 mb-5 bg-gray-100 rounded shadow-lg">
                             <h1>{todayGames[0]?.matched_at || "no match"}</h1>
                         </div>
-                        {/* <div className="flex justify-center items-center w-1/12 h-12 ml-3 mb-5 bg-gray-100 rounded shadow-lg">
-                            <IconButton onClick={(e) => handleOpen()}>
-                                <SettingsIcon />
-                            </IconButton>
-                        </div> */}
                     </div>
-
-                    {/* <SettingModal
-                        openSettingModal={openSettingModal}
-                        handleClose={handleClose}
-                        viewTeamId={viewTeamId}
-                        setViewTeamId={setViewTeamId}
-                        teams={teams}
-                    /> */}
 
                     <div className="overflow-auto h-[40vh] ml-5 mb-10 bg-gray-100 rounded shadow-lg">
                         <div className="m-3">
