@@ -1,6 +1,7 @@
 import React from "react";
 import Authenticated from "@/Layouts/Authenticated";
 import { Head, Link } from "@inertiajs/inertia-react";
+import { Games } from "@mui/icons-material";
 
 const Show = (props: {
     auth: any;
@@ -8,17 +9,7 @@ const Show = (props: {
     post: Post;
     previousPage: number;
 }) => {
-    const { post, previousPage } = props;
-
-    // previousUrlの値によって戻るボタンの遷移先URLを変更
-    const changePreviousUrl = () => {
-        if (previousPage == 1) {
-            return "posts.index";
-        } else if (previousPage == 2) {
-            return "games.index";
-        }
-        return "favorites.index";
-    };
+    const { post, session } = props;
 
     return (
         <Authenticated auth={props.auth} session={props.session} header={null}>
@@ -82,12 +73,21 @@ const Show = (props: {
                     </div>
 
                     <div className="flex justify-between">
-                        <Link
-                            href={route(changePreviousUrl())}
-                            className="bg-gray-1000 text-white hover:text-white hover:bg-red-900 shadow hover:shadow-2xl hover:scale-105 active:scale-100 px-5 py-1 rounded duration-200"
-                        >
-                            Back
-                        </Link>
+                        {session.calendar == 1 ? (
+                            <Link
+                                href={route("games.index")}
+                                className="bg-gray-1000 text-white hover:text-white hover:bg-red-900 shadow hover:shadow-2xl hover:scale-105 active:scale-100 px-5 py-1 rounded duration-200"
+                            >
+                                Back
+                            </Link>
+                        ) : (
+                            <Link
+                                href={route("favorites.index")}
+                                className="bg-gray-1000 text-white hover:text-white hover:bg-red-900 shadow hover:shadow-2xl hover:scale-105 active:scale-100 px-5 py-1 rounded duration-200"
+                            >
+                                Back
+                            </Link>
+                        )}
 
                         <Link
                             href={route("posts.edit", post.id)}

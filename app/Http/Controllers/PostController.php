@@ -87,7 +87,7 @@ class PostController extends Controller
         if(!auth()->user()->can("view", $post)){
             return Inertia::render("Error/403");
         }
-        return Inertia::render("Post/Show", ["post" => $post->getPost() ,"previousPage" => session("show/" . auth()->id())]);
+        return Inertia::render("Post/Show", ["post" => $post->getPost()]);
     }
 
     /**
