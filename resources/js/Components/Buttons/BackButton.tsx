@@ -7,7 +7,7 @@ const BackButton = (props: any) => {
     return (
         <Link
             as="button"
-            href={route("games.index")}
+            href={link}
             className="bg-gray-1000 text-white hover:text-white hover:bg-red-900 shadow hover:shadow-2xl hover:scale-105 active:scale-100 px-5 py-1 rounded duration-200"
         >
             Back
