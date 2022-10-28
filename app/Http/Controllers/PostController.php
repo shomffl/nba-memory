@@ -31,14 +31,10 @@ class PostController extends Controller
 
         $sortedPostsData = PostService::searchAndSortPosts($season);
 
-        return Inertia::render("Post/Index",["postsSortByPosted" => $sortedPostsData[0], "postsSortByMatched" => $sortedPostsData[1], "seasons" => $seasons->orderBy("season", "DESC")->get(), "viewOption" => $sortedPostsData[2]]);
+        return Inertia::render("Post/Index",["postsSortByPosted" => $sortedPostsData[0], "postsSortByMatched" => $sortedPostsData[1],
+                                             "seasons" => $seasons->orderBy("season", "DESC")->get(), "viewOption" => $sortedPostsData[2]]);
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
     public function create()
     {
         $games = Game::with("homeTeam","awayTeam","series")->get();
@@ -46,12 +42,6 @@ class PostController extends Controller
         return Inertia::render("Post/Create" ,["games" => $games, "gamesDate" => $games_date]);
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
     public function store(PostRequest $request, Post $post)
     {
         $post->fill($request->all());
@@ -76,12 +66,6 @@ class PostController extends Controller
         return redirect(route("favorites.index"));
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  \App\Models\Post  $post
-     * @return \Illuminate\Http\Response
-     */
     public function show(Post $post)
     {
         if(!auth()->user()->can("view", $post)){
@@ -90,12 +74,7 @@ class PostController extends Controller
         return Inertia::render("Post/Show", ["post" => $post->getPost()]);
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\Models\Post  $post
-     * @return \Illuminate\Http\Response
-     */
+
     public function edit(Post $post)
     {
         if(!auth()->user()->can("update", $post)){
@@ -104,13 +83,6 @@ class PostController extends Controller
         return Inertia::render("Post/Edit", ["post" =>$post->getPost()]);
     }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\Post  $post
-     * @return \Illuminate\Http\Response
-     */
     public function update(PostRequest $request, Post $post)
     {
         $this->authorize("update", $post);
@@ -132,12 +104,6 @@ class PostController extends Controller
         return redirect(route("posts.show", $post->id));
     }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  \App\Models\Post  $post
-     * @return \Illuminate\Http\Response
-     */
     public function destroy(Post $post)
     {
         $this->authorize("delete", $post);
