@@ -5,14 +5,52 @@ use Illuminate\Http\Request;
 use Carbon\Carbon;
 use App\Models\Game;
 use App\Models\Season;
+use Illuminate\Support\Facades\Storage;
 
 class ScoreUpdateService {
 
+    // 点数の更新処理
     public static function updateTodayGameScore()
     {
-        ScoreUpdateService::outputLatestGamesDataToJson();
+        // ファイル名の取得
+        $date = Carbon::now();
+        $file_name = $date->year . "-" . $date->month . "-" . $date->day . ".json";
 
-        dd("test");
+        $json = Storage::get($file_name);
+        $games = json_decode($json);
+
+        foreach($games as $key => $value)
+        {
+            $game_data_in_db = Game::where("id", $value->id)->first();
+
+            // 試合が未実施の場合はパス
+            if (Carbon::parse($value->matched_at)->isFuture()){
+                continue;
+            }
+
+            // jsonに格納されたデータがDBに存在しなかった場合はパス
+            if ($game_data_in_db == null){
+                continue;
+            }
+
+            // 試合の組み合わせがDBに存在しているデータと一致しなかったらパス
+            if ($game_data_in_db->home_team_id != $value->home_team_id || $game_data_in_db->away_team_id != $value->away_team_id){
+                continue;
+            }
+
+            // 試合の日時がDBに保存されている値と一致しなかったらパス
+            if ($game_data_in_db->matched_at != $value->matched_at){
+                continue;
+            }
+
+            // 点数が入力されていた場合はパス
+            if ($game_data_in_db->home_team_point != null && $game_data_in_db->away_team_point != null){
+                continue;
+            }
+
+            //　点数の更新
+            $game_data_in_db->update(["home_team_point" => $value->home_team_point, "away_team_point" => $value->away_team_point]);
+        }
 
     }
 
@@ -54,7 +92,7 @@ class ScoreUpdateService {
                 $formated_date = Carbon::parse($game["date"]["start"])->timezone("Asia/Tokyo");
                 preg_match_all("/[0-9]{4}-[0-9]{2}-[0-9]{2}/", $formated_date, $data, PREG_SET_ORDER);
                 $matched_at = $data[0][0];
-                array_push($games_list, [$game_id => ["home_team_id" => $home_team_id, "away_team_id" => $away_team_id, "home_team_point" => $home_team_point, "away_team_point" => $away_team_point, "matched_at" => $matched_at]]);
+                array_push($games_list, ["id" => $game_id, "home_team_id" => $home_team_id, "away_team_id" => $away_team_id, "home_team_point" => $home_team_point, "away_team_point" => $away_team_point, "matched_at" => $matched_at]);
                 $game_id += 1;
             } catch (\Exception $e){
                 logger("not data");
@@ -62,10 +100,11 @@ class ScoreUpdateService {
 
         }
 
+        // ファイル名の取得
         $date = Carbon::now();
         $file_name = $date->year . "-" . $date->month . "-" . $date->day . ".json";
 
         $arr = json_encode($games_list);
-        file_put_contents("./data/" . $file_name, $arr);
+        Storage::put($file_name, $arr);
     }
 }
