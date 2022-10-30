@@ -19,6 +19,8 @@ class ScoreUpdateService {
         $json = Storage::get($file_name);
         $games = json_decode($json);
 
+        logger("点数更新処理開始");
+
         foreach($games as $key => $value)
         {
             $game_data_in_db = Game::where("id", $value->id)->first();
@@ -52,6 +54,8 @@ class ScoreUpdateService {
             $game_data_in_db->update(["home_team_point" => $value->home_team_point, "away_team_point" => $value->away_team_point]);
         }
 
+        logger("点数更新処理終了");
+
     }
 
     // 最新の試合データをjsonファイルとして書き出し
@@ -70,11 +74,16 @@ class ScoreUpdateService {
                 'X-RapidAPI-Host' => config("services.nba.host")
             ],
         ];
+
+        logger("API通信開始");
+
         $response = $client->request(
             'GET',
             'https://api-nba-v1.p.rapidapi.com/games?season=' . $latest_season->season,
             $option,
         );
+
+        logger("API通信終了");
 
         $games = json_decode($response->getBody(), true);
 
@@ -95,7 +104,7 @@ class ScoreUpdateService {
                 array_push($games_list, ["id" => $game_id, "home_team_id" => $home_team_id, "away_team_id" => $away_team_id, "home_team_point" => $home_team_point, "away_team_point" => $away_team_point, "matched_at" => $matched_at]);
                 $game_id += 1;
             } catch (\Exception $e){
-                logger("not data");
+
             }
 
         }
@@ -104,7 +113,11 @@ class ScoreUpdateService {
         $date = Carbon::now();
         $file_name = $date->year . "-" . $date->month . "-" . $date->day . ".json";
 
+        logger("json書き出し開始");
+
         $arr = json_encode($games_list);
         Storage::put($file_name, $arr);
+
+        logger("json書き出し終了");
     }
 }
