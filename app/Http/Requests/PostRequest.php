@@ -25,8 +25,8 @@ class PostRequest extends FormRequest
     {
         return [
             "game_id" => "required | numeric",
-            "title" => "required",
-            "detail" => "required"
+            "title" => "required | max:50",
+            "detail" => "required | max:2000"
         ];
     }
 }
