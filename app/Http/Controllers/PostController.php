@@ -12,7 +12,7 @@ use App\Models\Season;
 use App\Models\Series;
 use App\Models\Link;
 use App\Http\Requests\PostRequest;
-use App\Service\PostService;
+use App\Services\PostService;
 
 
 class PostController extends Controller
