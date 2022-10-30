@@ -8,7 +8,7 @@ use App\Models\Team;
 use App\Models\Post;
 use App\Models\Series;
 use App\Models\Roster;
-use App\Service\GameService;
+use App\Services\GameService;
 use Illuminate\Support\Facades\Redirect;
 
 class GameController extends Controller

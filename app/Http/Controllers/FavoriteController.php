@@ -8,7 +8,7 @@ use App\Models\Game;
 use App\Models\Team;
 use App\Models\Post;
 use App\Models\User;
-use App\Service\GameService;
+use App\Services\GameService;
 use Illuminate\Support\Facades\Redirect;
 
 class FavoriteController extends Controller

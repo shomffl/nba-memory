@@ -31,4 +31,9 @@ return [
         'region' => env('AWS_DEFAULT_REGION', 'us-east-1'),
     ],
 
+    "nba" => [
+        "token" => env("NBA_API_TOKEN"),
+        "host" => env("NBA_API_HOST")
+    ],
+
 ];

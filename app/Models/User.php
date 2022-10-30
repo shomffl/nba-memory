@@ -46,4 +46,9 @@ class User extends Authenticatable
     {
         return $this->belongsToMany(Team::class, "favorites", "user_id", "team_id");
     }
+
+    public function posts()
+    {
+        return $this->hasMany(Post::class);
+    }
 }

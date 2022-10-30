@@ -4,9 +4,16 @@ namespace App\Console;
 
 use Illuminate\Console\Scheduling\Schedule;
 use Illuminate\Foundation\Console\Kernel as ConsoleKernel;
+use App\Console\Commands\updateScoreBatch;
+use App\Console\Commands\deletePastJsonBatch;
 
 class Kernel extends ConsoleKernel
 {
+    protected $commands = [
+       updateScoreBatch::class,
+       deletePastJsonBatch::class
+    ];
+
     /**
      * Define the application's command schedule.
      *
@@ -15,7 +22,8 @@ class Kernel extends ConsoleKernel
      */
     protected function schedule(Schedule $schedule)
     {
-        // $schedule->command('inspire')->hourly();
+        $schedule->command("command:updateScoreBatch")->dailyAt('15:00');
+        $schedule->command("command:deletePastJsonBatch")->weekly();
     }
 
     /**
