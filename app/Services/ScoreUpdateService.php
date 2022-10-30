@@ -120,4 +120,37 @@ class ScoreUpdateService {
 
         logger("json書き出し終了");
     }
+
+    // 過去のjsonファイル削除処理
+    public static function deletePastJson(){
+
+        logger("削除処理を開始");
+
+        $files = Storage::files();
+
+        $today = new Carbon("today");
+
+        foreach($files as $file)
+        {
+            // 試合データのjsonファイルでなかった場合はパス
+            if(!preg_match("/[0-9]{4}-[0-9]{2}-[0-9]{2}.json/", $file)){
+                continue;
+            }
+
+            // 正規表現でjsonファイル名の日付を取得
+            preg_match_all("/[0-9]{4}-[0-9]{2}-[0-9]{2}/", $file, $data, PREG_SET_ORDER);
+
+            // ファイル名の日付が今日以降だった場合はパス
+            if(!Carbon::parse($data[0][0])->lt($today)){
+                continue;
+            }
+
+            // 対象ファイルの削除
+            Storage::delete($file);
+            logger($file . "を削除");
+        }
+
+        logger("削除処理を終了");
+
+    }
 }
