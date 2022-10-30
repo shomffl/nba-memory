@@ -13,6 +13,18 @@ const Show = (props: {
 }) => {
     const { post, session } = props;
 
+    // sessionの値によって戻るボタンの遷移先を変更
+    const BackButtonLink = () => {
+        switch (session.show) {
+            case 1:
+                return route("posts.index");
+            case 2:
+                return route("games.index");
+            case 3:
+                return route("favorites.index");
+        }
+    };
+
     return (
         <Authenticated auth={props.auth} session={props.session} header={null}>
             <Head title="PULL ORIGIN" />
@@ -75,11 +87,7 @@ const Show = (props: {
                     </div>
 
                     <div className="flex justify-between">
-                        {session.calendar == 1 ? (
-                            <BackButton link={route("games.index")} />
-                        ) : (
-                            <BackButton link={route("favorites.index")} />
-                        )}
+                        <BackButton link={BackButtonLink()} />
 
                         <Link
                             href={route("posts.edit", post.id)}
