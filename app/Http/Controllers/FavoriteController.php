@@ -15,16 +15,16 @@ class FavoriteController extends Controller
 {
     public function index()
     {
+        // お気に入りチームを選択していなかった場合は、登録ページへ遷移
+        if(auth()->user()->favoriteTeams->count() == 0){
+            return redirect(route("favorites.create"));
+        }
+
         // sessionにroute情報を保存。Favoriteページに遷移した際に2を保存。
         session(["calendar/" . auth()->id() => 2]);
 
         // 投稿詳細ページの戻るボタンを押した際の遷移先を設定
         session(["show/" . auth()->id() => 3]);
-
-        // お気に入りチームを選択していなかった場合は、登録ページへ遷移
-        if(auth()->user()->favoriteTeams->count() == 0){
-            return redirect(route("favorites.create"));
-        }
 
         $games_by_date = Game::with("homeTeam","awayTeam");
         $posts_by_date = Post::with("game.homeTeam","game.awayTeam");
@@ -51,7 +51,7 @@ class FavoriteController extends Controller
         {
             array_push($team_ids, $team->id);
         }
-        return Inertia::render("Favorite/Create", ["teams" => Team::all(), "favoriteTeamIds" => $team_ids, "previousURL" => \url()->previous()]);
+        return Inertia::render("Favorite/Create", ["teams" => Team::all(), "favoriteTeamIds" => $team_ids]);
     }
 
     public function store(Request $request)
