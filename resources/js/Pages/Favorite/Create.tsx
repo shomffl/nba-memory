@@ -5,7 +5,7 @@ import KeyboardDoubleArrowRightIcon from "@mui/icons-material/KeyboardDoubleArro
 import KeyboardDoubleArrowLeftIcon from "@mui/icons-material/KeyboardDoubleArrowLeft";
 
 const Create = (props: any) => {
-    const { teams, favoriteTeamIds, previousURL } = props;
+    const { teams, favoriteTeamIds } = props;
     const { data, setData, post } = useForm<any>({
         selectedTeamIds: favoriteTeamIds,
     });
@@ -13,7 +13,7 @@ const Create = (props: any) => {
     const isIncludedIdInFavorites = (id: any) => {
         return data.selectedTeamIds.includes(id);
     };
-
+    console.log(props);
     const blankSpot = () => {
         const domList = [];
         for (let i = 1; i <= 5 - data.selectedTeamIds.length; i++) {
@@ -50,14 +50,26 @@ const Create = (props: any) => {
             <Head title="PULL ORIGIN"></Head>
             <div className="flex flex-col gap-10 mt-10 px-10">
                 <div className="flex items-center justify-between">
-                    <Link
-                        href={previousURL}
-                        as="button"
-                        className="flex items-end border-b-2 border-red-900 pr-4 hover:scale-105 active:scale-100 duration-200"
-                    >
-                        <KeyboardDoubleArrowLeftIcon />
-                        <h2>Back</h2>
-                    </Link>
+                    {props.session.calendar == 1 ? (
+                        <Link
+                            href={route("games.index")}
+                            as="button"
+                            className="flex items-end border-b-2 border-red-900 pr-4 hover:scale-105 active:scale-100 duration-200"
+                        >
+                            <KeyboardDoubleArrowLeftIcon />
+                            <h2>Calendar</h2>
+                        </Link>
+                    ) : (
+                        <Link
+                            href={route("favorites.index")}
+                            as="button"
+                            className="flex items-end border-b-2 border-red-900 pr-4 hover:scale-105 active:scale-100 duration-200"
+                        >
+                            <KeyboardDoubleArrowLeftIcon />
+                            <h2>Calendar</h2>
+                        </Link>
+                    )}
+
                     <h1 className="border-b-2 text-4xl w-max ">
                         Favroite Team
                     </h1>
