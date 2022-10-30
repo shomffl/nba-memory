@@ -107,6 +107,8 @@ class PostController extends Controller
     public function destroy(Post $post)
     {
         $this->authorize("delete", $post);
+
+        Link::where("post_id", $post->id)->delete();
         $post->delete();
 
         // All Teamページからの投稿の場合は、All Teamカレンダーに遷移
