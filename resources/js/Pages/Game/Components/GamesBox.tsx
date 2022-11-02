@@ -1,12 +1,25 @@
-import React, { memo } from "react";
+import React, { memo, useCallback } from "react";
+import { Inertia } from "@inertiajs/inertia";
 
 const GamesBox = memo(
-    (props: {
-        todayGames: Array<Game>;
-        todayPosts: Array<Post>;
-        transitionCreatePage: (id: any, matched_at: string) => void;
-    }) => {
-        const { todayGames, todayPosts, transitionCreatePage } = props;
+    (props: { todayGames: Array<Game>; todayPosts: Array<Post> }) => {
+        const { todayGames, todayPosts } = props;
+
+        /**
+         * Create.tsxへ遷移するための関数
+         *
+         * @param id 試合ID
+         * @param matched_at 試合日時
+         */
+        const transitionCreatePage = useCallback(
+            (id: any, matched_at: string) => {
+                localStorage.setItem("id", id);
+                localStorage.setItem("matched_at", matched_at);
+
+                Inertia.get("/posts/create");
+            },
+            []
+        );
 
         /**
          * 感想が書かれているかどうかでopacityを変える関数
