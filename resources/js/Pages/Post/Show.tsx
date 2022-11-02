@@ -73,16 +73,24 @@ const Show = (props: {
                     <div className="pb-16">
                         <h2>Link</h2>
                         <div className="flex flex-col gap-3">
-                            {post.links.map((link) => (
-                                <a
-                                    href={link.url}
-                                    key={link.id}
-                                    target="_blank"
-                                    className="bg-white text-blue-700 font-bold underline rounded px-5 py-2 shadow"
-                                >
-                                    {link.title}
-                                </a>
-                            ))}
+                            {post.links.length == 0 ? (
+                                <div className="bg-white text-black rounded px-5 py-2 shadow">
+                                    No Link
+                                </div>
+                            ) : (
+                                <div>
+                                    {post.links.map((link) => (
+                                        <a
+                                            href={link.url}
+                                            key={link.id}
+                                            target="_blank"
+                                            className="bg-white text-blue-700 font-bold underline rounded px-5 py-2 shadow"
+                                        >
+                                            {link.title}
+                                        </a>
+                                    ))}
+                                </div>
+                            )}
                         </div>
                     </div>
 
