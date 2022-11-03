@@ -4,8 +4,7 @@ import { Head, Link, useForm } from "@inertiajs/inertia-react";
 import KeyboardDoubleArrowRightIcon from "@mui/icons-material/KeyboardDoubleArrowRight";
 import KeyboardDoubleArrowLeftIcon from "@mui/icons-material/KeyboardDoubleArrowLeft";
 import { NotificationsProvider } from "@mantine/notifications";
-import { Check, X } from "tabler-icons-react";
-import { showNotification, cleanNotifications } from "@mantine/notifications";
+import { CustomNotification } from "../../Components/CustomNotification";
 
 const Create = (props: any) => {
     const { teams, favoriteTeamIds } = props;
@@ -36,43 +35,32 @@ const Create = (props: any) => {
     const addTeamId = (id: any) => {
         if (data.selectedTeamIds.length < 4) {
             setData("selectedTeamIds", [...data.selectedTeamIds, id]);
-            cleanNotifications();
-            showNotification({
+            CustomNotification({
                 title: "お気に入りチームが追加されました",
-                message:
-                    "他に選択したいチームがない場合は「Save」を押してください",
-                icon: <Check />,
-                color: "green",
+                body: "他に選択したいチームがない場合は「Save」を押してください",
+                type: 1,
             });
         } else if (data.selectedTeamIds.length == 4) {
-            cleanNotifications();
-            showNotification({
+            setData("selectedTeamIds", [...data.selectedTeamIds, id]);
+            CustomNotification({
                 title: "お気に入り登録可能チームが上限に達しました",
-                message:
-                    "選択したチームに間違いない場合は、「Save」を押してください",
-                icon: <Check />,
-                color: "green",
+                body: "選択したチームに間違いない場合は、「Save」を押してください",
+                type: 1,
             });
         } else {
-            cleanNotifications();
-            showNotification({
+            CustomNotification({
                 title: "お気に入りチームは5チームまでしか選択できません",
-                message:
-                    "選択しているチームを外すか、「Save」を押して決定してください",
-                icon: <X />,
-                color: "red",
+                body: "選択しているチームを外すか、「Save」を押して決定してください",
+                type: 0,
             });
         }
     };
 
     const deleteTeamId = (id: any) => {
-        cleanNotifications();
-        showNotification({
-            title: "お気に入りチームが削除されました",
-            message:
-                "お気に入りチーム画面を使用するには、1チーム以上お気に入り登録する必要があります",
-            icon: <X />,
-            color: "red",
+        CustomNotification({
+            title: "お気に入りチームが解除されました",
+            body: "お気に入りチーム画面を使用するには、1チーム以上お気に入り登録する必要があります",
+            type: 0,
         });
         const modefindDate = data.selectedTeamIds.filter((e: any) => e != id);
         setData("selectedTeamIds", modefindDate);
@@ -80,12 +68,10 @@ const Create = (props: any) => {
 
     useEffect(() => {
         if (data.selectedTeamIds.length != 0) {
-            showNotification({
+            CustomNotification({
                 title: "お気に入りチームが選択されています",
-                message:
-                    "他に選択したいチームがない場合は「Save」を押してください",
-                icon: <Check />,
-                color: "green",
+                body: "他に選択したいチームがない場合は「Save」を押してください",
+                type: 1,
             });
         }
     }, []);
