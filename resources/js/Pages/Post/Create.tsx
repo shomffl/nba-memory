@@ -23,7 +23,16 @@ const Create = (props: any) => {
 
     const handleSubmit = (e: any) => {
         e.preventDefault();
-        post(route("posts.store"));
+
+        // 追加されていないリンクがある場合は、confirmで確認をする
+        if (link.title && link.url != "") {
+            const selected = confirm(
+                "追加されていないリンクがあります\nこのまま送信する場合はOKを押してください。"
+            );
+            if (selected) {
+                post(route("posts.store"));
+            }
+        }
     };
 
     return (

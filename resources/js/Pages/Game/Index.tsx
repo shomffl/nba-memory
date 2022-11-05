@@ -56,19 +56,6 @@ const Index = (props: any) => {
         localStorage.setItem("id", gamesByDate[schedules[0]["date"]][0].id);
     }, []);
 
-    /**
-     * Create.tsxへ遷移するための関数
-     *
-     * @param id 試合ID
-     * @param matched_at 試合日時
-     */
-    const transitionCreatePage = useCallback((id: any, matched_at: string) => {
-        localStorage.setItem("id", id);
-        localStorage.setItem("matched_at", matched_at);
-
-        Inertia.get("/posts/create");
-    }, []);
-
     return (
         <Authenticated auth={props.auth} session={props.session} header={null}>
             <Head title="PULL ORIGIN"></Head>
@@ -92,7 +79,6 @@ const Index = (props: any) => {
                             <GamesBox
                                 todayGames={todayGames}
                                 todayPosts={todayPosts}
-                                transitionCreatePage={transitionCreatePage}
                             />
                         </div>
                     </div>
