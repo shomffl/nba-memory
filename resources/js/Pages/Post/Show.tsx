@@ -71,13 +71,13 @@ const Show = (props: {
 
                     <div className="pb-16">
                         <h2>Link</h2>
-                        <div className="flex flex-col gap-3">
+                        <div>
                             {post.links.length == 0 ? (
                                 <div className="bg-white text-black rounded px-5 py-2 shadow">
                                     No Link
                                 </div>
                             ) : (
-                                <div>
+                                <div className="flex flex-col gap-3">
                                     {post.links.map((link) => (
                                         <a
                                             href={link.url}
