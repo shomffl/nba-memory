@@ -32,6 +32,8 @@ const Create = (props: any) => {
             if (selected) {
                 post(route("posts.store"));
             }
+        } else {
+            post(route("posts.store"));
         }
     };
 
