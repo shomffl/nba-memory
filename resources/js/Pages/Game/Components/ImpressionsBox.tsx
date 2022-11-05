@@ -1,12 +1,6 @@
 import React, { useState, useEffect, memo } from "react";
 import { Inertia } from "@inertiajs/inertia";
-import Accordion from "@mui/material/Accordion";
-import AccordionSummary from "@mui/material/AccordionSummary";
-import AccordionDetails from "@mui/material/AccordionDetails";
-import Typography from "@mui/material/Typography";
-import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
-import { createTheme } from "@mui/material";
-import { ThemeProvider } from "@mui/material";
+import { Link } from "@inertiajs/inertia-react";
 
 const ImpressionBoxs = memo(
     (props: {
@@ -15,12 +9,6 @@ const ImpressionBoxs = memo(
         setTodayPosts: any;
     }) => {
         const { postsByDate, todayPosts, setTodayPosts } = props;
-
-        const theme = createTheme({
-            typography: {
-                fontFamily: ["Noto Serif JP"].join(","),
-            },
-        });
 
         const handleDeletePost = (id: number, mathced_at: string) => {
             Inertia.delete(`/posts/${id}`, {
@@ -50,27 +38,16 @@ const ImpressionBoxs = memo(
                         key={todayPost.id}
                         className="py-1 flex justify-between"
                     >
-                        <div className="w-4/5">
-                            <ThemeProvider theme={theme}>
-                                <Accordion>
-                                    <AccordionSummary
-                                        expandIcon={<ExpandMoreIcon />}
-                                    >
-                                        <Typography>
-                                            {todayPost.title} <br />
-                                            {
-                                                todayPost.game.home_team.name
-                                            } vs {todayPost.game.away_team.name}
-                                        </Typography>
-                                    </AccordionSummary>
-                                    <AccordionDetails>
-                                        <Typography>
-                                            {todayPost.detail}
-                                        </Typography>
-                                    </AccordionDetails>
-                                </Accordion>
-                            </ThemeProvider>
-                        </div>
+                        <Link
+                            href={route("posts.show", todayPost.id)}
+                            className="w-4/5"
+                        >
+                            <div className="bg-white p-2 mr-2 rounded shadow hover:scale-[1.02] active:scale-100 duration-200">
+                                {todayPost.title} <br />
+                                {todayPost.game.home_team.name} vs{" "}
+                                {todayPost.game.away_team.name}
+                            </div>
+                        </Link>
                         <div className="flex flex-col justify-start py-1 px-1">
                             <div className="pb-3">
                                 <button

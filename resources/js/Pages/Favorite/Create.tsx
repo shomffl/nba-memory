@@ -1,8 +1,8 @@
 import React, { useEffect } from "react";
 import Authenticated from "@/Layouts/Authenticated";
 import { Head, Link, useForm } from "@inertiajs/inertia-react";
-import KeyboardDoubleArrowRightIcon from "@mui/icons-material/KeyboardDoubleArrowRight";
-import KeyboardDoubleArrowLeftIcon from "@mui/icons-material/KeyboardDoubleArrowLeft";
+import { Check } from "tabler-icons-react";
+import { Calendar } from "tabler-icons-react";
 import { NotificationsProvider } from "@mantine/notifications";
 import { CustomNotification } from "../../Components/CustomNotification";
 
@@ -90,18 +90,18 @@ const Create = (props: any) => {
                             <Link
                                 href={route("games.index")}
                                 as="button"
-                                className="flex items-end border-b-2 border-red-900 pr-4 hover:scale-105 active:scale-100 duration-200"
+                                className="flex items-center border-b-2 border-red-900 pr-4 hover:scale-105 active:scale-100 duration-200"
                             >
-                                <KeyboardDoubleArrowLeftIcon />
+                                <Calendar strokeWidth={1.5} />
                                 <h2>Calendar</h2>
                             </Link>
                         ) : (
                             <Link
                                 href={route("favorites.index")}
                                 as="button"
-                                className="flex items-end border-b-2 border-red-900 pr-4 hover:scale-105 active:scale-100 duration-200"
+                                className="flex items-center gap-1 border-b-2 border-red-900 pr-2 hover:scale-105 active:scale-100 duration-200"
                             >
-                                <KeyboardDoubleArrowLeftIcon />
+                                <Calendar strokeWidth={1.5} />
                                 <h2>Calendar</h2>
                             </Link>
                         )}
@@ -117,12 +117,12 @@ const Create = (props: any) => {
                                 className="flex items-end border-b-2 border-gray-1000 pl-4 hover:scale-105 active:scale-100 duration-200"
                             >
                                 <h2>Save</h2>
-                                <KeyboardDoubleArrowRightIcon />
+                                <Check strokeWidth={1.5} />
                             </button>
                         ) : (
                             <div className="flex items-end border-b-2 border-gray-1000 text-gray-400 border-opacity-50 pl-4">
                                 <h2>Save</h2>
-                                <KeyboardDoubleArrowRightIcon />
+                                <Check strokeWidth={1.5} />
                             </div>
                         )}
                     </div>

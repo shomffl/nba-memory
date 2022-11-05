@@ -5,9 +5,10 @@ import {
     setDataByMethod,
     setDataByKeyValuePair,
 } from "@inertiajs/inertia-react";
-import { IconButton } from "@mui/material";
-import CheckCircleOutlineIcon from "@mui/icons-material/CheckCircleOutline";
-import DeleteIcon from "@mui/icons-material/Delete";
+import { ActionIcon } from "@mantine/core";
+
+import { Trash } from "tabler-icons-react";
+import { Plus } from "tabler-icons-react";
 
 const Links = (props: {
     data: SendPost;
@@ -38,9 +39,6 @@ const Links = (props: {
         setData("links", linkData);
     };
 
-    const addLinkButtonStyle =
-        (link.title && link.url) != "" ? "animate-ping hover:animate-none" : "";
-
     return (
         <div>
             <h2 className="mb-2">Link</h2>
@@ -50,19 +48,25 @@ const Links = (props: {
             </div>
 
             {data.links.map((link: any) => (
-                <div key={link.id} className="flex gap-2 pt-2 pb-4">
+                <div
+                    key={link.id}
+                    className="flex items-center gap-2 pt-2 pb-4"
+                >
                     <div className="w-4/12 bg-white rounded py-2 px-3 shadow">
                         {link.title}
                     </div>
                     <div className="w-8/12 bg-white rounded py-2 px-3 shadow">
                         {link.url}
                     </div>
-                    <IconButton onClick={(e) => removeLink(link.id)}>
-                        <DeleteIcon />
-                    </IconButton>
+                    <ActionIcon
+                        className="hover:bg-gray-100 hover:scale-125 duration-200 active:scale-110"
+                        onClick={(e: any) => removeLink(link.id)}
+                    >
+                        <Trash strokeWidth={1.5} color={"black"} />
+                    </ActionIcon>
                 </div>
             ))}
-            <div className="flex gap-2">
+            <div className="flex items-center gap-2">
                 <div className="w-4/12">
                     <input
                         type="text"
@@ -94,15 +98,15 @@ const Links = (props: {
                     />
                 </div>
 
-                <IconButton
-                    className={addLinkButtonStyle}
-                    onClick={(e) => {
+                <ActionIcon
+                    className="hover:bg-gray-100 hover:scale-125 duration-200 active:scale-100"
+                    onClick={(e: any) => {
                         addLink();
                     }}
                     disabled={(link.title && link.url) == ""}
                 >
-                    <CheckCircleOutlineIcon />
-                </IconButton>
+                    <Plus strokeWidth={1.5} color={"black"} />
+                </ActionIcon>
             </div>
         </div>
     );

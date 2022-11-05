@@ -1,7 +1,6 @@
 import React from "react";
 import Authenticated from "@/Layouts/Authenticated";
 import { Head, Link } from "@inertiajs/inertia-react";
-import { Games } from "@mui/icons-material";
 import BackButton from "@/Components/Buttons/BackButton";
 import { Inertia } from "@inertiajs/inertia";
 

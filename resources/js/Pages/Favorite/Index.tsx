@@ -6,8 +6,8 @@ import { EventClickArg } from "@fullcalendar/react";
 import Calendar from "../Game/Components/Calendar";
 import ImpressionBox from "../Game/Components/ImpressionsBox";
 import GamesBox from "../Game/Components/GamesBox";
-import SettingsIcon from "@mui/icons-material/Settings";
-import { IconButton } from "@mui/material";
+import { Settings } from "tabler-icons-react";
+import { ActionIcon } from "@mantine/core";
 
 const FavoriteTeam = (props: any) => {
     const { schedules, gamesByDate, postsByDate, teams } = props;
@@ -74,15 +74,14 @@ const FavoriteTeam = (props: any) => {
                         <div className="flex justify-center items-center w-full font-bold h-12 ml-5 mb-5 bg-gray-100 rounded shadow-lg">
                             <h1>{todayGames[0]?.matched_at || "no match"}</h1>
                         </div>
-                        <div className="flex justify-center items-center w-1/12 h-12 ml-3 mb-5 bg-gray-100 rounded shadow-lg">
-                            <IconButton
-                                onClick={(e) =>
-                                    Inertia.get(route("favorites.create"))
-                                }
-                            >
-                                <SettingsIcon />
-                            </IconButton>
-                        </div>
+                        <ActionIcon
+                            onClick={() =>
+                                Inertia.get(route("favorites.create"))
+                            }
+                            className="flex justify-center text-black items-center w-1/12 h-12 ml-3 mb-5 bg-gray-100 rounded shadow-lg hover:bg-gray-200"
+                        >
+                            <Settings strokeWidth={1.5} />
+                        </ActionIcon>
                     </div>
 
                     <div className="overflow-auto h-[40vh] ml-5 mb-10 bg-gray-100 rounded shadow-lg">
