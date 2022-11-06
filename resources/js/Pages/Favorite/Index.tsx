@@ -3,9 +3,9 @@ import { Inertia } from "@inertiajs/inertia";
 import Authenticated from "@/Layouts/Authenticated";
 import { Head, useRemember, InertiaLink } from "@inertiajs/inertia-react";
 import { EventClickArg } from "@fullcalendar/react";
-import Calendar from "../Game/Components/Calendar";
-import ImpressionBox from "../Game/Components/ImpressionsBox";
-import GamesBox from "../Game/Components/GamesBox";
+import Calendar from "../Game/PC/Components/Calendar";
+import ImpressionBox from "../Game/PC/Components/ImpressionsBox";
+import GamesBox from "../Game/PC/Components/GamesBox";
 import { Settings } from "tabler-icons-react";
 import { ActionIcon } from "@mantine/core";
 
