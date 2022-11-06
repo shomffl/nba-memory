@@ -4,7 +4,7 @@ import "@fullcalendar/react/dist/vdom";
 import FullCalendar, { EventClickArg } from "@fullcalendar/react";
 import dayGridPlugin from "@fullcalendar/daygrid";
 import interactionPlugin, { DateClickArg } from "@fullcalendar/interaction";
-import { CalendarStyleWrapper } from "../../../Components/CalendarStyleWrapper";
+import { CalendarStyleWrapper } from "../../../../Components/CalendarStyleWrapper";
 import { usePage } from "@inertiajs/inertia-react";
 
 type Props = {
