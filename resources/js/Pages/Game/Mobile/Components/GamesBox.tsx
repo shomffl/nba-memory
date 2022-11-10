@@ -31,6 +31,7 @@ const GamesBox = memo(
                 return { opacity: 0.3 };
             }
         };
+        console.log("impressionsBox", todayGames);
 
         return (
             <div>
@@ -51,7 +52,7 @@ const GamesBox = memo(
                         >
                             <div
                                 style={changeOpacity(todayGame.id)}
-                                className="flex justify-between items-center p-2 bg-gray-100 hover:bg-white hover:shadow hover:scale-105 active:bg-blue-50 text-center duration-150 rounded font-bold border border-gray-200"
+                                className="flex justify-between items-center p-2 bg-gray-100 active:scale-105 active:bg-blue-50 text-center duration-150 rounded font-bold border border-gray-200"
                             >
                                 <img
                                     className="max-h-7 w-6"

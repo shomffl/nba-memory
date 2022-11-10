@@ -1,14 +1,17 @@
 import React, { useState, useEffect, memo } from "react";
 import { Inertia } from "@inertiajs/inertia";
 import { Link } from "@inertiajs/inertia-react";
+import { ActionIcon } from "@mantine/core";
+import { Trash, ArrowNarrowRight } from "tabler-icons-react";
 
 const ImpressionBoxs = memo(
     (props: {
         postsByDate: any;
         todayPosts: Array<Post>;
         setTodayPosts: any;
+        setOpened: any;
     }) => {
-        const { postsByDate, todayPosts, setTodayPosts } = props;
+        const { postsByDate, todayPosts, setTodayPosts, setOpened } = props;
 
         const handleDeletePost = (id: number, mathced_at: string) => {
             Inertia.delete(`/posts/${id}`, {
@@ -36,42 +39,39 @@ const ImpressionBoxs = memo(
                 {todayPosts?.map((todayPost) => (
                     <div
                         key={todayPost.id}
-                        className="py-1 flex justify-between"
+                        className="flex items-center justify-center"
                     >
                         <Link
                             href={route("posts.show", todayPost.id)}
-                            className="w-4/5"
+                            className="w-10/12 pr-2 py-2"
                         >
-                            <div className="bg-white p-2 mr-2 rounded shadow hover:scale-[1.02] active:scale-100 duration-200">
+                            <div className="flex bg-gray-100 p-2 rounded border-gray-300 border-b-2 active:scale-105 active:bg-blue-50 duration-200">
                                 {todayPost.title} <br />
                                 {todayPost.game.home_team.name} vs{" "}
                                 {todayPost.game.away_team.name}
                             </div>
                         </Link>
-                        <div className="flex flex-col justify-start py-1 px-1">
-                            <div className="pb-3">
-                                <button
-                                    onClick={(e) =>
-                                        Inertia.get(`/posts/${todayPost.id}`)
-                                    }
-                                    className="bg-gray-1000 text-white hover:bg-blue-1000 hover:text-white hover:shadow-2xl hover:scale-105 hover:scale-100 px-0.5 py-0.5 rounded duration-150"
-                                >
-                                    &nbsp;&nbsp;SHOW&nbsp;&nbsp;
-                                </button>
-                            </div>
-                            <div>
-                                <button
-                                    onClick={(e) =>
-                                        handleDeletePost(
-                                            todayPost.id,
-                                            todayPost.game.matched_at
-                                        )
-                                    }
-                                    className="bg-gray-1000 text-white hover:bg-red-900 hover:text-white hover:shadow-2xl hover:scale-105 active:scale-100 px-1 py-0.5 rounded duration-150"
-                                >
-                                    DELETE
-                                </button>
-                            </div>
+                        <div className="flex flex-col gap-2">
+                            <ActionIcon
+                                onClick={() =>
+                                    Inertia.get(`/posts/${todayPost.id}`)
+                                }
+                            >
+                                <ArrowNarrowRight
+                                    strokeWidth={1.5}
+                                    color={"black"}
+                                />
+                            </ActionIcon>
+                            <ActionIcon
+                                onClick={(e: any) =>
+                                    handleDeletePost(
+                                        todayPost.id,
+                                        todayPost.game.matched_at
+                                    )
+                                }
+                            >
+                                <Trash strokeWidth={1.5} color={"black"} />
+                            </ActionIcon>
                         </div>
                     </div>
                 ))}

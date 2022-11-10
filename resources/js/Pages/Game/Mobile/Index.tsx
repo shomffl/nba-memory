@@ -10,9 +10,7 @@ const Index = (props: any) => {
         handleEventClick,
         handleDateClick,
         todayGames,
-        setTodayGames,
         todayPosts,
-        gamesByDate,
         postsByDate,
         setTodayPosts,
         opened,
@@ -29,11 +27,12 @@ const Index = (props: any) => {
                 />
             </div>
             <Modal opened={opened} onClose={() => setOpened(false)}>
-                {/* <ImpressionBox
+                <ImpressionBox
+                    setOpened={setOpened}
                     postsByDate={postsByDate}
                     todayPosts={todayPosts}
                     setTodayPosts={setTodayPosts}
-                /> */}
+                />
                 <GamesBox todayGames={todayGames} todayPosts={todayPosts} />
             </Modal>
         </div>
