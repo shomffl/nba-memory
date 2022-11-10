@@ -38,10 +38,10 @@ const GamesBox = memo(
                 {todayGames.map((todayGame) => (
                     <div
                         key={todayGame.id}
-                        className="flex justify-between my-2 items-center"
+                        className="flex justify-center items-center"
                     >
                         <button
-                            className="w-4/5"
+                            className="w-11/12 my-2"
                             onClick={() =>
                                 transitionCreatePage(
                                     todayGame.id,
@@ -51,7 +51,7 @@ const GamesBox = memo(
                         >
                             <div
                                 style={changeOpacity(todayGame.id)}
-                                className="flex justify-between items-center p-2 bg-white hover:bg-white hover:shadow hover:scale-105 active:bg-blue-50 text-center duration-150 rounded font-bold border border-gray-200"
+                                className="flex justify-between items-center p-2 bg-gray-100 hover:bg-white hover:shadow hover:scale-105 active:bg-blue-50 text-center duration-150 rounded font-bold border border-gray-200"
                             >
                                 <img
                                     className="max-h-7 w-6"
@@ -77,21 +77,6 @@ const GamesBox = memo(
                                 />
                             </div>
                         </button>
-
-                        <div>
-                            <button
-                                onClick={() =>
-                                    transitionCreatePage(
-                                        todayGame.id,
-                                        todayGame.matched_at
-                                    )
-                                }
-                                style={changeOpacity(todayGame.id)}
-                                className="px-3 py-1 mx-2 bg-gray-1000 text-white hover:text-white hover:bg-blue-1000 hover:shadow-2xl hover:scale-105 active:scale-100 rounded duration-200"
-                            >
-                                ADD
-                            </button>
-                        </div>
                     </div>
                 ))}
             </div>

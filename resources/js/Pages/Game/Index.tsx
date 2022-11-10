@@ -1,4 +1,4 @@
-import React, { useEffect, useCallback } from "react";
+import React, { useState, useEffect, useCallback } from "react";
 import { Inertia } from "@inertiajs/inertia";
 import Authenticated from "@/Layouts/Authenticated";
 import { Head, useRemember } from "@inertiajs/inertia-react";
@@ -17,13 +17,15 @@ const Index = (props: any) => {
         [],
         "IndexTodayPosts"
     );
-
+    const [opened, setOpened] = useState(false);
     /**
      * カレンダーの日付クリック時に実行される関数
      * クリックした日付に試合があればtodayGamesに格納
      * クリックした日付に感想があればtodayPostsに格納
      */
     const handleDateClick = (arg: any) => {
+        setOpened(true);
+
         if (arg.dateStr in gamesByDate) {
             setTodayGames(gamesByDate[arg.dateStr]);
             setTodayPosts(postsByDate[arg.dateStr]);
@@ -77,8 +79,12 @@ const Index = (props: any) => {
                     handleDateClick={handleDateClick}
                     todayGames={todayGames}
                     todayPosts={todayPosts}
-                    postsByDate={postsByDate}
+                    setTodayGames={setTodayGames}
                     setTodayPosts={setTodayGames}
+                    gamesByDate={gamesByDate}
+                    postsByDate={postsByDate}
+                    opened={opened}
+                    setOpened={setOpened}
                 />
             )}
         </Authenticated>

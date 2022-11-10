@@ -1,7 +1,8 @@
-import React from "react";
-import Calendar from "../PC/Components/Calendar";
-import ImpressionBox from "../PC/Components/ImpressionsBox";
-import GamesBox from "../PC/Components/GamesBox";
+import React, { useState } from "react";
+import Calendar from "../Mobile/Components/Calendar";
+import ImpressionBox from "../Mobile/Components/ImpressionsBox";
+import GamesBox from "../Mobile/Components/GamesBox";
+import { Modal, Button, Group } from "@mantine/core";
 
 const Index = (props: any) => {
     const {
@@ -9,10 +10,15 @@ const Index = (props: any) => {
         handleEventClick,
         handleDateClick,
         todayGames,
+        setTodayGames,
         todayPosts,
+        gamesByDate,
         postsByDate,
         setTodayPosts,
+        opened,
+        setOpened,
     } = props;
+
     return (
         <div className="">
             <div className="w-full">
@@ -22,33 +28,14 @@ const Index = (props: any) => {
                     handleDateClick={handleDateClick}
                 />
             </div>
-            {/* <div className="flex flex-col w-4/12"> */}
-            {/* <div className="flex">
-                            <div className="flex justify-center items-center w-full font-bold h-12 ml-5 mb-5 bg-gray-100 rounded shadow-lg">
-                                <h1>
-                                    {todayGames[0]?.matched_at || "no match"}
-                                </h1>
-                            </div>
-                        </div> */}
-
-            {/* <div className="overflow-auto h-[40vh] ml-5 mb-10 bg-gray-100 rounded shadow-lg">
-                            <div className="m-3">
-                                <GamesBox
-                                    todayGames={todayGames}
-                                    todayPosts={todayPosts}
-                                />
-                            </div>
-                        </div>
-                        <div className="overflow-auto ml-5 h-[30vh] bg-gray-100 rounded shadow-lg">
-                            <div className="m-3">
-                                <ImpressionBox
-                                    postsByDate={postsByDate}
-                                    todayPosts={todayPosts}
-                                    setTodayPosts={setTodayPosts}
-                                />
-                            </div>
-                        </div> */}
-            {/* </div> */}
+            <Modal opened={opened} onClose={() => setOpened(false)}>
+                {/* <ImpressionBox
+                    postsByDate={postsByDate}
+                    todayPosts={todayPosts}
+                    setTodayPosts={setTodayPosts}
+                /> */}
+                <GamesBox todayGames={todayGames} todayPosts={todayPosts} />
+            </Modal>
         </div>
     );
 };

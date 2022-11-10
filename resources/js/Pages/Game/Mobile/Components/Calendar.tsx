@@ -50,9 +50,9 @@ const Calendar = (props: Props) => {
                     datesSet={(arg) => {
                         getViewDate(arg.view.currentStart);
                     }}
-                    eventTextColor="#262626"
+                    eventTextColor="white"
                     eventBackgroundColor="white"
-                    eventBorderColor="#889c9b"
+                    eventBorderColor="white"
                     plugins={[dayGridPlugin, interactionPlugin]}
                     initialView="dayGridMonth"
                     locale="us"
@@ -63,9 +63,8 @@ const Calendar = (props: Props) => {
                         },
                     }}
                     titleFormat={{
-                        year: "2-digit",
-                        month: "2-digit",
-                        day: "2-digit",
+                        year: "numeric",
+                        month: "numeric",
                     }}
                     headerToolbar={{
                         start: "",
@@ -74,7 +73,7 @@ const Calendar = (props: Props) => {
                     }}
                     initialDate={defaultDate}
                     contentHeight="75vh"
-                    dayMaxEvents={1}
+                    dayMaxEvents={0}
                     events={schedules}
                     eventClick={handleEventClick}
                     dateClick={handleDateClick}
