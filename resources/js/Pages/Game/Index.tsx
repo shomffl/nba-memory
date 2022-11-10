@@ -70,7 +70,7 @@ const Index = (props: any) => {
                     todayGames={todayGames}
                     todayPosts={todayPosts}
                     postsByDate={postsByDate}
-                    setTodayPosts={setTodayGames}
+                    setTodayPosts={setTodayPosts}
                 />
             ) : (
                 <IndexMobile
@@ -80,7 +80,7 @@ const Index = (props: any) => {
                     todayGames={todayGames}
                     todayPosts={todayPosts}
                     setTodayGames={setTodayGames}
-                    setTodayPosts={setTodayGames}
+                    setTodayPosts={setTodayPosts}
                     gamesByDate={gamesByDate}
                     postsByDate={postsByDate}
                     opened={opened}
