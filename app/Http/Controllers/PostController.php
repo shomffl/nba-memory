@@ -68,18 +68,16 @@ class PostController extends Controller
 
     public function show(Post $post)
     {
-        if(!auth()->user()->can("view", $post)){
-            return Inertia::render("Error/403");
-        }
+        $this->authorize("view", $post);
+
         return Inertia::render("Post/Show", ["post" => $post->getPost()]);
     }
 
 
     public function edit(Post $post)
     {
-        if(!auth()->user()->can("update", $post)){
-            return Inertia::render("Error/403");
-        }
+        $this->authorize("update", $post);
+
         return Inertia::render("Post/Edit", ["post" =>$post->getPost()]);
     }
 
