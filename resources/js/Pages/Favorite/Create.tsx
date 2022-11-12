@@ -86,7 +86,7 @@ const Create = (props: any) => {
                 <Head title="PULL ORIGIN"></Head>
                 <div className="flex flex-col gap-10 mt-10 px-10">
                     <div className="flex items-center justify-between">
-                        {props.session.calendar == 1 ? (
+                        {props.session.calendar != 2 ? (
                             <Link
                                 href={route("games.index")}
                                 as="button"
