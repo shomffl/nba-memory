@@ -31,55 +31,64 @@ const GamesBox = memo(
                 return { opacity: 0.3 };
             }
         };
-        console.log("impressionsBox", todayGames);
 
         return (
             <div>
                 <h1>試合</h1>
-                {todayGames.map((todayGame) => (
-                    <div
-                        key={todayGame.id}
-                        className="flex justify-center items-center"
-                    >
-                        <button
-                            className="w-11/12 my-2"
-                            onClick={() =>
-                                transitionCreatePage(
-                                    todayGame.id,
-                                    todayGame.matched_at
-                                )
-                            }
-                        >
+                {todayGames?.length ? (
+                    <div>
+                        {" "}
+                        {todayGames.map((todayGame) => (
                             <div
-                                style={changeOpacity(todayGame.id)}
-                                className="flex justify-between items-center p-2 bg-gray-100 active:scale-105 active:bg-blue-50 text-center duration-150 rounded font-bold border border-gray-200"
+                                key={todayGame.id}
+                                className="flex justify-center items-center"
                             >
-                                <img
-                                    className="max-h-7 w-6"
-                                    src={todayGame.home_team.logo}
-                                />
-                                <h2>
-                                    <div className="flex items-center justify-between">
-                                        <div className="flex items-center">
-                                            &nbsp;
-                                            {todayGame.home_team.name} (
-                                            {todayGame.home_team_point})
-                                        </div>
-                                        &nbsp;vs&nbsp;
-                                        <div className="flex items-center">
-                                            {todayGame.away_team.name} (
-                                            {todayGame.away_team_point})&nbsp;
-                                        </div>
+                                <button
+                                    className="w-11/12 my-2"
+                                    onClick={() =>
+                                        transitionCreatePage(
+                                            todayGame.id,
+                                            todayGame.matched_at
+                                        )
+                                    }
+                                >
+                                    <div
+                                        style={changeOpacity(todayGame.id)}
+                                        className="flex justify-between items-center p-2 bg-gray-100 active:scale-105 active:bg-blue-50 text-center duration-150 rounded font-bold border border-gray-200"
+                                    >
+                                        <img
+                                            className="max-h-7 w-6"
+                                            src={todayGame.home_team.logo}
+                                        />
+                                        <h2>
+                                            <div className="flex items-center justify-between">
+                                                <div className="flex items-center">
+                                                    &nbsp;
+                                                    {todayGame.home_team.name} (
+                                                    {todayGame.home_team_point})
+                                                </div>
+                                                &nbsp;vs&nbsp;
+                                                <div className="flex items-center">
+                                                    {todayGame.away_team.name} (
+                                                    {todayGame.away_team_point}
+                                                    )&nbsp;
+                                                </div>
+                                            </div>
+                                        </h2>
+                                        <img
+                                            className="max-h-7 w-6"
+                                            src={todayGame.away_team.logo}
+                                        />
                                     </div>
-                                </h2>
-                                <img
-                                    className="max-h-7 w-6"
-                                    src={todayGame.away_team.logo}
-                                />
+                                </button>
                             </div>
-                        </button>
+                        ))}
                     </div>
-                ))}
+                ) : (
+                    <div className="mx-4 my-3">
+                        <h2>No Match</h2>
+                    </div>
+                )}
             </div>
         );
     }

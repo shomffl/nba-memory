@@ -32,49 +32,63 @@ const ImpressionBoxs = memo(
             );
             setTodayPosts(data);
         };
+        console.log(todayPosts?.length);
 
         return (
             <div>
                 <h1>感想</h1>
-                {todayPosts?.map((todayPost) => (
-                    <div
-                        key={todayPost.id}
-                        className="flex items-center justify-center"
-                    >
-                        <Link
-                            href={route("posts.show", todayPost.id)}
-                            className="w-10/12 pr-2 py-2"
-                        >
-                            <div className="flex bg-gray-100 p-2 rounded border-gray-300 border-b-2 active:scale-105 active:bg-blue-50 duration-200">
-                                {todayPost.title} <br />
-                                {todayPost.game.home_team.name} vs{" "}
-                                {todayPost.game.away_team.name}
+                {todayPosts?.length ? (
+                    <div>
+                        {todayPosts?.map((todayPost) => (
+                            <div
+                                key={todayPost.id}
+                                className="flex items-center justify-center"
+                            >
+                                <Link
+                                    href={route("posts.show", todayPost.id)}
+                                    className="w-10/12 pr-2 py-2"
+                                >
+                                    <div className="flex bg-gray-100 p-2 rounded border-gray-300 border-b-2 active:scale-105 active:bg-blue-50 duration-200">
+                                        {todayPost.title} <br />
+                                        {todayPost.game.home_team.name} vs{" "}
+                                        {todayPost.game.away_team.name}
+                                    </div>
+                                </Link>
+                                <div className="flex flex-col gap-2">
+                                    <ActionIcon
+                                        onClick={() =>
+                                            Inertia.get(
+                                                `/posts/${todayPost.id}`
+                                            )
+                                        }
+                                    >
+                                        <ArrowNarrowRight
+                                            strokeWidth={1.5}
+                                            color={"black"}
+                                        />
+                                    </ActionIcon>
+                                    <ActionIcon
+                                        onClick={(e: any) =>
+                                            handleDeletePost(
+                                                todayPost.id,
+                                                todayPost.game.matched_at
+                                            )
+                                        }
+                                    >
+                                        <Trash
+                                            strokeWidth={1.5}
+                                            color={"black"}
+                                        />
+                                    </ActionIcon>
+                                </div>
                             </div>
-                        </Link>
-                        <div className="flex flex-col gap-2">
-                            <ActionIcon
-                                onClick={() =>
-                                    Inertia.get(`/posts/${todayPost.id}`)
-                                }
-                            >
-                                <ArrowNarrowRight
-                                    strokeWidth={1.5}
-                                    color={"black"}
-                                />
-                            </ActionIcon>
-                            <ActionIcon
-                                onClick={(e: any) =>
-                                    handleDeletePost(
-                                        todayPost.id,
-                                        todayPost.game.matched_at
-                                    )
-                                }
-                            >
-                                <Trash strokeWidth={1.5} color={"black"} />
-                            </ActionIcon>
-                        </div>
+                        ))}
                     </div>
-                ))}
+                ) : (
+                    <div className="mx-4 my-3">
+                        <h2>No Data</h2>
+                    </div>
+                )}
             </div>
         );
     }
