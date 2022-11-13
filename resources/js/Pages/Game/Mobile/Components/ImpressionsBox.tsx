@@ -32,7 +32,6 @@ const ImpressionBoxs = memo(
             );
             setTodayPosts(data);
         };
-        console.log(todayPosts?.length);
 
         return (
             <div>

@@ -6,6 +6,7 @@ import dayGridPlugin from "@fullcalendar/daygrid";
 import interactionPlugin, { DateClickArg } from "@fullcalendar/interaction";
 import { CalendarStyleWrapper } from "../../../../Components/CalendarStyleWrapper";
 import { usePage } from "@inertiajs/inertia-react";
+import { Settings } from "tabler-icons-react";
 
 type Props = {
     schedules: Schedule[];
@@ -43,6 +44,12 @@ const Calendar = (props: Props) => {
         return Inertia.get(route("games.index"));
     };
 
+    const startButton = () => {
+        if (url == "/favorites") {
+            return "settingButton";
+        }
+    };
+
     return (
         <div className="bg-gray-100 shadow-lg mt-3">
             <CalendarStyleWrapper>
@@ -58,8 +65,12 @@ const Calendar = (props: Props) => {
                     locale="us"
                     customButtons={{
                         changeModeButton: {
-                            text: url == "/games" ? "Favorite" : "All Team",
+                            text: url == "/games" ? "Favorite" : "All",
                             click: changeMode,
+                        },
+                        settingButton: {
+                            text: "setting",
+                            click: () => Inertia.get(route("favorites.create")),
                         },
                     }}
                     titleFormat={{
@@ -67,7 +78,7 @@ const Calendar = (props: Props) => {
                         month: "numeric",
                     }}
                     headerToolbar={{
-                        start: "",
+                        start: startButton(),
                         center: "title",
                         end: "changeModeButton today prev,next",
                     }}
