@@ -6,7 +6,6 @@ import dayGridPlugin from "@fullcalendar/daygrid";
 import interactionPlugin, { DateClickArg } from "@fullcalendar/interaction";
 import { CalendarStyleWrapper } from "../../../../Components/CalendarStyleWrapper";
 import { usePage } from "@inertiajs/inertia-react";
-import { Settings } from "tabler-icons-react";
 
 type Props = {
     schedules: Schedule[];
@@ -57,9 +56,9 @@ const Calendar = (props: Props) => {
                     datesSet={(arg) => {
                         getViewDate(arg.view.currentStart);
                     }}
-                    eventTextColor="white"
+                    eventTextColor="black"
                     eventBackgroundColor="white"
-                    eventBorderColor="white"
+                    eventBorderColor="black"
                     plugins={[dayGridPlugin, interactionPlugin]}
                     initialView="dayGridMonth"
                     locale="us"

@@ -48,6 +48,12 @@ const Index = (props: any) => {
                 gamesByDate[clickInfo.event.extendedProps.matched_at]
             );
         }
+
+        if (clickInfo.event.extendedProps.post_id) {
+            Inertia.get(
+                route("posts.show", clickInfo.event.extendedProps.post_id)
+            );
+        }
     };
 
     /**
