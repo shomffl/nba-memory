@@ -1,9 +1,9 @@
 import React, { useState } from "react";
 import Authenticated from "@/Layouts/Authenticated";
 import { useForm } from "@inertiajs/inertia-react";
-import PostsSortByPosted from "./Components/PostsSortByPosted";
-import PostsSortByMatched from "./Components/PostsSortByMatched";
-import SearchBox from "./Components/SearchBox";
+import PostsSortByPosted from "./PC/Components/PostsSortByPosted";
+import PostsSortByMatched from "./PC/Components/PostsSortByMatched";
+import SearchBox from "./PC/Components/SearchBox";
 
 const Index = (props: {
     auth: any;

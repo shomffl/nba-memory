@@ -9,7 +9,7 @@ import { ActionIcon } from "@mantine/core";
 import { Trash } from "tabler-icons-react";
 import { Plus } from "tabler-icons-react";
 import { NotificationsProvider } from "@mantine/notifications";
-import { CustomNotification } from "../../../Components/CustomNotification";
+import { CustomNotification } from "../../../../Components/CustomNotification";
 
 const Links = (props: {
     data: SendPost;
