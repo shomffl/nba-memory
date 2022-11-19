@@ -84,7 +84,7 @@ const Create = (props: any) => {
 
                 <button
                     onClick={handleSubmit}
-                    className="bg-gray-1000 text-white hover:text-white hover:bg-blue-1000 shadow hover:shadow-2xl hover:scale-105 active:scale-100 px-5 py-1 rounded duration-200"
+                    className="bg-gray-1000 text-white shadow active:bg-blue-1000 active:scale-95 px-5 py-1 rounded duration-200"
                     type="submit"
                 >
                     Save
