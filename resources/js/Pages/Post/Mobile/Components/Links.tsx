@@ -61,28 +61,28 @@ const Links = (props: {
         >
             <div>
                 <h2 className="mb-2">Link</h2>
-                <div className="flex">
-                    <p className="w-4/12">title</p>
-                    <p className="w-8/12">url</p>
-                </div>
 
                 {data.links.map((link: any) => (
                     <div
                         key={link.id}
-                        className="flex items-center gap-2 pt-2 pb-4"
+                        className="flex flex-col items-start gap-2 pt-2 pb-4"
                     >
-                        <div className="w-4/12 bg-white rounded py-2 px-3 shadow">
-                            {link.title}
+                        <div className="flex items-center gap-4 w-10/12">
+                            <div className="overflow-auto bg-white rounded py-2 px-3 shadow">
+                                {link.title}
+                            </div>
                         </div>
-                        <div className="w-8/12 bg-white rounded py-2 px-3 shadow">
-                            {link.url}
+                        <div className="flex items-center gap-4 w-full">
+                            <div className="overflow-auto bg-white rounded py-2 px-3 shadow w-10/12">
+                                {link.url}
+                            </div>
+                            <ActionIcon
+                                className="hover:bg-gray-100 hover:scale-125 duration-200 active:scale-110"
+                                onClick={(e: any) => removeLink(link.id)}
+                            >
+                                <Trash strokeWidth={1.5} color={"black"} />
+                            </ActionIcon>
                         </div>
-                        <ActionIcon
-                            className="hover:bg-gray-100 hover:scale-125 duration-200 active:scale-110"
-                            onClick={(e: any) => removeLink(link.id)}
-                        >
-                            <Trash strokeWidth={1.5} color={"black"} />
-                        </ActionIcon>
                     </div>
                 ))}
                 <div className="flex items-center gap-2">
