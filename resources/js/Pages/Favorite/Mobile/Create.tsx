@@ -1,6 +1,6 @@
 import React from "react";
 import { Link } from "@inertiajs/inertia-react";
-import { Check } from "tabler-icons-react";
+import { PlayerTrackNext } from "tabler-icons-react";
 import { Calendar } from "tabler-icons-react";
 
 const Create = (props: any) => {
@@ -60,13 +60,11 @@ const Create = (props: any) => {
                         disabled={data.selectedTeamIds.length == 0}
                         className="flex items-end border-b-2 border-gray-1000 active:scale-105"
                     >
-                        <h2>Save</h2>
-                        <Check strokeWidth={1.5} />
+                        <PlayerTrackNext strokeWidth={1.5} />
                     </button>
                 ) : (
                     <div className="flex items-end border-b-2 border-gray-1000 text-gray-400 border-opacity-50">
-                        <h2>Save</h2>
-                        <Check strokeWidth={1.5} />
+                        <PlayerTrackNext strokeWidth={1.5} />
                     </div>
                 )}
             </div>
