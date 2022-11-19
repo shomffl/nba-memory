@@ -5,6 +5,8 @@ import {
     setDataByMethod,
     setDataByKeyValuePair,
 } from "@inertiajs/inertia-react";
+import { ActionIcon } from "@mantine/core";
+import { Send } from "tabler-icons-react";
 
 const SearchBox = (props: {
     data: any;
@@ -15,9 +17,8 @@ const SearchBox = (props: {
 }) => {
     const { data, setData, seasons } = props;
     return (
-        <div className="flex gap-6 mb-10">
+        <div className="flex gap-6 mb-10 mt-5 items-center">
             <div>
-                <label className="pr-3">SEASON</label>
                 <select onChange={(e) => setData("season", e.target.value)}>
                     {seasons.map((season) => (
                         <option key={season.id} value={season.id}>
@@ -28,7 +29,6 @@ const SearchBox = (props: {
             </div>
 
             <div>
-                <label className="pr-3">ORDER BY</label>
                 <select onChange={(e) => setData("orderby", e.target.value)}>
                     <option value={0}>POSTED DATE↑</option>
                     <option value={1}>POSTED DATE↓</option>
@@ -37,16 +37,16 @@ const SearchBox = (props: {
                 </select>
             </div>
 
-            <button
-                className="border border-gray-500 ml-10 px-5 py-1 shadow hover:shadow-md bg-gradient-to-r hover:from-white hover:to-gray-100 duration-200 active:scale-95"
-                onClick={(e) =>
+            <ActionIcon
+                variant="outline"
+                onClick={(e: any) =>
                     Inertia.get(route("posts.index"), data, {
                         preserveState: true,
                     })
                 }
             >
-                send
-            </button>
+                <Send size={60} strokeWidth={1.5} color={"black"} />
+            </ActionIcon>
         </div>
     );
 };

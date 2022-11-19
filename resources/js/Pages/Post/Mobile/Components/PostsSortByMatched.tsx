@@ -10,12 +10,12 @@ const PostsSortByMatched = (props: {
             {postsSortByMatched.map((post) => (
                 <button
                     onClick={(e) => Inertia.get(`/posts/${post.posts[0].id}`)}
-                    className="bg-gray-100 w-full my-5 pb-5 px-10 rounded-md shadow-lg hover:scale-[1.01] duration-200 active:scale-100"
+                    className="bg-gray-100 w-full my-5 p-2 px-5 rounded-md shadow-lg active:scale-100"
                     key={post.id}
                 >
-                    <div className="flex items-center">
+                    <div className="flex flex-col items-start gap-3">
                         <p>{post.matched_at}</p>
-                        <div className="flex items-center p-4">
+                        <div className="flex items-center pb-2">
                             <img
                                 src={post.home_team.logo}
                                 className="max-h-7 w-6 mx-1"
