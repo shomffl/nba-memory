@@ -32,9 +32,7 @@ const Create = (props: any) => {
 
     return (
         <div className="flex flex-col gap-4 mt-5 px-10">
-            <h1 className="border-b-2 text-4xl w-max">Favroite Team</h1>
-
-            <div className="flex items-center justify-between">
+            <div className="flex items-end justify-between">
                 {session.calendar != 2 ? (
                     <Link
                         href={route("games.index")}
@@ -50,9 +48,9 @@ const Create = (props: any) => {
                         className="flex items-center gap-1 border-b-2 border-red-900 active:scale-105"
                     >
                         <Calendar strokeWidth={1.5} />
-                        <h2>Calendar</h2>
                     </Link>
                 )}
+                <h1 className="border-b-2 text-4xl w-max">Favroite Team</h1>
 
                 {data.selectedTeamIds.length != 0 ? (
                     <button

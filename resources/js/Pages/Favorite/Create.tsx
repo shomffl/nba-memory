@@ -17,25 +17,28 @@ const Create = (props: any) => {
         return data.selectedTeamIds.includes(id);
     };
 
+    // 表示端末によってボタンが変わるため確認通知の文字列も変更
+    const viewSaveButton = BreakPoints() ? "Save" : "▷▷";
+
     const addTeamId = (id: any) => {
         if (data.selectedTeamIds.length < 4) {
             setData("selectedTeamIds", [...data.selectedTeamIds, id]);
             CustomNotification({
                 title: "お気に入りチームが追加されました",
-                body: "他に選択したいチームがない場合は「Save」を押してください",
+                body: `他に選択したいチームがない場合は「${viewSaveButton}」を押してください`,
                 type: 1,
             });
         } else if (data.selectedTeamIds.length == 4) {
             setData("selectedTeamIds", [...data.selectedTeamIds, id]);
             CustomNotification({
                 title: "お気に入り登録可能チームが上限に達しました",
-                body: "選択したチームに間違いない場合は、「Save」を押してください",
+                body: `選択したチームに間違いない場合は、「${viewSaveButton}」を押してください`,
                 type: 1,
             });
         } else {
             CustomNotification({
                 title: "お気に入りチームは5チームまでしか選択できません",
-                body: "選択しているチームを外すか、「Save」を押して決定してください",
+                body: `選択しているチームを外すか、「${viewSaveButton}」を押して決定してください`,
                 type: 0,
             });
         }
@@ -55,7 +58,7 @@ const Create = (props: any) => {
         if (data.selectedTeamIds.length != 0) {
             CustomNotification({
                 title: "お気に入りチームが選択されています",
-                body: "他に選択したいチームがない場合は「Save」を押してください",
+                body: `他に選択したいチームがない場合は「${viewSaveButton}」を押してください`,
                 type: 1,
             });
         }
