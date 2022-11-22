@@ -1,6 +1,4 @@
-import React, { useState } from "react";
-import { Inertia } from "@inertiajs/inertia";
-import { Head, Link, useForm } from "@inertiajs/inertia-react";
+import React from "react";
 import GameSelect from "./Components/GameSelect";
 import Links from "./Components/Links";
 import BackButton from "@/Components/Buttons/BackButton";
@@ -19,7 +17,7 @@ const Create = (props: any) => {
     }: any = props;
 
     return (
-        <div className="bg-gray-100 rounded py-5 px-5 mx-5 my-5 shadow-lg">
+        <div className="py-5 px-5 mx-5 my-5">
             <div className="pb-5">
                 <div className="flex items-end gap-2">
                     <h2>Match</h2>
@@ -44,7 +42,7 @@ const Create = (props: any) => {
                 </div>
 
                 <input
-                    className="w-full rounded border-gray-1000 focus:border-gray-1000 focus:ring-1 focus:ring-gray-1000 text-xl"
+                    className="w-full rounded border-gray-1000 bg-gray-50 focus:border-gray-1000 focus:ring-1 focus:ring-gray-1000 text-xl"
                     type="text"
                     value={data.title}
                     onChange={(e) => {
@@ -59,7 +57,7 @@ const Create = (props: any) => {
                     <p className="text-red-1000 text-sm">{errors.detail}</p>
                 </div>
                 <textarea
-                    className="w-full rounded border-gray-1000 focus:border-gray-1000 focus:ring-1 focus:ring-gray-1000"
+                    className="w-full rounded border-gray-1000 bg-gray-50 focus:border-gray-1000 focus:ring-1 focus:ring-gray-1000"
                     rows={5}
                     value={data.detail}
                     onChange={(e) => setData("detail", e.target.value)}

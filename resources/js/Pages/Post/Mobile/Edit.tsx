@@ -10,16 +10,17 @@ const Edit = (props: any) => {
 
     return (
         <form onSubmit={handleEditPost}>
-            <div className="bg-gray-100 rounded py-5 px-5 mx-5 my-5 shadow-lg">
+            <div className="py-5 px-5 mx-5 my-5">
                 <div>
                     <div className="pb-5">
                         <h2>Match</h2>
-                        <div className="flex flex-col gap-1">
-                            <h1 className="w-max bg-white text-base rounded px-5 py-1 mr-2 shadow">
+
+                        <div className="flex flex-col gap-1 border-l border-gray-1000">
+                            <h1 className="w-max text-base pl-3 py-1 mr-2">
                                 {post.game.matched_at}
                             </h1>
 
-                            <h1 className="w-max flex items-center bg-white text-base rounded px-5 py-2 mr-2 shadow">
+                            <h1 className="w-max flex items-center text-base px-2 py-1 mr-2">
                                 <img
                                     className="max-h-6"
                                     src={post.game.home_team.logo}
@@ -45,7 +46,7 @@ const Edit = (props: any) => {
                             </p>
                         </div>
                         <input
-                            className="w-full rounded border-gray-1000 focus:border-gray-1000 focus:ring-1 focus:ring-gray-1000 text-xl"
+                            className="w-full rounded border-gray-1000 bg-gray-50 focus:border-gray-1000 focus:ring-1 focus:ring-gray-1000 text-md"
                             type="text"
                             value={data.title}
                             onChange={(e) => setData("title", e.target.value)}
@@ -60,7 +61,7 @@ const Edit = (props: any) => {
                             </p>
                         </div>
                         <textarea
-                            className="w-full rounded border-gray-1000 focus:border-gray-1000 focus:ring-1 focus:ring-gray-1000"
+                            className="w-full rounded border-gray-1000 bg-gray-50 focus:border-gray-1000 focus:ring-1 focus:ring-gray-1000 text-sm"
                             rows={5}
                             value={data.detail}
                             onChange={(e) => setData("detail", e.target.value)}

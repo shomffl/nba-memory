@@ -1,9 +1,9 @@
+import React, { useState } from "react";
 import {
     setDataByMethod,
     setDataByObject,
     setDataByKeyValuePair,
 } from "@inertiajs/inertia-react";
-import React, { useState, useEffect } from "react";
 
 type GamesDate = {
     matched_at: string;
@@ -41,7 +41,7 @@ const GameSelect = (props: Props) => {
     return (
         <div className="flex flex-col gap-1">
             <select
-                className="w-max text-md rounded border-gray-1000 focus:border-gray-1000 focus:ring-1 focus:ring-gray-1000"
+                className="w-max text-md rounded border-gray-1000 bg-gray-50 focus:border-gray-1000 focus:ring-1 focus:ring-gray-1000"
                 value={changeDate}
                 onChange={(e) => {
                     localStorage.setItem("matched_at", e.target.value);
@@ -55,7 +55,7 @@ const GameSelect = (props: Props) => {
                 ))}
             </select>
             <select
-                className="w-max text-md rounded border-gray-1000 focus:border-gray-1000 focus:ring-1 focus:ring-gray-1000"
+                className="w-max text-md rounded border-gray-1000 bg-gray-50 focus:border-gray-1000 focus:ring-1 focus:ring-gray-1000"
                 value={gameId}
                 onChange={(e: React.ChangeEvent<HTMLSelectElement>) => {
                     localStorage.setItem("id", e.target.value);

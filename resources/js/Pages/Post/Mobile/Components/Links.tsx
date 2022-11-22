@@ -1,5 +1,4 @@
 import React from "react";
-import { Inertia } from "@inertiajs/inertia";
 import {
     setDataByObject,
     setDataByMethod,
@@ -65,15 +64,15 @@ const Links = (props: {
                 {data.links.map((link: any) => (
                     <div
                         key={link.id}
-                        className="flex flex-col items-start gap-2 pt-2 pb-4"
+                        className="flex flex-col items-start gap-2 mb-4 border-l border-gray-1000"
                     >
-                        <div className="flex items-center gap-4 w-10/12">
-                            <div className="overflow-auto bg-white rounded py-2 px-3 shadow">
+                        <div className="flex items-center gap-4 w-10/12 font-bold">
+                            <div className="overflow-auto px-3">
                                 {link.title}
                             </div>
                         </div>
-                        <div className="flex items-center gap-4 w-full">
-                            <div className="overflow-auto bg-white rounded py-2 px-3 shadow w-10/12">
+                        <div className="flex items-start gap-4 w-full">
+                            <div className="overflow-auto px-3 pb-4 w-10/12 text-xs">
                                 {link.url}
                             </div>
                             <ActionIcon
@@ -85,12 +84,12 @@ const Links = (props: {
                         </div>
                     </div>
                 ))}
-                <div className="flex items-center gap-2">
+                <div className="flex items-center gap-2 mt-4">
                     <div className="w-4/12">
                         <input
                             type="text"
                             value={link.title}
-                            className="w-full rounded border-gray-1000 focus:border-gray-1000 focus:ring-1 focus:ring-gray-1000 text-sm placeholder-black placeholder-opacity-30"
+                            className="w-full rounded border-gray-1000 bg-gray-50 focus:border-gray-1000 focus:ring-1 focus:ring-gray-1000 text-sm placeholder-black placeholder-opacity-30"
                             placeholder="highlight"
                             onChange={(e) =>
                                 setLink({
@@ -103,7 +102,7 @@ const Links = (props: {
                     </div>
                     <div className="w-8/12">
                         <input
-                            className="w-full rounded border-gray-1000 focus:border-gray-1000 focus:ring-1 focus:ring-gray-1000 text-sm placeholder-black placeholder-opacity-30"
+                            className="w-full rounded border-gray-1000 bg-gray-50 focus:border-gray-1000 focus:ring-1 focus:ring-gray-1000 text-sm placeholder-black placeholder-opacity-30"
                             type="text"
                             value={link.url}
                             placeholder="https://youtube.com"
