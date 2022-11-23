@@ -56,7 +56,7 @@ const Show = (props: Props) => {
                     <h2>Link</h2>
                     <div>
                         {post.links.length == 0 ? (
-                            <div className="bg-white text-black rounded px-5 py-1 shadow">
+                            <div className="border-l border-gray-1000 text-sm px-3 py-1">
                                 No Link
                             </div>
                         ) : (
