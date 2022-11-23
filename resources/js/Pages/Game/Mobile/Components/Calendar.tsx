@@ -68,7 +68,7 @@ const Calendar = (props: Props) => {
                             click: changeMode,
                         },
                         settingButton: {
-                            text: "setting",
+                            text: "⚙",
                             click: () => Inertia.get(route("favorites.create")),
                         },
                     }}
