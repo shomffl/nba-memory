@@ -1,13 +1,17 @@
-import { Inertia } from "@inertiajs/inertia";
 import React from "react";
+import { Inertia } from "@inertiajs/inertia";
 
-const PostsSortByPosted = (props: { postsSortByPosted: Array<Post> }) => {
+type Props = {
+    postsSortByPosted: Array<PostsSortByPosted>;
+};
+
+const PostsSortByPosted = (props: Props) => {
     const { postsSortByPosted } = props;
     return (
         <div>
             {postsSortByPosted.map((post) => (
                 <button
-                    onClick={(e) => Inertia.get(`posts/${post.id}`)}
+                    onClick={() => Inertia.get(`posts/${post.id}`)}
                     className="bg-gray-100 w-full my-5 pb-5 px-10 rounded-md shadow-lg hover:scale-[1.01] duration-200 active:scale-100"
                     key={post.id}
                 >

@@ -1,9 +1,10 @@
 import React from "react";
 import { Link } from "@inertiajs/inertia-react";
 import BackButton from "@/Components/Buttons/BackButton";
-import { Inertia } from "@inertiajs/inertia";
 
-const Show = (props: { post: Post; BackButtonLink: any }) => {
+type Props = { post: Post; BackButtonLink: any };
+
+const Show = (props: Props) => {
     const { post, BackButtonLink } = props;
 
     return (

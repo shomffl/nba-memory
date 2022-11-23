@@ -1,9 +1,4 @@
 import React from "react";
-import {
-    setDataByObject,
-    setDataByMethod,
-    setDataByKeyValuePair,
-} from "@inertiajs/inertia-react";
 import { ActionIcon } from "@mantine/core";
 import { Trash } from "tabler-icons-react";
 import { Plus } from "tabler-icons-react";
@@ -11,14 +6,14 @@ import { NotificationsProvider } from "@mantine/notifications";
 import { CustomNotification } from "../../../../Components/CustomNotification";
 import BreakPoints from "@/Pages/BreakPoints";
 
-const Links = (props: {
+type Props = {
     data: SendPost;
-    setData: setDataByObject<SendPost> &
-        setDataByMethod<SendPost> &
-        setDataByKeyValuePair<SendPost>;
+    setData: any;
     link: Link;
     setLink: React.Dispatch<React.SetStateAction<Link>>;
-}) => {
+};
+
+const Links = (props: Props) => {
     const { data, setData, link, setLink } = props;
 
     const addLink = () => {

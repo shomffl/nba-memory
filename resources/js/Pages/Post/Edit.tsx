@@ -5,14 +5,23 @@ import BreakPoints from "../BreakPoints";
 import EditPC from "./PC/Edit";
 import EditMobile from "./Mobile/Edit";
 
-const Edit = (props: { auth: any; session: any; post: Post; errors: any }) => {
+type Props = {
+    auth: User;
+    errors: any;
+    session: Session;
+    post: Post;
+};
+
+const Edit = (props: Props) => {
     const { post, errors } = props;
+
     const { data, setData, put } = useForm<SendPost>("EditCreate", {
         game_id: post.game_id,
         title: post.title,
         detail: post.detail,
         links: post.links,
     });
+
     const [link, setLink] = useState<Link>({
         id: 0,
         title: "",

@@ -1,24 +1,18 @@
 import React from "react";
-import { Inertia } from "@inertiajs/inertia";
-import {
-    setDataByObject,
-    setDataByMethod,
-    setDataByKeyValuePair,
-} from "@inertiajs/inertia-react";
 import { ActionIcon } from "@mantine/core";
 import { Trash } from "tabler-icons-react";
 import { Plus } from "tabler-icons-react";
 import { NotificationsProvider } from "@mantine/notifications";
 import { CustomNotification } from "../../../../Components/CustomNotification";
 
-const Links = (props: {
+type Props = {
     data: SendPost;
-    setData: setDataByObject<SendPost> &
-        setDataByMethod<SendPost> &
-        setDataByKeyValuePair<SendPost>;
+    setData: any;
     link: Link;
     setLink: React.Dispatch<React.SetStateAction<Link>>;
-}) => {
+};
+
+const Links = (props: Props) => {
     const { data, setData, link, setLink } = props;
 
     const addLink = () => {
@@ -49,7 +43,7 @@ const Links = (props: {
      * @param id linkのid
      */
     const removeLink = (id: number) => {
-        const linkData = data.links.filter((e: any) => !(e.id == id));
+        const linkData = data.links.filter((e: Link) => !(e.id == id));
         setData("links", linkData);
     };
 
@@ -75,7 +69,7 @@ const Links = (props: {
                         </div>
                         <ActionIcon
                             className="hover:bg-gray-100 hover:scale-125 duration-200 active:scale-110"
-                            onClick={(e: any) => removeLink(link.id)}
+                            onClick={() => removeLink(link.id)}
                         >
                             <Trash strokeWidth={1.5} color={"black"} />
                         </ActionIcon>
@@ -115,7 +109,7 @@ const Links = (props: {
 
                     <ActionIcon
                         className="hover:bg-gray-100 hover:scale-125 duration-200 active:scale-100"
-                        onClick={(e: any) => {
+                        onClick={() => {
                             addLink();
                         }}
                     >

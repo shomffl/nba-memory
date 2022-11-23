@@ -1,21 +1,32 @@
 import React, { useState } from "react";
-import { Inertia } from "@inertiajs/inertia";
 import GameSelect from "./Components/GameSelect";
 import Links from "./Components/Links";
 import BackButton from "@/Components/Buttons/BackButton";
 
-const Create = (props: any) => {
+type Props = {
+    errors: any;
+    session: Session;
+    data: SendPost;
+    setData: any;
+    games: Array<Game>;
+    gamesDate: Array<GameDate>;
+    handleSubmit: any;
+    link: Link;
+    setLink: React.Dispatch<React.SetStateAction<Link>>;
+};
+
+const Create = (props: Props) => {
     const {
+        errors,
         session,
-        games,
-        gamesDate,
         data,
         setData,
+        games,
+        gamesDate,
+        handleSubmit,
         link,
         setLink,
-        handleSubmit,
-        errors,
-    }: any = props;
+    } = props;
 
     return (
         <div className="px-28 py-20">

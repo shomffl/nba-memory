@@ -1,20 +1,9 @@
-import {
-    setDataByMethod,
-    setDataByObject,
-    setDataByKeyValuePair,
-} from "@inertiajs/inertia-react";
-import React, { useState, useEffect } from "react";
-
-type GamesDate = {
-    matched_at: string;
-};
+import React, { useState } from "react";
 
 type Props = {
-    games: Game[];
-    gamesDate: GamesDate[];
-    setData: setDataByObject<SendPost> &
-        setDataByMethod<SendPost> &
-        setDataByKeyValuePair<SendPost>;
+    games: Array<Game>;
+    gamesDate: Array<GameDate>;
+    setData: any;
 };
 
 const GameSelect = (props: Props) => {

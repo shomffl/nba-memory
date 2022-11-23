@@ -1,13 +1,21 @@
 import React, { useState } from "react";
 import Authenticated from "../../Layouts/Authenticated";
-import { Inertia } from "@inertiajs/inertia";
-import { Head, Link, useForm } from "@inertiajs/inertia-react";
+import { Head, useForm } from "@inertiajs/inertia-react";
 import BreakPoints from "../BreakPoints";
 import CreatePC from "./PC/Create";
 import CreateMobile from "./Mobile/Create";
 
-const Create = (props: any) => {
-    const { session, games, gamesDate, errors }: any = props;
+type Props = {
+    auth: User;
+    session: Session;
+    errors: any;
+    games: Array<Game>;
+    gamesDate: Array<GameDate>;
+};
+
+const Create = (props: Props) => {
+    const { session, errors, games, gamesDate } = props;
+
     const [link, setLink] = useState<Link>({
         id: 0,
         title: "",

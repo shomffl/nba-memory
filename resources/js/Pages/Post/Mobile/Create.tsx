@@ -3,7 +3,19 @@ import GameSelect from "./Components/GameSelect";
 import Links from "./Components/Links";
 import BackButton from "@/Components/Buttons/BackButton";
 
-const Create = (props: any) => {
+type Props = {
+    errors: any;
+    session: Session;
+    data: SendPost;
+    setData: any;
+    games: Array<Game>;
+    gamesDate: Array<GameDate>;
+    handleSubmit: any;
+    link: Link;
+    setLink: React.Dispatch<React.SetStateAction<Link>>;
+};
+
+const Create = (props: Props) => {
     const {
         session,
         games,

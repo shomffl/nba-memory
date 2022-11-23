@@ -1,7 +1,11 @@
-import { Inertia } from "@inertiajs/inertia";
 import React from "react";
+import { Inertia } from "@inertiajs/inertia";
 
-const PostsSortByPosted = (props: { postsSortByPosted: Array<Post> }) => {
+type Props = {
+    postsSortByPosted: Array<PostsSortByPosted>;
+};
+
+const PostsSortByPosted = (props: Props) => {
     const { postsSortByPosted } = props;
     return (
         <div>

@@ -9,6 +9,19 @@ interface ImportMetaEnv {
 
 declare var route: any;
 
+type User = {
+    id: number;
+    email: string;
+    email_verified_at: any;
+    created_at: string;
+    updated_at: string;
+};
+
+type Session = {
+    calendar: number;
+    show: number;
+};
+
 type Team = {
     id: number;
     name: string;
@@ -25,6 +38,10 @@ type Game = {
     away_team: Team;
     matched_at: string;
     series_id: number;
+};
+
+type GameDate = {
+    matched_at: string;
 };
 
 type Post = {
@@ -58,6 +75,15 @@ type Schedule = {
 type Season = {
     id: number;
     season: string;
+};
+
+type PostsSortByPosted = {
+    id: number;
+    title: string;
+    detail: string;
+    game_id: number;
+    game: Game;
+    links: Array<Link>;
 };
 
 type PostSortByMatched = {

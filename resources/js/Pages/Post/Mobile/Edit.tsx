@@ -1,10 +1,18 @@
-import React, { useState } from "react";
-import { Head, useForm, Link } from "@inertiajs/inertia-react";
-import Authenticated from "@/Layouts/Authenticated";
+import React from "react";
 import Links from "./Components/Links";
 import BackButton from "@/Components/Buttons/BackButton";
 
-const Edit = (props: any) => {
+type Props = {
+    errors: any;
+    data: SendPost;
+    setData: any;
+    handleEditPost: any;
+    link: Link;
+    setLink: any;
+    post: Post;
+};
+
+const Edit = (props: Props) => {
     const { post, data, setData, link, setLink, handleEditPost, errors } =
         props;
 

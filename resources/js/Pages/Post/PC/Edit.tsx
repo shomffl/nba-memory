@@ -4,8 +4,18 @@ import Authenticated from "@/Layouts/Authenticated";
 import Links from "./Components/Links";
 import BackButton from "@/Components/Buttons/BackButton";
 
-const Edit = (props: any) => {
-    const { post, data, setData, link, setLink, handleEditPost, errors } =
+type Props = {
+    errors: any;
+    data: SendPost;
+    setData: any;
+    handleEditPost: any;
+    link: Link;
+    setLink: any;
+    post: Post;
+};
+
+const Edit = (props: Props) => {
+    const { errors, data, setData, handleEditPost, link, post, setLink } =
         props;
 
     return (

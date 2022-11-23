@@ -1,20 +1,15 @@
 import React from "react";
 import { Inertia } from "@inertiajs/inertia";
-import {
-    setDataByObject,
-    setDataByMethod,
-    setDataByKeyValuePair,
-} from "@inertiajs/inertia-react";
 import { ActionIcon } from "@mantine/core";
 import { Send } from "tabler-icons-react";
 
-const SearchBox = (props: {
-    data: any;
-    setData: setDataByObject<any> &
-        setDataByMethod<any> &
-        setDataByKeyValuePair<any>;
+type Props = {
+    data: { season: number; orderby: string };
+    setData: any;
     seasons: Array<Season>;
-}) => {
+};
+
+const SearchBox = (props: Props) => {
     const { data, setData, seasons } = props;
     return (
         <div className="flex gap-6 mb-10 mt-5 items-center">

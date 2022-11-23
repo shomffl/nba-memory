@@ -1,21 +1,24 @@
-import React, { useState } from "react";
+import React from "react";
 import Authenticated from "@/Layouts/Authenticated";
 import { Head, useForm } from "@inertiajs/inertia-react";
 import IndexPC from "./PC/Index";
 import IndexMobile from "./Mobile/Index";
 import BreakPoints from "../BreakPoints";
 
-const Index = (props: {
-    auth: any;
-    session: any;
-    postsSortByPosted: Array<Post>;
+type Props = {
+    auth: User;
+    session: Session;
+    postsSortByPosted: Array<PostsSortByPosted>;
     postsSortByMatched: Array<PostSortByMatched>;
     seasons: Array<Season>;
     viewOption: number;
-}) => {
+};
+
+const Index = (props: Props) => {
     const { postsSortByPosted, postsSortByMatched, seasons, viewOption } =
         props;
-    const { data, setData } = useForm<any>({
+
+    const { data, setData } = useForm<{ season: number; orderby: string }>({
         season: seasons[0].id,
         orderby: "",
     });

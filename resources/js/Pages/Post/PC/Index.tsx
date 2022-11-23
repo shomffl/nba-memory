@@ -1,18 +1,18 @@
-import React, { useState } from "react";
-import Authenticated from "@/Layouts/Authenticated";
-import { useForm } from "@inertiajs/inertia-react";
+import React from "react";
 import PostsSortByPosted from "./Components/PostsSortByPosted";
 import PostsSortByMatched from "./Components/PostsSortByMatched";
 import SearchBox from "./Components/SearchBox";
 
-const Index = (props: {
-    postsSortByPosted: Array<Post>;
+type Props = {
+    postsSortByPosted: Array<PostsSortByPosted>;
     postsSortByMatched: Array<PostSortByMatched>;
     seasons: Array<Season>;
     viewOption: number;
-    data: any;
+    data: { season: number; orderby: string };
     setData: any;
-}) => {
+};
+
+const Index = (props: Props) => {
     const {
         postsSortByPosted,
         postsSortByMatched,

@@ -1,18 +1,13 @@
 import React from "react";
 import Authenticated from "@/Layouts/Authenticated";
-import { Head, Link } from "@inertiajs/inertia-react";
-import BackButton from "@/Components/Buttons/BackButton";
-import { Inertia } from "@inertiajs/inertia";
+import { Head } from "@inertiajs/inertia-react";
 import BreakPoints from "../BreakPoints";
 import ShowPC from "./PC/Show";
 import ShowMobile from "./Mobile/Show";
 
-const Show = (props: {
-    auth: any;
-    session: any;
-    post: Post;
-    previousPage: number;
-}) => {
+type Props = { auth: User; session: Session; post: Post };
+
+const Show = (props: Props) => {
     const { post, session } = props;
 
     // sessionの値によって戻るボタンの遷移先を変更
