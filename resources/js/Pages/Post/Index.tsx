@@ -1,9 +1,9 @@
 import React, { useState } from "react";
 import Authenticated from "@/Layouts/Authenticated";
-import { useForm } from "@inertiajs/inertia-react";
-import PostsSortByPosted from "./Components/PostsSortByPosted";
-import PostsSortByMatched from "./Components/PostsSortByMatched";
-import SearchBox from "./Components/SearchBox";
+import { Head, useForm } from "@inertiajs/inertia-react";
+import IndexPC from "./PC/Index";
+import IndexMobile from "./Mobile/Index";
+import BreakPoints from "../BreakPoints";
 
 const Index = (props: {
     auth: any;
@@ -22,24 +22,26 @@ const Index = (props: {
 
     return (
         <Authenticated auth={props.auth} session={props.session} header={null}>
-            <div className="px-28 py-20">
-                <div>
-                    <SearchBox
-                        data={data}
-                        setData={setData}
-                        seasons={seasons}
-                    />
-                    {viewOption == 0 ? (
-                        <PostsSortByPosted
-                            postsSortByPosted={postsSortByPosted}
-                        />
-                    ) : (
-                        <PostsSortByMatched
-                            postsSortByMatched={postsSortByMatched}
-                        />
-                    )}
-                </div>
-            </div>
+            <Head title="PULL ORIGIN" />
+            {BreakPoints() ? (
+                <IndexPC
+                    postsSortByPosted={postsSortByPosted}
+                    postsSortByMatched={postsSortByMatched}
+                    seasons={seasons}
+                    viewOption={viewOption}
+                    data={data}
+                    setData={setData}
+                />
+            ) : (
+                <IndexMobile
+                    postsSortByPosted={postsSortByPosted}
+                    postsSortByMatched={postsSortByMatched}
+                    seasons={seasons}
+                    viewOption={viewOption}
+                    data={data}
+                    setData={setData}
+                />
+            )}
         </Authenticated>
     );
 };
