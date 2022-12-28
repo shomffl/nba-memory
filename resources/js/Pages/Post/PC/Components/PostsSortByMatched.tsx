@@ -11,7 +11,11 @@ const PostsSortByMatched = (props: Props) => {
         <div>
             {postsSortByMatched.map((post) => (
                 <button
-                    onClick={() => Inertia.get(`/posts/${post.posts[0].id}`)}
+                    onClick={() =>
+                        Inertia.visit(`/posts/${post.posts[0].id}`, {
+                            preserveScroll: true,
+                        })
+                    }
                     className="bg-gray-100 w-full my-5 pb-5 px-10 rounded-md shadow-lg hover:scale-[1.01] duration-200 active:scale-100"
                     key={post.id}
                 >
