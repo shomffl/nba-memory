@@ -8,7 +8,7 @@ use Illuminate\Support\Facades\DB;
 use SplFileObject;
 use Carbon\Carbon;
 
-class PostsTableSeeder extends Seeder
+class LinksTableSeeder extends Seeder
 {
     /**
      * Run the database seeds.
@@ -17,7 +17,7 @@ class PostsTableSeeder extends Seeder
      */
     public function run()
     {
-        $file = new SplFileObject("database/data/posts.csv");
+        $file = new SplFileObject("database/data/links.csv");
         $file->setFlags(
             \SplFileObject::READ_CSV |
             \SplFileObject::READ_AHEAD |
@@ -30,15 +30,14 @@ class PostsTableSeeder extends Seeder
         foreach($file as $line) {
             $list[] = [
                 "id" => $line[0],
-                "user_id" => $line[1],
-                "game_id" => $line[2],
-                "title" => $line[3],
-                "detail" =>$line[4],
-                "created_at" => new Carbon($line[5]),
-                "updated_at" => new Carbon($line[6]),
+                "title" => $line[1],
+                "url" => $line[2],
+                "post_id" => $line[3],
+                "created_at" => new Carbon($line[4]),
+                "updated_at" => new Carbon($line[5]),
             ];
         }
 
-        DB::table("posts")->insert($list);
+        DB::table("links")->insert($list);
     }
 }
