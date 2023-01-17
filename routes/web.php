@@ -5,6 +5,7 @@ use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
 use App\Http\Controllers\GameController;
 use App\Http\Controllers\PostController;
+use App\Http\Controllers\CSVController;
 use App\Http\Controllers\FavoriteController;
 
 /*
@@ -29,6 +30,8 @@ Route::group(["middleware" => ["auth"]], function() {
     Route::resource("favorites", FavoriteController::class);
 });
 require __DIR__.'/auth.php';
+
+Route::get("/csv/output", [CSVController::class, "outputCSV"])->middleware("auth");
 
 
 Route::group(["middleware" => ["auth:admin", 'verified']], function(){
