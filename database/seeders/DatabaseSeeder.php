@@ -14,12 +14,6 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
-        // \App\Models\User::factory(10)->create();
-
-        // \App\Models\User::factory()->create([
-        //     'name' => 'Test User',
-        //     'email' => 'test@example.com',
-        // ]);
         $this->call([
             UsersTableSeeder::class,
             SeasonsTableSeeder::class,
@@ -28,7 +22,8 @@ class DatabaseSeeder extends Seeder
             Games2021TableSeeder::class,
             Games2022TableSeeder::class,
             AdminsTableSeeder::class,
-            PostsTableSeeder::class
+            PostsTableSeeder::class,
+            LinksTableSeeder::class
         ]);
     }
 }
