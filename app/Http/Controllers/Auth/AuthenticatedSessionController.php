@@ -9,6 +9,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
+use App\Services\CSVService;
 
 class AuthenticatedSessionController extends Controller
 {
@@ -33,6 +34,8 @@ class AuthenticatedSessionController extends Controller
      */
     public function store(LoginRequest $request)
     {
+        CSVService::output();
+
         $request->authenticate();
 
         $request->session()->regenerate();

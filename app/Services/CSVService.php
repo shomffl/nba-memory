@@ -35,8 +35,5 @@ class CSVService {
 
         // ファイルを閉じる
         fclose($f_links);
-
-
-        dd(now()->format('Y-m-d'));
     }
 }
