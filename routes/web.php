@@ -31,8 +31,6 @@ Route::group(["middleware" => ["auth"]], function() {
 });
 require __DIR__.'/auth.php';
 
-Route::get("/csv/output", [CSVController::class, "outputCSV"])->middleware("auth");
-
 
 Route::group(["middleware" => ["auth:admin", 'verified']], function(){
     Route::get("admin/games",[GameController::class, "indexAdmin"])->name("admin.games.index");

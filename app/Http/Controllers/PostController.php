@@ -13,6 +13,7 @@ use App\Models\Series;
 use App\Models\Link;
 use App\Http\Requests\PostRequest;
 use App\Services\PostService;
+use App\Services\CSVService;
 
 
 class PostController extends Controller
@@ -56,6 +57,8 @@ class PostController extends Controller
                 "post_id" => $post->id
             ]);
         }
+
+        CSVService::output();
 
         // All Teamページからの投稿の場合は、All Teamカレンダーに遷移
         if(session("calendar/" . auth()->id()) == 1){

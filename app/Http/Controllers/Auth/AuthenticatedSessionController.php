@@ -34,8 +34,6 @@ class AuthenticatedSessionController extends Controller
      */
     public function store(LoginRequest $request)
     {
-        CSVService::output();
-
         $request->authenticate();
 
         $request->session()->regenerate();
@@ -43,6 +41,8 @@ class AuthenticatedSessionController extends Controller
         if(auth()->user()->favoriteTeams->count()){
             return redirect(route("favorites.index"));
         };
+
+        CSVService::output();
 
         return redirect()->intended(RouteServiceProvider::HOME);
     }

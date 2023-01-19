@@ -11,8 +11,10 @@ class CSVService {
         $posts = Post::all();
         $links = Link::all();
 
+        $now = now()->format('Y-m-d');
+
         // 書き込み用ファイルを開く
-        $f_posts = fopen("csv/" . "posts.csv", 'w');
+        $f_posts = fopen("csv/" . $now .  "-posts.csv", 'w');
         if ($f_posts) {
 
             // データの書き込み
@@ -24,7 +26,7 @@ class CSVService {
         fclose($f_posts);
 
 
-        $f_links = fopen("csv/" . "links.csv", 'w');
+        $f_links = fopen("csv/" . $now .  "-links.csv", 'w');
         if ($f_links) {
 
             // データの書き込み
